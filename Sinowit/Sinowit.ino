@@ -312,6 +312,5 @@ void updatePID(void)
 
 void loop()
 {
-	  Serial.println("pidOut:" );
-	  Serial.println(pidOut);
+	  // Test by Magy. 2016/04/30
 }
