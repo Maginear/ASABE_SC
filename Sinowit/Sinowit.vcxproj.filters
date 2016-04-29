@@ -20,8 +20,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sinowit.ino">
-      <Filter>Source Files</Filter>
-    </None>
+    <None Include="Sinowit.ino" />
   </ItemGroup>
 </Project>
