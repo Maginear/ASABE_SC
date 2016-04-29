@@ -312,5 +312,5 @@ void updatePID(void)
 
 void loop()
 {
-	  // Test by Magy. 2016/04/30
+	 // Test by ZZL. 2016/04/30, 01:24:22
 }
