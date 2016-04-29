@@ -306,12 +306,12 @@ void updatePID(void)
 //  Serial.print("senVal:" );
 //  Serial.println(senVal);
   pidOut = PIDCal(senVal);
-//  Serial.println("pidOut:" );
-//  Serial.println(pidOut);
+
   MotorAdjust(pidOut);
 }
 
 void loop()
 {
-
+	//  Serial.println("pidOut:" );
+	//  Serial.println(pidOut);
 }
