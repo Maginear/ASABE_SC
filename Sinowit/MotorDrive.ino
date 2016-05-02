@@ -113,8 +113,6 @@ void MotorStep()
 	{
 		thisStep = 0;
 	}
-
-
 	if (leftOrRight)   //×ó±ßµç»ú
 	{
 		left_step = thisStep;
