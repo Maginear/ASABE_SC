@@ -20,14 +20,16 @@ float ReadSensor()
 	for (int i = 0; i < sensor_num; ++i)
 	{
 		state[i] = digitalRead(sensor[i]);
-		if (state[i] == LOW && i < (sensor_num - 1) && i > 0)	// 只将中间六个传感器用来做调整
+		if (state[i] == HIGH && i < (sensor_num - 1) && i > 0)	// 只将中间六个传感器用来做调整
 		{
 			sum += weight[i];
 			num++;
 		}
+		//Serial.print("s:s:");
+		//Serial.print(i);
+		//Serial.println(state[i]);
 	}
-	//      Serial.print("s:s:");
-	//      Serial.println(i);
+
 	//      Serial.println(state[i]);
 
 	corner_status = state[7] << 4 + state[0];	// 将左右两个端点传感器的数据融合，作为转弯的判断
@@ -47,8 +49,6 @@ float ReadSensor()
 		break;
 	}
 
-	if (sum == 0)
-		pid->sumerror = 0;
 	if (num != 0)
 		output = sum / num;
 	return output;
