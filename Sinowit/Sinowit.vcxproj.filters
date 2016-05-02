@@ -18,8 +18,14 @@
     <ClInclude Include="__vm\.Sinowit.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Sinowit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="MotorDrive.ino" />
     <None Include="Sinowit.ino" />
+    <None Include="PID_Out.ino" />
+    <None Include="Sensor.ino" />
   </ItemGroup>
 </Project>

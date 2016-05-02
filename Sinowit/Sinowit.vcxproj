@@ -47,10 +47,10 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino;D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\variants\mega;C:\Users\Administrator\Source\Repos\ASABE_SC\Sinowit;D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\libraries\MsTimer2;D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\libraries\MsTimer2\utility;C:\Users\Administrator\Documents\Arduino\libraries\Stepper\src;C:\Users\Administrator\Documents\Arduino\libraries\Stepper\src\utility;D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\libraries\TimerOne-master;D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\libraries\TimerOne-master\utility;D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\libraries\TimerThree-master;D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\libraries\TimerThree-master\utility;D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\libraries;D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\libraries;D:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\t4hgipe5.qo3\Micro Platforms\default\debuggers;C:\Users\Administrator\Documents\Arduino\libraries;D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\tools\avr/avr/include/;D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\tools\avr//avr/include/avr/;D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\tools\avr/lib\gcc\avr\4.8.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ForcedIncludeFiles>C:\Users\Administrator\Source\Repos\ASABE_SC\Sinowit\__vm\.Sinowit.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino;C:\Program Files (x86)\Arduino\hardware\arduino\avr\variants\mega;C:\Users\Magy\Documents\Arduino\Sinowit\Sinowit;C:\Program Files (x86)\Arduino\libraries\MsTimer2;C:\Program Files (x86)\Arduino\libraries\MsTimer2\utility;C:\Program Files (x86)\Arduino\libraries\Stepper\src;C:\Program Files (x86)\Arduino\libraries\Stepper\src\utility;C:\Program Files (x86)\Arduino\libraries\TimerOne;C:\Program Files (x86)\Arduino\libraries\TimerOne\utility;C:\Program Files (x86)\Arduino\libraries\TimerThree;C:\Program Files (x86)\Arduino\libraries\TimerThree\utility;C:\Program Files (x86)\Arduino\libraries;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries;C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\Extensions\22tpyety.y15\Micro Platforms\default\debuggers;C:\Users\Magy\Documents\Arduino\libraries;C:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino;C:\Program Files (x86)\Arduino\hardware\arduino\avr\variants\mega;C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\Extensions\22tpyety.y15\Micro Platforms\default\debuggers\VM_DBG;C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\Extensions\22tpyety.y15\Micro Platforms\default\debuggers;C:\Program Files (x86)\Arduino\libraries\Stepper\src;C:\Program Files (x86)\Arduino\libraries\TimerOne;C:\Program Files (x86)\Arduino\libraries\TimerThree;C:\Program Files (x86)\Arduino\libraries\MsTimer2;C:\Program Files (x86)\Arduino\libraries;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries;C:\Users\Magy\Documents\Arduino\libraries;C:\Program Files (x86)\Arduino\hardware\tools\avr/avr/include/;C:\Program Files (x86)\Arduino\hardware\tools\avr//avr/include/avr/;C:\Program Files (x86)\Arduino\hardware\tools\avr/lib\gcc\avr\4.8.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>C:\Users\Magy\Documents\Arduino\Sinowit\Sinowit\__vm\.Sinowit.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <PreprocessorDefinitions>__AVR_ATmega2560__;F_CPU=16000000L;ARDUINO=10605;ARDUINO_AVR_ADK;ARDUINO_ARCH_AVR;__cplusplus=201103L;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__AVR_ATmega2560__;_VMDEBUG=1;F_CPU=16000000L;ARDUINO=10608;ARDUINO_AVR_ADK;ARDUINO_ARCH_AVR;__cplusplus=201103L;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -71,9 +71,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Sinowit.h" />
     <ClInclude Include="__vm\.Sinowit.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="MotorDrive.ino" />
+    <None Include="PID_Out.ino" />
+    <None Include="Sensor.ino" />
     <None Include="Sinowit.ino" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
