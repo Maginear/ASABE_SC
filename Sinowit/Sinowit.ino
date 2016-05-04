@@ -12,22 +12,22 @@
 
 void setup()
 {
-	pinMode(motor_left_pin1, OUTPUT);
-	pinMode(motor_left_pin2, OUTPUT);
-	pinMode(motor_left_pin3, OUTPUT);
-	pinMode(motor_left_pin4, OUTPUT);
-	pinMode(motor_right_pin1, OUTPUT);
-	pinMode(motor_right_pin2, OUTPUT);
-	pinMode(motor_right_pin3, OUTPUT);
-	pinMode(motor_right_pin4, OUTPUT);
-	pinMode(sensor_1, INPUT);
-	pinMode(sensor_2, INPUT);
-	pinMode(sensor_3, INPUT);
-	pinMode(sensor_4, INPUT);
-	pinMode(sensor_5, INPUT);
-	pinMode(sensor_6, INPUT);
-	pinMode(sensor_7, INPUT);
-	pinMode(sensor_8, INPUT);
+	pinMode(MOTOR_LEFT_PIN1, OUTPUT);
+	pinMode(MOTOR_LEFT_PIN2, OUTPUT);
+	pinMode(MOTOR_LEFT_PIN3, OUTPUT);
+	pinMode(MOTOR_LEFT_PIN4, OUTPUT);
+	pinMode(MOTOR_RIGHT_PIN1, OUTPUT);
+	pinMode(MOTOR_RIGHT_PIN2, OUTPUT);
+	pinMode(MOTOR_RIGHT_PIN3, OUTPUT);
+	pinMode(MOTOR_RIGHT_PIN4, OUTPUT);
+	pinMode(SENSOR_1, INPUT);
+	pinMode(SENSOR_2, INPUT);
+	pinMode(SENSOR_3, INPUT);
+	pinMode(SENSOR_4, INPUT);
+	pinMode(SENSOR_5, INPUT);
+	pinMode(SENSOR_6, INPUT);
+	pinMode(SENSOR_7, INPUT);
+	pinMode(SENSOR_8, INPUT);
 
 	PID_inti();
 	Timer1.initialize(Stepinterval);	// 设置步进电机的初始 节拍间隔

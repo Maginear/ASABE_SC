@@ -21,19 +21,19 @@ void PID_inti()//PID初始化
 {
 	pid_sensor->error_1 = 0;
 	pid_sensor->sumerror = 0;
-	pid_sensor->pc = PC_sensor;
-	pid_sensor->ic = IC_sensor;
-	pid_sensor->dc = DC_sensor;
+	pid_sensor->pc = PC_SENSOR;
+	pid_sensor->ic = IC_SENSOR;
+	pid_sensor->dc = DC_SENSOR;
 	pid_m_l->error_1 = 0;
 	pid_m_l->sumerror = 0;
-	pid_m_l->pc = PC_motor;
-	pid_m_l->ic = IC_motor;
-	pid_m_l->dc = DC_motor;
+	pid_m_l->pc = PC_MOTOR;
+	pid_m_l->ic = IC_MOTOR;
+	pid_m_l->dc = DC_MOTOR;
 	pid_m_r->error_1 = 0;
 	pid_m_r->sumerror = 0;
-	pid_m_r->pc = PC_motor;
-	pid_m_r->ic = IC_motor;
-	pid_m_r->dc = DC_motor;
+	pid_m_r->pc = PC_MOTOR;
+	pid_m_r->ic = IC_MOTOR;
+	pid_m_r->dc = DC_MOTOR;
 }
 
 int PIDCal(PID* pid, float error)	//PID计算。位置式。
@@ -65,8 +65,24 @@ void updatePID(void)
 		pid_sensor->sumerror = 0;
 	Serial.print("senVal:" );
 	Serial.println(senVal);
-	int pidOut = 0;                 // pid的输出值
-	pidOut = PIDCal(pid_sensor, senVal);
+	switch (corner)
+	{
+	case 0x11:
+		TurnLeft();		// 两边都有黑心;
+		break;
+	case 0x10:
+		TurnLeft();		// 最左边有黑线，corner = 1
+		break;
+	case 0x01:
+		TurnRight();	// 最右边有黑线，corner = 2
+		break;
+	default:
+		corner = 0;		// 左右两端传感器无黑线 corner = 0;
+		break;
+	}
+
+    // pid的输出值
+	int pidOut = PIDCal(pid_sensor, senVal);
 	MotorAdjust(pidOut);
 }
 
@@ -105,6 +121,6 @@ void MotorAdjust(int pidOut)
 	Serial.println(r);
 	Timer1.setPeriod(l + 4000);  // 更新左侧电机的节拍时间间隔
 	Timer3.setPeriod(r + 4000);
-	//Timer1.setPeriod(8000);  // 更新左侧电机的节拍时间间隔
+	//Timer1.setPeriod(8000);	 // 更新左侧电机的节拍时间间隔
 	//Timer3.setPeriod(8000);
 }
