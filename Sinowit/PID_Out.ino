@@ -2,7 +2,7 @@
 * ASABE 2016 ZJUer
 * Group Sinowit
 * Last Edit by Magy
-* 2016/05/02
+* 2016/05/04
 */
 #include "Sinowit.h"
 #include <Stepper.h>
@@ -63,27 +63,30 @@ void updatePID(void)
 	float senVal = ReadSensor();
 	if (senVal == 0)
 		pid_sensor->sumerror = 0;
-	Serial.print("senVal:" );
-	Serial.println(senVal);
+// TODO 删除	
+//Serial.print("senVal: " );
+//Serial.println(senVal);
+Serial.print("corner: ");
+Serial.println(corner);
+
 	switch (corner)
 	{
-	case 0x11:
+	case 17:
 		TurnLeft();		// 两边都有黑心;
 		break;
-	case 0x10:
-		TurnLeft();		// 最左边有黑线，corner = 1
+	case 16:
+		TurnLeft();		// 最左边有黑线
 		break;
-	case 0x01:
-		TurnRight();	// 最右边有黑线，corner = 2
+	case 1:
+		TurnRight();	// 最右边有黑线
 		break;
 	default:
-		corner = 0;		// 左右两端传感器无黑线 corner = 0;
+		// 左右两端传感器无黑线
+		// pid的输出值
+		int pidOut = PIDCal(pid_sensor, senVal);
+		MotorAdjust(pidOut);
 		break;
 	}
-
-    // pid的输出值
-	int pidOut = PIDCal(pid_sensor, senVal);
-	MotorAdjust(pidOut);
 }
 
 int steplimit(int stepnum, int max, int min)
@@ -97,8 +100,10 @@ int steplimit(int stepnum, int max, int min)
 
 void MotorAdjust(int pidOut)
 {
-	Serial.print("motor pidout: ");
-	Serial.println(pidOut);
+// TODO 删除
+//Serial.print("motor pidout: ");
+//Serial.println(pidOut);
+
 	int l_step = Stepinterval;
 	int r_step = Stepinterval;
 	if (pidOut != 0)
@@ -110,17 +115,21 @@ void MotorAdjust(int pidOut)
 		int stepSum = l_step + r_step;
 		l_step = l_step * 10 / stepSum;
 		r_step = r_step * 10 / stepSum;
-		Serial.println(l_step);
-		Serial.println(r_step);
+// TODO 删除	
+//Serial.println(l_step);
+//Serial.println(r_step);
+
 	}
 	int l = PIDCal(pid_m_l, l_step);
 	int r = PIDCal(pid_m_r, r_step);
 	l = steplimit(l, 4000, 0);
 	r = steplimit(r, 4000, 0);
-	Serial.println(l);
-	Serial.println(r);
-	Timer1.setPeriod(l + 4000);  // 更新左侧电机的节拍时间间隔
-	Timer3.setPeriod(r + 4000);
+// TODO 删除	
+//Serial.println(l);
+//Serial.println(r);
+
+	Timer1.setPeriod(l + 5500);  // 更新左侧电机的节拍时间间隔
+	Timer3.setPeriod(r + 5500);
 	//Timer1.setPeriod(8000);	 // 更新左侧电机的节拍时间间隔
 	//Timer3.setPeriod(8000);
 }
