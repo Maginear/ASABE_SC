@@ -17,7 +17,7 @@ uchar detection, sample = 0, corner = 0, k, flag;	//TODO: 暂时用不到
 /************************************************************************/
 /*                    以下是PID控制 和 驱动电机的参数                     */
 /************************************************************************/
-#define Stepinterval 0    //步进电机每个节拍之间的时间 4ms
+#define Stepinterval 4    //步进电机每个节拍之间的时间 4ms
 #define ReadSensorInterval 100  //红外传感器的读取间隔时间
 #define TurnInterval 2000
 #define AfterTurnInterval 2000
@@ -91,6 +91,6 @@ void TurnRight(void);
 
 int weight[] = { -10, -8, -4, -2, 2, 4, 8, 10 }; //传感器的权值
 int SENSOR[] = { SENSOR_1, SENSOR_2, SENSOR_3, SENSOR_4, SENSOR_5, SENSOR_6, SENSOR_7, SENSOR_8 };
-float Readsensor();
+float ReadSensor();
 #endif
 

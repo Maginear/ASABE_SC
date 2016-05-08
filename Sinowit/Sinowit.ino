@@ -10,6 +10,9 @@
 #include <TimerThree.h>
 #include <MsTimer2.h>
 
+Stepper stpleft(200, 22, 24, 26, 28);
+Stepper stpright(200, 23, 25, 27, 29);
+
 void setup()
 {
 	pinMode(MOTOR_LEFT_PIN1, OUTPUT);
@@ -30,11 +33,11 @@ void setup()
 	pinMode(SENSOR_8, INPUT);
 
 	PID_inti();
-	Timer1.initialize(Stepinterval);	// 设置步进电机的初始 节拍间隔
-	Timer1.attachInterrupt(DriveLeft); // Drive Left Motor to run every stepinterval us	传入回调函数
-	Timer3.initialize(Stepinterval);	// 同上
-	Timer3.attachInterrupt(DriveRight);
-
+	//Timer1.initialize(Stepinterval);	// 设置步进电机的初始 节拍间隔
+	//Timer1.attachInterrupt(DriveLeft); // Drive Left Motor to run every stepinterval us	传入回调函数
+	//Timer3.initialize(Stepinterval);	// 同上
+	//Timer3.attachInterrupt(DriveRight);
+	
 	MsTimer2::set(ReadSensorInterval, updatePID); // 设置传感器扫描间隔， 以及回调函数
 	MsTimer2::start();
 
@@ -45,4 +48,21 @@ void loop()
 {
 	// Test by ZZL. 2016/04/30, 01:24:22
 	// Test by MZH. 2016/05/02, 16:17
+	/*stpleft.setSpeed(30);
+	stpright.setSpeed(60);*/
+	//stpleft.step(-1);
+	//stpright.step(1);
+	/*if (corner != 0x00)
+	{
+		stpleft.step(-200);
+		stpright.step(200);
+		
+	}*/
+	/*while (1)
+
+	{
+		stpleft.step(1);
+		stpright.step(2);
+	}*/
+
 }
