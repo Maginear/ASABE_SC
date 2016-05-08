@@ -17,8 +17,8 @@ uchar detection, sample = 0, corner = 0, k, flag;	//TODO: 暂时用不到
 /************************************************************************/
 /*                    以下是PID控制 和 驱动电机的参数                     */
 /************************************************************************/
-#define Stepinterval 0    //步进电机每个节拍之间的时间 4ms
-#define ReadSensorInterval 100  //红外传感器的读取间隔时间
+#define Stepinterval 5    //步进电机每个节拍之间的时间 5ms
+#define ReadSensorInterval 200  //红外传感器的读取间隔时间
 #define TurnInterval 2000
 #define AfterTurnInterval 2000
 
@@ -52,7 +52,7 @@ int PIDCal(PID* pid, float error);
 /*					以下是步进电机的参数                                 */
 /************************************************************************/
 // change this to the number of steps on your motor
-// 左轮	黑 OUT4
+// 左轮	黑 OUT4 
 //      绿 OUT3
 //		蓝 OUT1
 //		红 OUT2
@@ -63,12 +63,12 @@ int PIDCal(PID* pid, float error);
 //		红 OUT4
 #define STEPS 400 //因为是8拍， 所以360 / 0.9
 
-#define MOTOR_LEFT_PIN1 22	// 左 4  
-#define MOTOR_LEFT_PIN2 24	// 左 3
-#define MOTOR_LEFT_PIN3 26	// 左 2
-#define MOTOR_LEFT_PIN4 28	// 左 1
+#define MOTOR_LEFT_PIN1 22	// 左 1  
+#define MOTOR_LEFT_PIN2 24	// 左 2
+#define MOTOR_LEFT_PIN3 26	// 左 3
+#define MOTOR_LEFT_PIN4 28	// 左 4
 
-#define MOTOR_RIGHT_PIN1 23	// 右 1
+#define MOTOR_RIGHT_PIN1 23	// 右 4
 #define MOTOR_RIGHT_PIN2 25	// 3
 #define MOTOR_RIGHT_PIN3 27 // 2
 #define MOTOR_RIGHT_PIN4 29 // 1
