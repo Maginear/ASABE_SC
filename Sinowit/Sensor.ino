@@ -30,9 +30,9 @@ float ReadSensor()
 		//Serial.println(state[i]);
 	}
 
-	      Serial.println(state[7]);
-		  Serial.println(state[0]);
-	corner = state[7] + state[0]*16;	// 将左右两个端点传感器的数据融合，作为转弯的判断
+	//      Serial.println(state[i]);
+
+	corner = state[7] << 4 + state[0];	// 将左右两个端点传感器的数据融合，作为转弯的判断
 	
 
 	if (num != 0)

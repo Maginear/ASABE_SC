@@ -2,7 +2,7 @@
 * ASABE 2016 ZJUer
 * This part is used to drive stepper motor
 * Last Edit by Magy
-* 2016/05/04
+* 2016/05/02
 */
 #include "Sinowit.h"
 #include <Stepper.h>
@@ -18,12 +18,11 @@ int forwardOrback = 0;		// 1为前进， 0为后退
 // 左轮往后转，右轮往前转
 void TurnLeft(void)
 {
-	MsTimer2::stop();
 	Timer1.attachInterrupt(BackLeft);
-	Timer1.setPeriod(8000);
+	Timer1.setPeriod(5000);
 	Timer1.start();
 	Timer3.attachInterrupt(DriveRight);
-	Timer3.setPeriod(8000);
+	Timer3.setPeriod(5000);
 	Timer3.start();
 	MsTimer2::set(TurnInterval, AfterTurn);
 	MsTimer2::start();
@@ -32,12 +31,11 @@ void TurnLeft(void)
 // 左轮往前转，右轮往后转
 void TurnRight(void)
 {
-	MsTimer2::stop();
 	Timer1.attachInterrupt(DriveLeft);
-	Timer1.setPeriod(8000);
+	Timer1.setPeriod(5000);
 	Timer1.start();
 	Timer3.attachInterrupt(BackRight);
-	Timer3.setPeriod(8000);
+	Timer3.setPeriod(5000);
 	Timer3.start();
 	MsTimer2::set(TurnInterval, AfterTurn);
 	MsTimer2::start();
@@ -46,12 +44,11 @@ void TurnRight(void)
 // 转弯完成后，往前走一小段时间 
 void AfterTurn(void)
 {
-	MsTimer2::stop();
 	Timer1.attachInterrupt(DriveLeft);
-	Timer1.setPeriod(8000);
+	Timer1.setPeriod(4000);
 	Timer1.start();
 	Timer3.attachInterrupt(DriveRight);
-	Timer3.setPeriod(8000);
+	Timer3.setPeriod(4000);
 	Timer3.start();  
 	MsTimer2::set(AfterTurnInterval, StopTurn); // 设置传感器扫描间隔， 以及回调函数
 	MsTimer2::start();
@@ -191,11 +188,11 @@ void MotorStep(void)
 	}
 	thisStep++;
 
-	if (thisStep > 7)	// 8个节拍循环
+	if (thisStep > 7)
 	{
 		thisStep = 0;
 	}
-	if (leftOrRight)	//左边电机
+	if (leftOrRight)   //左边电机
 	{
 		left_step = thisStep;
 	}
