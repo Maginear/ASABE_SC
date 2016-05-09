@@ -19,7 +19,7 @@ uchar detection, sample = 0, corner = 0, k, flag;	//TODO: 暂时用不到
 /************************************************************************/
 #define Stepinterval 5    //步进电机每个节拍之间的时间 5ms
 #define ReadSensorInterval 200  //红外传感器的读取间隔时间
-#define TurnInterval 2000
+#define TurnInterval 1000
 #define AfterTurnInterval 2000
 
 // TODO：根据实际情况调整系数
