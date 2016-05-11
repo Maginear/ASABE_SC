@@ -83,6 +83,7 @@
     <None Include="PID_Out.ino" />
     <None Include="Sensor.ino" />
     <None Include="Sinowit.ino" />
+    <None Include="Turn_LR.ino" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
