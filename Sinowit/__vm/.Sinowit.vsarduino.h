@@ -68,4 +68,5 @@ extern "C" void __cxa_pure_virtual() {;}
 #include <..\Sinowit\PID_Out.ino>
 #include <..\Sinowit\Sensor.ino>
 #include <..\Sinowit\Sinowit.h>
+#include <..\Sinowit\Turn_LR.ino>
 #endif

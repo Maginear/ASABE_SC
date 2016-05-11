@@ -15,54 +15,7 @@ int left_step = 0;
 int leftOrRight = 0;		// 1为右，0为左
 int forwardOrback = 0;		// 1为前进， 0为后退
 
-// 左轮往后转，右轮往前转
-void TurnLeft(void)
-{
-	MsTimer2::stop();
-	Timer1.attachInterrupt(BackLeft);
-	Timer1.setPeriod(8000);
-	Timer1.start();
-	Timer3.attachInterrupt(DriveRight);
-	Timer3.setPeriod(8000);
-	Timer3.start();
-	MsTimer2::set(TurnInterval, AfterTurn);
-	MsTimer2::start();
-}
 
-// 左轮往前转，右轮往后转
-void TurnRight(void)
-{
-	MsTimer2::stop();
-	Timer1.attachInterrupt(DriveLeft);
-	Timer1.setPeriod(8000);
-	Timer1.start();
-	Timer3.attachInterrupt(BackRight);
-	Timer3.setPeriod(8000);
-	Timer3.start();
-	MsTimer2::set(TurnInterval, AfterTurn);
-	MsTimer2::start();
-}
-
-// 转弯完成后，往前走一小段时间 
-void AfterTurn(void)
-{
-	MsTimer2::stop();
-	Timer1.attachInterrupt(DriveLeft);
-	Timer1.setPeriod(8000);
-	Timer1.start();
-	Timer3.attachInterrupt(DriveRight);
-	Timer3.setPeriod(8000);
-	Timer3.start();  
-	MsTimer2::set(AfterTurnInterval, StopTurn); // 设置传感器扫描间隔， 以及回调函数
-	MsTimer2::start();
-}
-
-// 往前走也完成后，恢复正常的传感器更新步进电机
-void StopTurn(void)
-{
-	MsTimer2::set(ReadSensorInterval, updatePID);
-	MsTimer2::start();
-}
 
 void BackLeft(void)
 {

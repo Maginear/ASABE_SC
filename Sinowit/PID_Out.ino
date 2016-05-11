@@ -69,24 +69,9 @@ Serial.println(senVal);
 //Serial.print("corner: ");
 //Serial.println(corner);
 
-	switch (corner)
-	{
-	//case 17:
-	//	//TurnLeft();		// 两边都有黑心;
-	//	break;
-	//case 16:
-	//	//TurnLeft();		// 最左边有黑线
-	//	break;
-	//case 1:
-	//	//TurnRight();	// 最右边有黑线
-	//	break;
-	default:
-		// 左右两端传感器无黑线
-		// pid的输出值
-		int pidOut = PIDCal(pid_sensor, senVal);
-		MotorAdjust(pidOut);
-		break;
-	}
+	// pid的输出值
+	int pidOut = PIDCal(pid_sensor, senVal);
+	MotorAdjust(pidOut);
 }
 
 int steplimit(int stepnum, int max, int min)
