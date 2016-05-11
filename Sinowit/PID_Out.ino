@@ -60,30 +60,30 @@ int PIDCal(PID* pid, float error)	//PID计算。位置式。
 
 void updatePID(void)
 {
-	float senVal = ReadSensor();
+	/*float senVal = ReadSensor();
 	if (senVal == 0)
-		pid_sensor->sumerror = 0;
+		pid_sensor->sumerror = 0;*/
 	Serial.print("senVal:" );
-	Serial.println(senVal);
-	switch (corner)
-	{
-	case 0x11:
-		TurnLeft();		// 两边都有黑心;
-		break;
-	case 0x10:
-		TurnLeft();		// 最左边有黑线，corner = 1
-		break;
-	case 0x01:
-		TurnRight();	// 最右边有黑线，corner = 2
-		break;
-	default:
-		corner = 0;		// 左右两端传感器无黑线 corner = 0;
-		break;
-	}
+	/*Serial.println(senVal);*/
+	//switch (corner)
+	//{
+	//case 0x11:
+	//	TurnLeft();		// 两边都有黑心;
+	//	break;
+	//case 0x10:
+	//	TurnLeft();		// 最左边有黑线，corner = 1
+	//	break;
+	//case 0x01:
+	//	TurnRight();	// 最右边有黑线，corner = 2
+	//	break;
+	//default:
+	//	corner = 0;		// 左右两端传感器无黑线 corner = 0;
+	//	break;
+	//}
 
-    // pid的输出值
-	int pidOut = PIDCal(pid_sensor, senVal);
-	MotorAdjust(pidOut);
+ //   // pid的输出值
+	//int pidOut = PIDCal(pid_sensor, senVal);
+	//MotorAdjust(pidOut);
 }
 
 int steplimit(int stepnum, int max, int min)

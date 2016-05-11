@@ -25,18 +25,21 @@ float ReadSensor()
 			sum += weight[i];
 			num++;
 		}
-		//Serial.print("s:s:");
-		//Serial.print(i);
-		//Serial.println(state[i]);
+		Serial.print("s:s:");
+		Serial.print(i);
+		Serial.println(state[i]);
 	}
 
-	//      Serial.println(state[i]);
+	      
 
 	corner = state[7] << 4 + state[0];	// 将左右两个端点传感器的数据融合，作为转弯的判断
-	
+	Serial.print("corner");
+	Serial.println(corner);
 
 	if (num != 0)
 		output = sum / num;
+	Serial.print("output");
+	Serial.println(output);
 	return output;
 }
 

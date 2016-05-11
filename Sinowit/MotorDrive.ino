@@ -192,7 +192,7 @@ void MotorStep(void)
 	{
 		thisStep = 0;
 	}
-	if (leftOrRight)   //左边电机
+	if (!leftOrRight)   //左边电机
 	{
 		left_step = thisStep;
 	}
