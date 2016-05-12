@@ -1,4 +1,4 @@
-// Sinowit.h
+// Sinowit.h 
 
 #ifndef _SINOWIT_h
 #define _SINOWIT_h
@@ -17,10 +17,10 @@ uchar detection, sample = 0, corner = 0, k, flag;	//TODO: 暂时用不到
 /************************************************************************/
 /*                    以下是PID控制 和 驱动电机的参数                     */
 /************************************************************************/
-#define Stepinterval 5   //步进电机每个节拍之间的时间 5ms
-#define ReadSensorInterval 100  //红外传感器的读取间隔时间
-#define TurnInterval 2000
-#define AfterTurnInterval 2000
+#define Stepinterval 0			// 步进电机每个节拍之间的时间 5ms
+#define ReadSensorInterval 100  // 红外传感器的读取间隔时间
+#define TurnInterval 1700		// 转弯所需要的时间
+#define AfterTurnInterval 200	// 转弯后短时间无调整前进的时间
 
 // TODO：根据实际情况调整系数
 #define PC_SENSOR 2		// 比例放大系数
@@ -29,7 +29,7 @@ uchar detection, sample = 0, corner = 0, k, flag;	//TODO: 暂时用不到
 
 #define PC_MOTOR 400	// 比例放大系数
 #define IC_MOTOR 0		// 积分放大系数
-#define DC_MOTOR 200	// 微分放大系数
+#define DC_MOTOR 400	// 微分放大系数
 
 #define Basic_Left  50 //五步 后期会归到10步
 #define Basic_Right 50 //
@@ -80,14 +80,14 @@ void TurnRight(void);
 /************************************************************************/
 #define SENSOR_NUM 8
 
-#define SENSOR_1 46
+#define SENSOR_1 2
 #define SENSOR_2 48
 #define SENSOR_3 50
 #define SENSOR_4 52
 #define SENSOR_5 47
 #define SENSOR_6 49
 #define SENSOR_7 51	
-#define SENSOR_8 53
+#define SENSOR_8 3
 
 int weight[] = { -10, -8, -4, -2, 2, 4, 8, 10 }; //传感器的权值
 int SENSOR[] = { SENSOR_1, SENSOR_2, SENSOR_3, SENSOR_4, SENSOR_5, SENSOR_6, SENSOR_7, SENSOR_8 };

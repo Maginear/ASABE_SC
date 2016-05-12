@@ -63,10 +63,10 @@ extern "C" void __cxa_pure_virtual() {;}
 #define portOutputRegister(P)
 #define portInputRegister(P)
 #define portModeRegister(P)
-#include <..\Sinowit\Sinowit.ino>
-#include <..\Sinowit\MotorDrive.ino>
-#include <..\Sinowit\PID_Out.ino>
-#include <..\Sinowit\Sensor.ino>
-#include <..\Sinowit\Sinowit.h>
-#include <..\Sinowit\Turn_LR.ino>
+#include <Sinowit.ino>
+#include <MotorDrive.ino>
+#include <PID_Out.ino>
+#include <Sensor.ino>
+#include <Sinowit.h>
+#include <Turn_LR.ino>
 #endif

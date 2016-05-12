@@ -76,10 +76,10 @@ void AfterTurn(void)
 {
 	MsTimer2::stop();
 	Timer1.attachInterrupt(DriveLeft);
-	Timer1.setPeriod(8000);
+	Timer1.setPeriod(4000);
 	Timer1.start();
 	Timer3.attachInterrupt(DriveRight);
-	Timer3.setPeriod(8000);
+	Timer3.setPeriod(4000);
 	Timer3.start();
 	MsTimer2::set(AfterTurnInterval, StopTurn); // 设置传感器扫描间隔， 以及回调函数
 	MsTimer2::start();
