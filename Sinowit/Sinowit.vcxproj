@@ -77,6 +77,7 @@
   <ItemGroup>
     <None Include="MotorDrive.ino" />
     <None Include="PID_Out.ino" />
+    <None Include="Rountine.ino" />
     <None Include="Sensor.ino" />
     <None Include="Sinowit.ino" />
     <None Include="Turn_LR.ino" />
