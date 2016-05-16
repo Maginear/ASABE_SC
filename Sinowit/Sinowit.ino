@@ -50,6 +50,8 @@ void setup()
 	*/
 
 	Serial.begin(9600);
+
+	rountine();
 }
 
 void loop()

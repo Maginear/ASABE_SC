@@ -46,7 +46,7 @@ void pickBall(void)
 	detachInterrupt(1);
 	Timer1.setPeriod(3000);
 	Timer3.setPeriod(3000);
-	MsTimer2::set(1000, reSetMsTimer2);		// 进入黑线范围前直走， 结束后正常循迹
+	MsTimer2::set(500, reSetMsTimer2);		// 进入黑线范围前直走， 结束后正常循迹
 	MsTimer2::start();
 	forwardInterval = 1000;					
 	afterForwardFunction = stopTimer13;		// 走到球前面时，调用
@@ -60,7 +60,7 @@ void stopTimer13(void)		// 不动，用于捡球
 	Timer3.stop();
 	afterForwardFunction = turnLeft_in_ball;
 	forwardInterval = 1000;
-	MsTimer2::set(1000, goforward);			//捡球完成后，向前走一段路，再左转
+	MsTimer2::set(5000, goforward);			//捡球完成后，向前走一段路，再左转
 	MsTimer2::start();	
 }
 
