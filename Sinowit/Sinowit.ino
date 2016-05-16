@@ -30,12 +30,12 @@ void setup()
 	pinMode(SENSOR_7, INPUT);
 	pinMode(SENSOR_8, INPUT);
 
-	//PID_inti();
-	//Timer1.initialize(Stepinterval);	// 设置步进电机的初始 节拍间隔
-	//Timer1.attachInterrupt(DriveLeft); // Drive Left Motor to run every stepinterval us	传入回调函数
-	//Timer3.initialize(Stepinterval);	// 同上
-	//Timer3.attachInterrupt(DriveRight);
-	//
+	PID_inti();
+	Timer1.initialize(Stepinterval);	// 设置步进电机的初始 节拍间隔
+	Timer1.attachInterrupt(DriveLeft); // Drive Left Motor to run every stepinterval us	传入回调函数
+	Timer3.initialize(Stepinterval);	// 同上
+	Timer3.attachInterrupt(DriveRight);
+	
 	MsTimer2::set(ReadSensorInterval, updatePID); // 设置传感器扫描间隔， 以及回调函数
 	MsTimer2::start();
 
