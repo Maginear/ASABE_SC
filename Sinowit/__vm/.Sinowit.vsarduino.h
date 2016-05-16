@@ -67,7 +67,6 @@ extern "C" void __cxa_pure_virtual() {;}
 #include <MotorDrive.ino>
 #include <PID_Out.ino>
 #include <Sensor.ino>
-#include <Servo.ino>
 #include <Sinowit.h>
 #include <Turn_LR.ino>
 #endif
