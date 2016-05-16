@@ -39,7 +39,6 @@ void setup()
 	MsTimer2::set(ReadSensorInterval, updatePID); // 设置传感器扫描间隔， 以及回调函数
 	MsTimer2::start();
 
-
 	attachInterrupt(0, TurnLeft, RISING);		// 使用0号中断触发左转， 实际对应数字引脚2 (D2) ，触发条件为出现上升沿
 	attachInterrupt(1, TurnRight, RISING);		// 使用1号中断，实际对应数字引脚3 (D3), 出发条件为出现上升沿
 	/*

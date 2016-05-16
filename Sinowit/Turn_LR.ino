@@ -23,7 +23,7 @@
 // 左轮往后转，右轮往前转
 void TurnLeft(void)
 {
-
+	MsTimer2::stop();
 	detachInterrupt(0);	//去除左右转的中断
 	detachInterrupt(1);
 	ReadSensor();		//更新corner值，确认传感器的值，而非电路故障出现中断
@@ -49,6 +49,7 @@ void TurnLeft(void)
 // 左轮往前转，右轮往后转
 void TurnRight(void)
 {
+	MsTimer2::stop();
 	detachInterrupt(0);
 	detachInterrupt(1);
 	ReadSensor();
@@ -76,10 +77,10 @@ void AfterTurn(void)
 {
 	MsTimer2::stop();
 	Timer1.attachInterrupt(DriveLeft);
-	Timer1.setPeriod(8000);
+	Timer1.setPeriod(4000);
 	Timer1.start();
 	Timer3.attachInterrupt(DriveRight);
-	Timer3.setPeriod(8000);
+	Timer3.setPeriod(4000);
 	Timer3.start();
 	MsTimer2::set(AfterTurnInterval, StopTurn); // 设置传感器扫描间隔， 以及回调函数
 	MsTimer2::start();
@@ -94,3 +95,6 @@ void StopTurn(void)
 	attachInterrupt(0, TurnLeft, RISING);	//转弯完成，回复中断
 	attachInterrupt(1, TurnRight, RISING);
 }
+
+
+

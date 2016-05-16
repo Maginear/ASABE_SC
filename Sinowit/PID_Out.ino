@@ -39,23 +39,21 @@ void PID_inti()//PID初始化
 int PIDCal(PID* pid, float error)	//PID计算。位置式。
 {
 	float output, derror;
-	if (pid_interval == 0)
-		pid->sumerror += error;
-	pid_interval++;
-	if (pid_interval == 3)
-		pid_interval = 0;
 
-	if (pid->sumerror < -10)
-		pid->sumerror = -10;
-	else if (pid->sumerror > 10)
-		pid->sumerror = 10;
-
-	derror = (error - pid->error_1);
+	derror = error - pid->error_1;
 
 	output = error * pid->pc + pid->sumerror * pid->ic + derror * pid->dc;
 
-	pid->error_1 = error;
-	return (int)(output + 0.5);
+	pid->error_1 = error / 4 + pid->error_1 * 3 / 4;
+
+	pid->sumerror += (error / 5);
+	
+	if (pid->sumerror < -20)
+		pid->sumerror = -20;
+	else if (pid->sumerror > 20)
+		pid->sumerror = 20;
+
+	return (long)(output + 0.5);
 }
 
 void updatePID(void)
@@ -63,11 +61,11 @@ void updatePID(void)
 	float senVal = ReadSensor();
 	if (senVal == 0)
 		pid_sensor->sumerror = 0;
-// TODO 删除	
-Serial.print("senVal: " );
-Serial.println(senVal);
-//Serial.print("corner: ");
-//Serial.println(corner);
+	// TODO 删除	
+	Serial.print("senVal: ");
+	Serial.println(senVal);
+	//Serial.print("corner: ");
+	//Serial.println(corner);
 
 	// pid的输出值
 	int pidOut = PIDCal(pid_sensor, senVal);
@@ -85,36 +83,35 @@ int steplimit(int stepnum, int max, int min)
 
 void MotorAdjust(int pidOut)
 {
-// TODO 删除
-Serial.print("motor pidout: ");
-Serial.println(pidOut);
+	// TODO 删除
+	Serial.print("motor pidout: ");
+	Serial.println(pidOut);
 
-	int l_step = Stepinterval;
-	int r_step = Stepinterval;
+	float l_step = Stepinterval;
+	float r_step = Stepinterval;
 	if (pidOut != 0)
 	{
 		l_step = Basic_Left - pidOut;
 		r_step = Basic_Right + pidOut;
-		l_step = steplimit(l_step, 100, 5);
-		r_step = steplimit(r_step, 100, 5);
-		int stepSum = l_step + r_step;
-		l_step = l_step * 10 / stepSum;
-		r_step = r_step * 10 / stepSum;
-// TODO 删除	
-Serial.println(l_step);
-Serial.println(r_step);
-
+		l_step = steplimit(l_step, 95, 5);
+		r_step = steplimit(r_step, 95, 5);
+		float stepSum = l_step + r_step;
+		l_step = l_step * 10 / stepSum - 5;
+		r_step = r_step * 10 / stepSum - 5;
+		// TODO 删除	
+		Serial.println(l_step);
+		Serial.println(r_step);
 	}
 	long l = PIDCal(pid_m_l, l_step);
 	long r = PIDCal(pid_m_r, r_step);
-	l = steplimit(l, 4000, 0);
-	r = steplimit(r, 4000, 0);
-// TODO 删除	
-Serial.println(l);
-Serial.println(r);
-
-	Timer1.setPeriod(l + 2000);  // 更新左侧电机的节拍时间间隔
-	Timer3.setPeriod(r + 2000);
+	l = steplimit(l, 2000, -2000);
+	r = steplimit(r, 2000, -2000);
+	// TODO 删除	
+	Serial.println(l);
+	Serial.println(r);
+	
+	Timer1.setPeriod(l + 4000);  // 更新左侧电机的节拍时间间隔
+	Timer3.setPeriod(r + 4000);
 	//Timer1.stop();
 	//Timer1.setPeriod(4000);	 // 更新左侧电机的节拍时间间隔
 	//Timer1.restart();
