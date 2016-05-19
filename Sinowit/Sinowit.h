@@ -19,7 +19,7 @@ uchar detection, sample = 0, corner = 0, k, flag;	//TODO: 暂时用不到
 /************************************************************************/
 #define Stepinterval 0			// 步进电机每个节拍之间的时间 5ms
 #define ReadSensorInterval 100  // 红外传感器的读取间隔时间
-#define TurnInterval 1700		// 转弯所需要的时间
+#define TurnInterval 1675		// 转弯所需要的时间
 #define AfterTurnInterval 200	// 转弯后短时间无调整前进的时间
 
 // TODO：根据实际情况调整系数
@@ -63,10 +63,10 @@ int PIDCal(PID* pid, float error);
 //		红 OUT4
 #define STEPS 400 //因为是8拍， 所以360 / 0.9
 
-#define MOTOR_LEFT_PIN1 22	// 左 1  
-#define MOTOR_LEFT_PIN2 23	// 左 2
-#define MOTOR_LEFT_PIN3 24	// 左 3
-#define MOTOR_LEFT_PIN4 25	// 左 4
+#define MOTOR_LEFT_PIN1 25	// 左 1  
+#define MOTOR_LEFT_PIN2 24	// 左 2
+#define MOTOR_LEFT_PIN3 23	// 左 3
+#define MOTOR_LEFT_PIN4 22	// 左 4
 
 #define MOTOR_RIGHT_PIN1 29	// 右 4
 #define MOTOR_RIGHT_PIN2 28	// 3
