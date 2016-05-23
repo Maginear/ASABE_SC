@@ -10,6 +10,7 @@
 #include <TimerThree.h>
 #include <MsTimer2.h>
 
+
 void setup()
 {
 	pinMode(MOTOR_LEFT_PIN1, OUTPUT);
@@ -34,7 +35,7 @@ void setup()
 	Timer1.attachInterrupt(DriveLeft); // Drive Left Motor to run every stepinterval us	传入回调函数
 	Timer3.initialize(Stepinterval);	// 同上
 	Timer3.attachInterrupt(DriveRight);
-
+	
 	MsTimer2::set(ReadSensorInterval, updatePID); // 设置传感器扫描间隔， 以及回调函数
 	MsTimer2::start();
 
@@ -49,10 +50,13 @@ void setup()
 	*/
 
 	Serial.begin(9600);
+
+	rountine();
 }
 
 void loop()
 {
 	// Test by ZZL. 2016/04/30, 01:24:22
 	// Test by MZH. 2016/05/02, 16:17
+	/*ReadSensor();*/
 }

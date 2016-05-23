@@ -19,7 +19,7 @@ uchar detection, sample = 0, corner = 0, k, flag;	//TODO: 暂时用不到
 /************************************************************************/
 #define Stepinterval 0			// 步进电机每个节拍之间的时间 5ms
 #define ReadSensorInterval 100  // 红外传感器的读取间隔时间
-#define TurnInterval 1700		// 转弯所需要的时间
+#define TurnInterval 1675		// 转弯所需要的时间
 #define AfterTurnInterval 200	// 转弯后短时间无调整前进的时间
 
 // TODO：根据实际情况调整系数
@@ -63,15 +63,15 @@ int PIDCal(PID* pid, float error);
 //		红 OUT4
 #define STEPS 400 //因为是8拍， 所以360 / 0.9
 
-#define MOTOR_LEFT_PIN1 22	// 左 1  
+#define MOTOR_LEFT_PIN1 25	// 左 1  
 #define MOTOR_LEFT_PIN2 24	// 左 2
-#define MOTOR_LEFT_PIN3 26	// 左 3
-#define MOTOR_LEFT_PIN4 28	// 左 4
+#define MOTOR_LEFT_PIN3 23	// 左 3
+#define MOTOR_LEFT_PIN4 22	// 左 4
 
-#define MOTOR_RIGHT_PIN1 23	// 右 4
-#define MOTOR_RIGHT_PIN2 25	// 3
+#define MOTOR_RIGHT_PIN1 29	// 右 4
+#define MOTOR_RIGHT_PIN2 28	// 3
 #define MOTOR_RIGHT_PIN3 27 // 2
-#define MOTOR_RIGHT_PIN4 29 // 1
+#define MOTOR_RIGHT_PIN4 26 // 1
 void TurnLeft(void);
 void TurnRight(void);
 
@@ -80,14 +80,14 @@ void TurnRight(void);
 /************************************************************************/
 #define SENSOR_NUM 8
 
-#define SENSOR_1 2
-#define SENSOR_2 48
-#define SENSOR_3 50
-#define SENSOR_4 52
-#define SENSOR_5 47
-#define SENSOR_6 49
-#define SENSOR_7 51	
 #define SENSOR_8 3
+#define SENSOR_7 44
+#define SENSOR_6 43
+#define SENSOR_5 42
+#define SENSOR_4 41
+#define SENSOR_3 40
+#define SENSOR_2 39	
+#define SENSOR_1 2
 
 int weight[] = { -10, -8, -4, -2, 2, 4, 8, 10 }; //传感器的权值
 int SENSOR[] = { SENSOR_1, SENSOR_2, SENSOR_3, SENSOR_4, SENSOR_5, SENSOR_6, SENSOR_7, SENSOR_8 };
