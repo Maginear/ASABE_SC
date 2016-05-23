@@ -58,7 +58,7 @@ void reSetMsTimer2(void)
 	MsTimer2::set(ReadSensorInterval, updatePID);		//进入正常的循迹
 	MsTimer2::start();
 	forwardInterval = 3400;
-	afterForwardFunction = stopTimer13;		// 走到球前面时，调用
+	afterForwardFunction = TurnLeft_45_Degree;		// 走到球前面时，调用
 	attachInterrupt(0, goforward, RISING);	//当到达第一个转折，不转弯，直走去取第一个球
 }
 int turn_45_times = 0;
@@ -83,7 +83,6 @@ void TurnLeft_45_Degree(void)
 		forwardInterval = 16000;
 		afterForwardFunction = turn_Out_ball;		
 		MsTimer2::set(TurnInterval / 2, goforward_onWall);
-		
 	}
 	MsTimer2::start();
 }
