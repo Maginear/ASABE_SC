@@ -24,11 +24,13 @@
 void TurnLeft(void)
 {
 	MsTimer2::stop();
-	detachInterrupt(0);	//去除左右转的中断
-	detachInterrupt(1);
+	
 	ReadSensor();		//更新corner值，确认传感器的值，而非电路故障出现中断
 	if (corner == 17 || corner == 16)
 	{
+		detachInterrupt(0);	//去除左右转的中断
+		detachInterrupt(1);
+		//detachInterrupt(2);
 		MsTimer2::stop();
 		Timer1.attachInterrupt(BackLeft);
 		Timer1.setPeriod(8000);
@@ -41,8 +43,7 @@ void TurnLeft(void)
 	}
 	else
 	{
-		attachInterrupt(0, TurnLeft, RISING);		//若为故障，则不转弯，恢复正常工作
-		attachInterrupt(1, TurnRight, RISING);
+		MsTimer2::start();
 	}
 }
 
@@ -50,11 +51,13 @@ void TurnLeft(void)
 void TurnRight(void)
 {
 	MsTimer2::stop();
-	detachInterrupt(0);
-	detachInterrupt(1);
 	ReadSensor();
 	if (corner == 1)
 	{
+		detachInterrupt(0);
+		detachInterrupt(1);
+		//detachInterrupt(2);
+
 		MsTimer2::stop();
 		Timer1.attachInterrupt(DriveLeft);
 		Timer1.setPeriod(8000);
@@ -67,8 +70,7 @@ void TurnRight(void)
 	}
 	else
 	{
-		attachInterrupt(0, TurnLeft, RISING);
-		attachInterrupt(1, TurnRight, RISING);
+		MsTimer2::start();
 	}
 }
 
@@ -91,9 +93,6 @@ void StopTurn(void)
 {
 	MsTimer2::set(ReadSensorInterval, updatePID);
 	MsTimer2::start();
-
-	attachInterrupt(0, TurnLeft, RISING);	//转弯完成，回复中断
-	attachInterrupt(1, TurnRight, RISING);
 }
 
 
