@@ -79,7 +79,8 @@
     <ClInclude Include="__vm\.Sinowit.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="MotorDrive.ino" />
+    <None Include="DCMotor.ino" />
+    <None Include="StepMotor.ino" />
     <None Include="PID_Out.ino" />
     <None Include="Rountine.ino" />
     <None Include="Sensor.ino" />

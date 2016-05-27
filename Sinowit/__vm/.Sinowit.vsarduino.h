@@ -64,10 +64,11 @@ extern "C" void __cxa_pure_virtual() {;}
 #define portInputRegister(P)
 #define portModeRegister(P)
 #include <Sinowit.ino>
-#include <MotorDrive.ino>
+#include <DCMotor.ino>
 #include <PID_Out.ino>
 #include <Rountine.ino>
 #include <Sensor.ino>
 #include <Sinowit.h>
+#include <StepMotor.ino>
 #include <Turn_LR.ino>
 #endif
