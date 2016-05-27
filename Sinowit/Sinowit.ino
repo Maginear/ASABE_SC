@@ -29,6 +29,9 @@ void setup()
 	pinMode(SENSOR_6, INPUT);
 	pinMode(SENSOR_7, INPUT);
 	pinMode(SENSOR_8, INPUT);
+	pinMode(DCmotorPin1, OUTPUT);
+	pinMode(DCmotorPin2, OUTPUT);
+	pinMode(DCmotorPwm, OUTPUT);
 
 	PID_inti();
 	Timer1.initialize(Stepinterval);	// 设置步进电机的初始 节拍间隔
@@ -48,8 +51,7 @@ void setup()
 	RISING	当针脚输入由低变高时，触发中断
 	FALLING	当针脚输入由高变低时，触发中断
 	*/
-	pinMode(DCmotorPin, OUTPUT);
-	pinMode(DCmotorPwm, OUTPUT);
+
 	Serial.begin(9600);
 	dcDrive();
 	rountine();

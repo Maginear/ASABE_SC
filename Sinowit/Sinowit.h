@@ -15,7 +15,7 @@
 uchar detection, sample = 0, corner = 0, k, flag;	//TODO: 暂时用不到
 
 /************************************************************************/
-/*                    以下是PID控制 和 驱动电机的参数                     */
+/*                    以下是PID控制 和 驱动步进的参数                     */
 /************************************************************************/
 #define Stepinterval 0			// 步进电机每个节拍之间的时间 5ms
 #define ReadSensorInterval 100  // 红外传感器的读取间隔时间
@@ -109,8 +109,9 @@ void haveABreak(void);
 /************************************************************************/
 /*							  直流电机                                  */
 /************************************************************************/
-#define DCmotorPin 2 
-#define DCmotorPwm 3
+#define DCmotorPin1 2// 定义I1接口
+#define DCmotorPin2 3// 定义I2接口
+#define DCmotorPwm 4	// PWM口
 #define DCSPEED 50
 void dcDrive(int speed);
 
