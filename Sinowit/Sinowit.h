@@ -80,18 +80,17 @@ void TurnRight(void);
 /************************************************************************/
 #define SENSOR_NUM 8
 
-#define SENSOR_8 45
+#define SENSOR_8 2
 #define SENSOR_7 44
 #define SENSOR_6 43
 #define SENSOR_5 42
 #define SENSOR_4 41
 #define SENSOR_3 40
 #define SENSOR_2 39	
-#define SENSOR_1 38
-
+#define SENSOR_1 3
 int weight[] = { -10, -8, -4, -2, 2, 4, 8, 10 }; //传感器的权值
 int SENSOR[] = { SENSOR_1, SENSOR_2, SENSOR_3, SENSOR_4, SENSOR_5, SENSOR_6, SENSOR_7, SENSOR_8 };
-float Readsensor();
+float ReadSensor();
 
 /************************************************************************/
 /*                            转向的参数                                 */

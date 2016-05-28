@@ -49,6 +49,7 @@ void setup()
 	FALLING	当针脚输入由高变低时，触发中断
 	*/
 
+	rountine();
 	Serial.begin(9600);
 }
 
