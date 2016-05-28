@@ -8,10 +8,8 @@ int forwardInterval = 2000;		// 向前的时间
 
 void rountine(void)
 {
-	pickBall();
+	getOut();
 }
-
-
 
 void goforward(void)		//直走，时间为forwardInterval， 随后调用 afterForwardFunction（函数指针）
 {
@@ -27,7 +25,7 @@ void goforward(void)		//直走，时间为forwardInterval， 随后调用 afterForwardFunct
 	MsTimer2::start();
 }
 
-void goBack(void)		//  反方向走
+void getOut(void)		//  反方向走
 {
 	Timer1.attachInterrupt(BackLeft);
 	Timer3.attachInterrupt(BackRight);

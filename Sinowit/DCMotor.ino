@@ -8,5 +8,5 @@ void dcDrive(void)
 {
 	analogWrite(DCmotorPwm, DCSPEED);
 	digitalWrite(DCmotorPin1, LOW);
-	digitalWrite(DCmotorPin2, HIGH);
+	digitalWrite(DCmotorPin2, HIGH);	// Ë³Ê±ÕëÐý×ª
 }
