@@ -98,5 +98,20 @@ float ReadSensor();
 //void(*afterTurnFunction)();
 void(*afterForwardFunction)();
 
+/************************************************************************/
+/*                             路径规划                                 */
+/************************************************************************/
+void rountine(void);
+void backToLine(void);
+void haveABreak(void);
+
+/************************************************************************/
+/*							  直流电机                                  */
+/************************************************************************/
+#define DCmotorPin 2 
+#define DCmotorPwm 3
+#define DCSPEED 50
+void dcDrive(int speed);
+
 #endif
 

@@ -48,8 +48,8 @@ void setup()
 	RISING	当针脚输入由低变高时，触发中断
 	FALLING	当针脚输入由高变低时，触发中断
 	*/
-
-	rountine();
+	pinMode(DCmotorPin, OUTPUT);
+	pinMode(DCmotorPwm, OUTPUT);
 	Serial.begin(9600);
 }
 
