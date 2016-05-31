@@ -29,9 +29,6 @@ void setup()
 	pinMode(SENSOR_6, INPUT);
 	pinMode(SENSOR_7, INPUT);
 	pinMode(SENSOR_8, INPUT);
-	pinMode(DCmotorPin1, OUTPUT);
-	pinMode(DCmotorPin2, OUTPUT);
-	pinMode(DCmotorPwm, OUTPUT);
 
 	PID_inti();
 	Timer1.initialize(Stepinterval);	// 设置步进电机的初始 节拍间隔
@@ -42,8 +39,8 @@ void setup()
 	MsTimer2::set(ReadSensorInterval, updatePID); // 设置传感器扫描间隔， 以及回调函数
 	MsTimer2::start();
 
-	attachInterrupt(0, TurnLeft, RISING);		// 使用0号中断触发左转， 实际对应数字引脚2 (D2) ，触发条件为出现上升沿
-	attachInterrupt(1, TurnRight, RISING);		// 使用1号中断，实际对应数字引脚3 (D3), 出发条件为出现上升沿
+	//attachInterrupt(0, TurnLeft, RISING);		// 使用0号中断触发左转， 实际对应数字引脚2 (D2) ，触发条件为出现上升沿
+	//attachInterrupt(1, TurnRight, RISING);		// 使用1号中断，实际对应数字引脚3 (D3), 出发条件为出现上升沿
 	/*
 	中断技术可参考 http://arduino.cc/en/Reference/AttachInterrupt
 	LOW	当针脚输入为低时，触发中断
@@ -51,10 +48,8 @@ void setup()
 	RISING	当针脚输入由低变高时，触发中断
 	FALLING	当针脚输入由高变低时，触发中断
 	*/
-	pinMode(DCmotorPin, OUTPUT);
-	pinMode(DCmotorPwm, OUTPUT);
+	
 	Serial.begin(9600);
-	dcDrive();
 	rountine();
 }
 
