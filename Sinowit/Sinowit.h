@@ -113,7 +113,7 @@ void haveABreak(void);
 #define DCmotorPin2 43// 定义I2接口
 #define DCmotorPwm 4	// PWM口
 #define DCSPEED 50
-void dcDrive(int speed);
+void dcDrive();
 
 #endif
 

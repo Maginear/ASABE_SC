@@ -143,7 +143,7 @@ void MotorStep(void)
 		break;
 	}
 	thisStep++;
-
+	//Serial.println(thisStep);
 	if (thisStep > 7)	// 8╦Ж╫зедя╜╩╥
 	{
 		thisStep = 0;
