@@ -8,7 +8,7 @@ int forwardInterval = 2000;		// 向前的时间
 
 void rountine(void)
 {
-	getOut();
+	pickBall();
 }
 
 void goforward(void)		//直走，时间为forwardInterval， 随后调用 afterForwardFunction（函数指针）
@@ -47,7 +47,7 @@ void pickBall(void)
 	Timer3.setPeriod(6000);
 	Timer1.start();
 	Timer3.start();
-	MsTimer2::set(1500, reSetMsTimer2);		// 进入黑线范围前直走， 结束后正常循迹
+	MsTimer2::set(1500, reSetMsTimer2);		// 进入黑线范围前直走，结束后正常循迹
 	MsTimer2::start();
 }
 
@@ -59,9 +59,11 @@ void reSetMsTimer2(void)
 	afterForwardFunction = TurnLeft_45_Degree;		// 走到球前面时，调用
 	attachInterrupt(0, goforward, RISING);	//当到达第一个转折，不转弯，直走去取第一个球
 }
-int turn_45_times = 0;
+
 void TurnLeft_45_Degree(void)
 {
+	detachInterrupt(0);
+	detachInterrupt(1);
 	MsTimer2::stop();
 	Timer1.attachInterrupt(BackLeft);
 	Timer1.setPeriod(6000);
@@ -71,18 +73,19 @@ void TurnLeft_45_Degree(void)
 	Timer3.start();
 	if (turn_45_times == 0)
 	{
-		forwardInterval = 500;		
+		forwardInterval = 500;
 		turn_45_times++;
 		afterForwardFunction = TurnLeft_45_Degree;
-		MsTimer2::set(TurnInterval / 2, goforward);
+		MsTimer2::set(HalfTurnInterval, goforward);
+		MsTimer2::start();
 	}
 	else
 	{
 		forwardInterval = 16000;
-		afterForwardFunction = turn_Out_ball;		
-		MsTimer2::set(TurnInterval / 2, goforward_onWall);
+		afterForwardFunction = turn_Out_ball;
+		MsTimer2::set(HalfTurnInterval, goforward_onWall);
+		MsTimer2::start();
 	}
-	MsTimer2::start();
 }
 
 void goforward_onWall(void)		//直走，时间为forwardInterval， 随后调用 afterForwardFunction（函数指针）
@@ -94,6 +97,8 @@ void goforward_onWall(void)		//直走，时间为forwardInterval， 随后调用 afterForwa
 	Timer3.attachInterrupt(DriveRight);
 	Timer1.setPeriod(5800);
 	Timer3.setPeriod(6200);
+	Timer1.start();
+	Timer3.start();
 
 	MsTimer2::set(forwardInterval, afterForwardFunction);
 	MsTimer2::start();

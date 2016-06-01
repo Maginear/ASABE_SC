@@ -15,8 +15,6 @@ int left_step = 0;
 int leftOrRight = 0;		// 1为右，0为左
 int forwardOrback = 0;		// 1为前进， 0为后退
 
-
-
 void BackLeft(void)
 {
 	leftOrRight = 0;

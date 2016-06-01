@@ -51,9 +51,8 @@ void setup()
 	RISING	当针脚输入由低变高时，触发中断
 	FALLING	当针脚输入由高变低时，触发中断
 	*/
-
 	Serial.begin(9600);
-	dcDrive();
+	//dcDrive();
 	rountine();
 }
 

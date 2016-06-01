@@ -52,6 +52,7 @@ void getOut(void)
 	MsTimer2::set(1500, reSetMsTimer2);		// 进入黑线范围前直走， 结束后正常循迹
 	MsTimer2::start();
 	isHasShortGo = 0;
+	crossLineTime = 0;
 	attachInterrupt(0, crossLine, RISING);
 }
 
@@ -67,11 +68,16 @@ void crossLine(void)
 	{
 		ReadSensor();
 		if (corner == 17 || corner == 16)
-		{
-			isHasShortGo = 1;
-			forwardInterval = 500;
-			afterForwardFunction = crossLine;
-			goforward();
+		{	
+			if (crossLineTime == 0)
+				crossLineTime == 1;
+			else
+			{
+				isHasShortGo = 1;
+				forwardInterval = 500;
+				afterForwardFunction = crossLine;
+				goforward();
+			}
 		}
 	}
 	else if (isHasShortGo == 1)
