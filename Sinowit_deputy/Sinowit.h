@@ -63,15 +63,15 @@ int PIDCal(PID* pid, float error);
 //		ºì OUT4
 #define STEPS 400 //ÒòÎªÊÇ8ÅÄ£¬ ËùÒÔ360 / 0.9
 
-#define MOTOR_LEFT_PIN1 33	// ×ó 4   
-#define MOTOR_LEFT_PIN2 32	// ×ó 3
-#define MOTOR_LEFT_PIN3 31	// ×ó 2
-#define MOTOR_LEFT_PIN4 30 	// ×ó 1
+#define MOTOR_LEFT_PIN1 31	// ×ó 1   
+#define MOTOR_LEFT_PIN2 32	// ×ó 2
+#define MOTOR_LEFT_PIN3 33	// ×ó 3
+#define MOTOR_LEFT_PIN4 34 	// ×ó 4
 
-#define MOTOR_RIGHT_PIN1 39	// ÓÒ 4
-#define MOTOR_RIGHT_PIN2 38	// 3
-#define MOTOR_RIGHT_PIN3 37 // 2
-#define MOTOR_RIGHT_PIN4 36 // 1
+#define MOTOR_RIGHT_PIN1 36	// ÓÒ 4
+#define MOTOR_RIGHT_PIN2 37	// 3
+#define MOTOR_RIGHT_PIN3 38 // 2
+#define MOTOR_RIGHT_PIN4 39 // 1
 void TurnLeft(void);
 void TurnRight(void);
 
@@ -81,7 +81,7 @@ void TurnRight(void);
 #define SENSOR_NUM 8
 
 #define SENSOR_8 3
-#define SENSOR_7 27
+#define SENSOR_7 27 
 #define SENSOR_6 26
 #define SENSOR_5 25
 #define SENSOR_4 24

@@ -13,6 +13,7 @@
 #define uint unsigned int
 
 uchar detection, sample = 0, corner = 0, k, flag;	//TODO: 暂时用不到
+int turn_45_times = 0;
 
 /************************************************************************/
 /*                    以下是PID控制 和 驱动步进的参数                     */
@@ -20,6 +21,7 @@ uchar detection, sample = 0, corner = 0, k, flag;	//TODO: 暂时用不到
 #define Stepinterval 0			// 步进电机每个节拍之间的时间 5ms
 #define ReadSensorInterval 100  // 红外传感器的读取间隔时间
 #define TurnInterval 1600		// 转弯所需要的时间
+#define HalfTurnInterval 800	// 转弯所需要的时间
 #define AfterTurnInterval 200	// 转弯后短时间无调整前进的时间
 
 // TODO：根据实际情况调整系数
