@@ -55,6 +55,7 @@ void setup()
 	Serial.begin(9600);
 	//dcDrive();
 	rountine();
+
 }
 
 void loop()
@@ -62,4 +63,19 @@ void loop()
 	// Test by ZZL. 2016/04/30, 01:24:22
 	// Test by MZH. 2016/05/02, 16:17
 	/*ReadSensor();*/
+	/*Timer1.attachInterrupt(DriveLeft);
+	Timer1.setPeriod(6000);
+	Timer3.attachInterrupt(DriveRight);
+	Timer3.setPeriod(6000);
+	Timer1.start();
+	Timer3.start();
+	delay(1000);
+	Timer1.attachInterrupt(BackLeft);
+	Timer1.setPeriod(6000);
+	Timer3.attachInterrupt(BackRight);
+	Timer3.setPeriod(6000);
+	Timer1.start();
+	Timer3.start();
+	delay(1000);*/
+	
 }

@@ -46,7 +46,7 @@ void DriveRight(void)
 void MotorStep(void)
 {
 	int Pin0, Pin1, Pin2, Pin3, thisStep = 0;
-	if (leftOrRight == 0 && forwardOrback == 1)			// ×óÂÖ ÍùÇ°
+	if (leftOrRight == 0 )			// ×óÂÖ
 	{
 		//    Pin0 = 22;
 		//    Pin1 = 24;
@@ -58,7 +58,7 @@ void MotorStep(void)
 		Pin3 = MOTOR_LEFT_PIN4;
 		thisStep = left_step;
 	}
-	else if (leftOrRight == 1 && forwardOrback == 1)	// ÓÒÂÖ ÍùÇ°
+	else	// ÓÒÂÖ 
 	{
 		Pin0 = MOTOR_RIGHT_PIN1;
 		Pin1 = MOTOR_RIGHT_PIN2;
@@ -66,23 +66,27 @@ void MotorStep(void)
 		Pin3 = MOTOR_RIGHT_PIN4;
 		thisStep = right_step;
 	}
-	else if (leftOrRight == 0 && forwardOrback == 0)	// ×óÂÖ Íùºó
-	{
-		Pin0 = MOTOR_LEFT_PIN4;
-		Pin1 = MOTOR_LEFT_PIN3;
-		Pin2 = MOTOR_LEFT_PIN2;
-		Pin3 = MOTOR_LEFT_PIN1;
-		thisStep = left_step;
-	}
-	else												//ÓÒÂÖ Íùºó
-	{
-		Pin0 = MOTOR_RIGHT_PIN4;
-		Pin1 = MOTOR_RIGHT_PIN3;
-		Pin2 = MOTOR_RIGHT_PIN2;
-		Pin3 = MOTOR_RIGHT_PIN1;
-		thisStep = right_step;
-	}
-
+	//else if (leftOrRight == 0 && forwardOrback == 0)	// ×óÂÖ Íùºó
+	//{
+	//	Pin0 = MOTOR_LEFT_PIN4;
+	//	Pin1 = MOTOR_LEFT_PIN3;
+	//	Pin2 = MOTOR_LEFT_PIN2;
+	//	Pin3 = MOTOR_LEFT_PIN1;
+	//	thisStep = left_step;
+	//}
+	//else												//ÓÒÂÖ Íùºó
+	//{
+	//	Pin0 = MOTOR_RIGHT_PIN4;
+	//	Pin1 = MOTOR_RIGHT_PIN3;
+	//	Pin2 = MOTOR_RIGHT_PIN2;
+	//	Pin3 = MOTOR_RIGHT_PIN1;
+	//	thisStep = right_step;
+	//}
+	if (forwardOrback == 1)
+		thisStep++;//ÏòÇ°
+	else
+		thisStep--;//Ïòºó
+	thisStep = (thisStep + 8) % 8;
 	switch (thisStep)
 	{
 	case 0:
@@ -140,18 +144,22 @@ void MotorStep(void)
 		digitalWrite(Pin3, LOW);
 		break;
 	}
-	thisStep++;
-	//Serial.println(thisStep);
-	if (thisStep > 7)	// 8¸ö½ÚÅÄÑ­»·
-	{
-		thisStep = 0;
-	}
+	
+	//thisStep++;
+	
+	/*if (thisStep > 7)	
+		thisStep = 0;*/
+	
 	if (!leftOrRight)	//×ó±ßµç»ú
 	{
 		left_step = thisStep;
+		/*Serial.print("leftstep:");
+		Serial.println(thisStep);*/		
 	}
 	else
 	{
 		right_step = thisStep;
+		/*Serial.print("rightstep:");
+		Serial.println(thisStep);*/
 	}
 }
