@@ -20,8 +20,8 @@ int turn_45_times = 0;
 /************************************************************************/
 #define Stepinterval 0			// 步进电机每个节拍之间的时间 5ms
 #define ReadSensorInterval 100  // 红外传感器的读取间隔时间
-#define TurnInterval 1600		// 转弯所需要的时间
-#define HalfTurnInterval 800	// 转弯所需要的时间
+#define TurnInterval 1650		// 转弯所需要的时间
+#define HalfTurnInterval 850	// 转弯所需要的时间
 #define AfterTurnInterval 200	// 转弯后短时间无调整前进的时间
 
 // TODO：根据实际情况调整系数
@@ -37,6 +37,7 @@ int turn_45_times = 0;
 #define Basic_Right 50 //
 #define MAX 100
 #define MIN 0
+
 
 typedef struct p
 {
@@ -93,7 +94,7 @@ void TurnRight(void);
 
 int weight[] = { -10, -8, -4, -2, 2, 4, 8, 10 }; //传感器的权值
 int SENSOR[] = { SENSOR_1, SENSOR_2, SENSOR_3, SENSOR_4, SENSOR_5, SENSOR_6, SENSOR_7, SENSOR_8 };
-float Readsensor();
+float ReadSensor();
 
 /************************************************************************/
 /*                            转向的参数                                 */
@@ -115,7 +116,7 @@ void haveABreak(void);
 #define DCmotorPin2 43// 定义I2接口
 #define DCmotorPwm 4	// PWM口
 #define DCSPEED 50
-void dcDrive(int speed);
+void dcDrive();
 
 #endif
 

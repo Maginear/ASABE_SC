@@ -19,8 +19,8 @@
     <None Include="Rountine.ino" />
     <None Include="Sensor.ino" />
     <None Include="Sinowit_deputy.ino" />
-    <None Include="StepMotor.ino" />
     <None Include="Turn_LR.ino" />
+    <None Include="..\Sinowit\StepMotor.ino" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sinowit.h">
