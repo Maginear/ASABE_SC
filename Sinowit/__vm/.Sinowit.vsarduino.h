@@ -12,7 +12,7 @@
 #define _VSARDUINO_H_
 #define __AVR_ATmega2560__
 #define F_CPU 16000000L
-#define ARDUINO 10605
+#define ARDUINO 10606
 #define ARDUINO_AVR_ADK
 #define ARDUINO_ARCH_AVR
 #define __cplusplus 201103L
@@ -63,11 +63,12 @@ extern "C" void __cxa_pure_virtual() {;}
 #define portInputRegister(P)
 #define portModeRegister(P)
 #include <..\Sinowit\Sinowit.ino>
-#include <..\Sinowit\MotorDrive.ino>
+#include <..\Sinowit\DCMotor.ino>
 #include <..\Sinowit\PID_Out.ino>
 #include <..\Sinowit\Rountine.ino>
 #include <..\Sinowit\Sensor.ino>
 #include <..\Sinowit\Sinowit.h>
+#include <..\Sinowit\StepMotor.ino>
 #include <..\Sinowit\Turn_LR.ino>
-#include <..\..\..\..\Documents\Arduino\color_sort_try\simplify\simplify.ino>
+#include <..\Sinowit\color_sort_down.ino>
 #endif

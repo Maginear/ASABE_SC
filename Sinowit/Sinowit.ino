@@ -11,6 +11,17 @@
 #include <TimerThree.h>
 #include <MsTimer2.h>
 
+Servo colorservo;
+int g_count = 0;
+int array1[3];
+int array2[3];
+int ballcolor = 0;
+int g_flag = 0;
+int time1 = 0;
+int det;
+int pos = 0;
+bool stopservo = 1;
+bool whether = 0;
 
 void setup()
 {
@@ -33,6 +44,17 @@ void setup()
 	pinMode(DCmotorPin1, OUTPUT);
 	pinMode(DCmotorPin2, OUTPUT);
 	pinMode(DCmotorPwm, OUTPUT);
+
+	TSC_Init();
+	colorservo.attach(13);  // attaches the servo on pin 13 to the servo object
+	//Serial.begin(9600);
+	attachInterrupt(digitalPinToInterrupt(18), TSC_Count, RISING);
+	//delay(10);
+	for (pos = 00; pos <= 50; pos += 1) { // goes from 0 degrees to 180 degrees
+		// in steps of 1 degree
+		colorservo.write(pos);              // tell servo to go to position in variable 'pos'
+		delay(3);                       // waits 15ms for the servo to reach the position
+	}
 
 	PID_inti();
 	Timer1.initialize(Stepinterval);	// 设置步进电机的初始 节拍间隔
@@ -59,8 +81,6 @@ void setup()
 
 }
 
-void loop()
-{
 	// Test by ZZL. 2016/04/30, 01:24:22
 	// Test by MZH. 2016/05/02, 16:17
 	/*ReadSensor();*/
@@ -78,5 +98,26 @@ void loop()
 	Timer1.start();
 	Timer3.start();
 	delay(1000);*/
-	
+void loop() {
+	// put your main code here, to run repeatedly:
+	switch (stopservo){
+	case 0:
+		//color();
+		backandforth();
+		break;
+	case 1:
+		if (!whether){
+			colorin();
+		}
+		if (whether){
+			color();
+			//delay(1000);
+		}
+		break;
+	default:
+		break;
+	}
+	MsTimer2::set(ReadSensorInterval, updatePID); // 设置传感器扫描间隔， 以及回调函数
+	MsTimer2::start();
+
 }
