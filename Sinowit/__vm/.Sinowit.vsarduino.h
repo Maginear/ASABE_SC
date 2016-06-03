@@ -62,12 +62,12 @@ extern "C" void __cxa_pure_virtual() {;}
 #define portOutputRegister(P)
 #define portInputRegister(P)
 #define portModeRegister(P)
-#include <..\Sinowit\Sinowit.ino>
-#include <..\Sinowit\MotorDrive.ino>
-#include <..\Sinowit\PID_Out.ino>
-#include <..\Sinowit\Rountine.ino>
-#include <..\Sinowit\Sensor.ino>
-#include <..\Sinowit\Sinowit.h>
-#include <..\Sinowit\Turn_LR.ino>
-#include <..\..\..\..\Documents\Arduino\color_sort_try\simplify\simplify.ino>
+#include <Sinowit.ino>
+#include <DCMotor.ino>
+#include <PID_Out.ino>
+#include <Rountine.ino>
+#include <Sensor.ino>
+#include <Sinowit.h>
+#include <StepMotor.ino>
+#include <Turn_LR.ino>
 #endif
