@@ -4,6 +4,7 @@
 * Last Edit by Magy
 * 2016/05/02
 */
+#include <Servo.h>
 #include "Sinowit.h"
 #include <Stepper.h>
 #include <TimerOne.h>

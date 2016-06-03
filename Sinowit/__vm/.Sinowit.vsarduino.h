@@ -70,4 +70,5 @@ extern "C" void __cxa_pure_virtual() {;}
 #include <..\Sinowit\Sensor.ino>
 #include <..\Sinowit\Sinowit.h>
 #include <..\Sinowit\Turn_LR.ino>
+#include <..\..\..\..\Documents\Arduino\color_sort_try\simplify\simplify.ino>
 #endif
