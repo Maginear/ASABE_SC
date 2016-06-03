@@ -12,7 +12,7 @@
 #define _VSARDUINO_H_
 #define __AVR_ATmega2560__
 #define F_CPU 16000000L
-#define ARDUINO 10605
+#define ARDUINO 10606
 #define ARDUINO_AVR_ADK
 #define ARDUINO_ARCH_AVR
 #define __cplusplus 201103L

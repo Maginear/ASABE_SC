@@ -50,7 +50,7 @@
       <AdditionalIncludeDirectories>F:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino;F:\Program Files (x86)\Arduino\hardware\arduino\avr\variants\mega;C:\Users\LetheZ\Source\Repos\ASABE_SC\Sinowit;C:\Users\LetheZ\Documents\Arduino\libraries\MsTimer2;C:\Users\LetheZ\Documents\Arduino\libraries\MsTimer2\utility;F:\Program Files (x86)\Arduino\libraries\Servo\src;F:\Program Files (x86)\Arduino\libraries\Servo\src\utility;F:\Program Files (x86)\Arduino\libraries\Stepper\src;F:\Program Files (x86)\Arduino\libraries\Stepper\src\utility;C:\Users\LetheZ\Documents\Arduino\libraries\TimerOne;C:\Users\LetheZ\Documents\Arduino\libraries\TimerOne\utility;C:\Users\LetheZ\Documents\Arduino\libraries\TimerThree;C:\Users\LetheZ\Documents\Arduino\libraries\TimerThree\utility;F:\Program Files (x86)\Arduino\libraries;F:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries;C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\Extensions\513zfcx1.e4k\Micro Platforms\default\debuggers;C:\Users\LetheZ\Documents\Arduino\libraries;F:\Program Files (x86)\Arduino\hardware\tools\avr/avr/include/;F:\Program Files (x86)\Arduino\hardware\tools\avr//avr/include/avr/;F:\Program Files (x86)\Arduino\hardware\tools\avr/lib\gcc\avr\4.8.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>C:\Users\LetheZ\Source\Repos\ASABE_SC\Sinowit\__vm\.Sinowit.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <PreprocessorDefinitions>__AVR_ATmega2560__;_VMDEBUG=1;F_CPU=16000000L;ARDUINO=10605;ARDUINO_AVR_ADK;ARDUINO_ARCH_AVR;__cplusplus=201103L;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__AVR_ATmega2560__;F_CPU=16000000L;ARDUINO=10606;ARDUINO_AVR_ADK;ARDUINO_ARCH_AVR;__cplusplus=201103L;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -79,6 +79,7 @@
     <ClInclude Include="__vm\.Sinowit.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="color_sort_down.ino" />
     <None Include="DCMotor.ino" />
     <None Include="StepMotor.ino" />
     <None Include="PID_Out.ino" />
