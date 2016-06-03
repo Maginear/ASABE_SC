@@ -21,7 +21,7 @@ int turn_45_times = 0;
 #define Stepinterval 0			// 步进电机每个节拍之间的时间 5ms
 #define ReadSensorInterval 100  // 红外传感器的读取间隔时间
 #define TurnInterval 1650		// 转弯所需要的时间
-#define HalfTurnInterval 615	// 转弯所需要的时间
+#define HalfTurnInterval 850	// 转弯所需要的时间
 #define AfterTurnInterval 200	// 转弯后短时间无调整前进的时间
 
 // TODO：根据实际情况调整系数
@@ -37,6 +37,7 @@ int turn_45_times = 0;
 #define Basic_Right 50 //
 #define MAX 100
 #define MIN 0
+
 
 typedef struct p
 {
