@@ -86,7 +86,7 @@ void TurnRight(void);
 #define SENSOR_5 25
 #define SENSOR_4 24
 #define SENSOR_3 23
-#define SENSOR_2 22
+#define SENSOR_2 22	
 #define SENSOR_1 2
 
 int weight[] = { -10, -8, -4, -2, 2, 4, 8, 10 }; //传感器的权值
