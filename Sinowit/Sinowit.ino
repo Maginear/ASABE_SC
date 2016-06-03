@@ -117,7 +117,6 @@ void loop() {
 	default:
 		break;
 	}
-	MsTimer2::set(ReadSensorInterval, updatePID); // 设置传感器扫描间隔， 以及回调函数
-	MsTimer2::start();
+	
 
 }

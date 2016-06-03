@@ -67,6 +67,8 @@ void colorin(){
   MsTimer2::stop();
   g_count = 0;
   digitalWrite(LED, LOW);
+  MsTimer2::set(ReadSensorInterval, updatePID); // 设置传感器扫描间隔， 以及回调函数
+  MsTimer2::start();
   //delay(2000);
 }
 void TSC_Callback1()
