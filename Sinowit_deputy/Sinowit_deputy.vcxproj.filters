@@ -15,20 +15,19 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="__vm\.Sinowit.vsarduino.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <None Include="PID_Out.ino" />
+    <None Include="Rountine.ino" />
+    <None Include="Sensor.ino" />
+    <None Include="Sinowit_deputy.ino" />
+    <None Include="Turn_LR.ino" />
+    <None Include="..\Sinowit\StepMotor.ino" />
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="Sinowit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Sinowit.ino" />
-    <None Include="PID_Out.ino" />
-    <None Include="Sensor.ino" />
-    <None Include="Turn_LR.ino" />
-    <None Include="Rountine.ino" />
-    <None Include="DCMotor.ino" />
-    <None Include="StepMotor.ino" />
+    <ClInclude Include="__vm\.Sinowit_deputy.vsarduino.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

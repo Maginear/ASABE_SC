@@ -24,7 +24,6 @@
 void TurnLeft(void)
 {
 	MsTimer2::stop();
-	
 	ReadSensor();		//更新corner值，确认传感器的值，而非电路故障出现中断
 	if (corner == 17 || corner == 16)
 	{

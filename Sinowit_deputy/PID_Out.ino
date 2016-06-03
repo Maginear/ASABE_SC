@@ -62,8 +62,8 @@ void updatePID(void)
 	if (senVal == 0)
 		pid_sensor->sumerror = 0;
 	// TODO 删除	
-	/*Serial.print("senVal: ");
-	Serial.println(senVal);*/
+	//Serial.print("senVal: ");
+	//Serial.println(senVal);
 	//Serial.print("corner: ");
 	//Serial.println(corner);
 
@@ -84,8 +84,8 @@ int steplimit(int stepnum, int max, int min)
 void MotorAdjust(int pidOut)
 {
 	// TODO 删除
-	/*Serial.print("motor pidout: ");
-	Serial.println(pidOut);*/
+	//Serial.print("motor pidout: ");
+	//Serial.println(pidOut);
 
 	float l_step = Stepinterval;
 	float r_step = Stepinterval;
@@ -99,16 +99,16 @@ void MotorAdjust(int pidOut)
 		l_step = l_step * 10 / stepSum - 5;
 		r_step = r_step * 10 / stepSum - 5;
 		// TODO 删除	
-		/*Serial.println(l_step);
-		Serial.println(r_step);*/
+		//Serial.println(l_step);
+		//Serial.println(r_step);
 	}
 	long l = PIDCal(pid_m_l, l_step);
 	long r = PIDCal(pid_m_r, r_step);
 	l = steplimit(l, 2000, -2000);
 	r = steplimit(r, 2000, -2000);
 	// TODO 删除	
-	/*Serial.println(l);
-	Serial.println(r);*/
+	//Serial.println(l);
+	//Serial.println(r);
 	
 	Timer1.setPeriod(l + 4000);  // 更新左侧电机的节拍时间间隔
 	Timer3.setPeriod(r + 4000);
