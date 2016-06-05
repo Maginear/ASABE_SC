@@ -22,18 +22,23 @@ void goforward(void)		//直走，时间为forwardInterval， 随后调用 afterForwardFunct
 	Timer3.attachInterrupt(DriveRight);
 	Timer1.setPeriod(6000);
 	Timer3.setPeriod(6000);
-
+	Timer1.start();
+	Timer3.start();
 	MsTimer2::set(forwardInterval, afterForwardFunction);
 	MsTimer2::start();
 }
 
 void goBack(void)		//  反方向走
 {
+	MsTimer2::stop();
+	detachInterrupt(0);
+	detachInterrupt(1);
 	Timer1.attachInterrupt(BackLeft);
 	Timer3.attachInterrupt(BackRight);
 	Timer1.setPeriod(6000);
 	Timer3.setPeriod(6000);
-
+	Timer1.start();
+	Timer3.start();
 	MsTimer2::set(forwardInterval, afterForwardFunction);
 	MsTimer2::start();
 }
@@ -43,13 +48,11 @@ void getOut(void)
 	MsTimer2::stop();
 	detachInterrupt(0);
 	detachInterrupt(1);
-	Timer1.stop();
-	Timer3.stop();
 	Timer1.setPeriod(6000);
 	Timer3.setPeriod(6000);
 	Timer1.start();
 	Timer3.start();
-	MsTimer2::set(1500, reSetMsTimer2);		// 进入黑线范围前直走， 结束后正常循迹
+	MsTimer2::set(1000, reSetMsTimer2);		// 进入黑线范围前直走， 结束后正常循迹
 	MsTimer2::start();
 	isHasShortGo = 0;
 	crossLineTime = 0;
@@ -70,7 +73,7 @@ void crossLine(void)
 		if (corner == 17 || corner == 16)
 		{	
 			if (crossLineTime == 0)
-				crossLineTime == 1;
+				crossLineTime = 1;
 			else
 			{
 				isHasShortGo = 1;
@@ -111,7 +114,7 @@ void toCenteralLine(void)
 	if (isHasShortGo == 0)
 	{
 		ReadSensor();
-		if (corner == 17 || corner == 16)
+		if (corner == 17 || corner == 16 || corner == 1)
 		{
 			isHasShortGo = 1;
 			forwardInterval = 500;
@@ -163,6 +166,7 @@ void getBall(void)
 	forwardInterval = 1000;
 	afterForwardFunction = TurnAround;
 	MsTimer2::set(2000, goBack);
+	MsTimer2::start();
 }
 
 void TurnAround(void)			// 旋转一周
@@ -201,13 +205,15 @@ void toEnd(void)
 	ReadSensor();
 	if (corner == 17 || corner == 16)
 	{
-		if (crossLineTime < 3)
+		if (crossLineTime < 2)
 		{
 			crossLineTime++;
 		}
 		else
 		{
-			forwardInterval = 1000;
+			MsTimer2::stop();
+			detachInterrupt(0);
+			forwardInterval = 2000;
 			afterForwardFunction = unpack;
 			goforward();
 		}
@@ -233,11 +239,14 @@ void unpack(void)
 
 void getBallOut_1(void)
 {
+	MsTimer2::stop();
+	Timer1.stop();
+	Timer3.stop();
 	forwardInterval = 1000;
 	afterForwardFunction = Turn360;
 	MsTimer2::set(3000, goforward);
 	MsTimer2::start();
-	for (int i = 0; i < 60; i++) 
+	for (int i = 90; i > 0; i--) 
 	{ 
 		servo_1.write(i);
 		delay(10);
@@ -247,9 +256,9 @@ void getBallOut_1(void)
 void Turn360(void)
 {
 	MsTimer2::stop();
-	Timer1.attachInterrupt(BackLeft);
+	Timer1.attachInterrupt(DriveLeft);
 	Timer1.setPeriod(8000);
-	Timer3.attachInterrupt(DriveRight);
+	Timer3.attachInterrupt(BackRight);
 	Timer3.setPeriod(8000);
 	Timer3.start();
 	Timer1.start();
@@ -257,23 +266,26 @@ void Turn360(void)
 	afterForwardFunction = getBallOut_2;
 	MsTimer2::set(TurnInterval * 2, goBack);
 	MsTimer2::start();
-	servo_1.write(0);
-	for (int i = 0; i < 60; i++)
+	servo_1.write(90);
+	for (int i = 90; i > 0; i--)
 	{
 		servo_2.write(i);
 		delay(10);
 	}
 }
 
+
 void getBallOut_2(void)
 {
+	Timer1.stop();
+	Timer3.stop();
 	forwardInterval = 1000;
 	afterForwardFunction = stopAllTimer;
 	MsTimer2::set(3000, goforward);
 	MsTimer2::start();
 	// 第一个舵机打开，放出球, 3S时间
-	servo_2.write(0);
-	for (int i = 0; i < 60; i++)
+	servo_2.write(90);
+	for (int i = 90; i > 0; i--)
 	{
 		servo_1.write(i);
 		delay(10);
@@ -282,7 +294,7 @@ void getBallOut_2(void)
 
 void stopAllTimer(void)
 {
-	servo_1.write(0);
+	servo_1.write(90);
 	detachInterrupt(0);
 	detachInterrupt(1);
 	Timer1.stop();
