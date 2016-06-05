@@ -4,6 +4,7 @@
 * Last Edit by Magy
 * 2016/05/02
 */
+#include <Servo.h>
 #include "Sinowit.h"
 #include <Stepper.h>
 #include <TimerOne.h>
@@ -48,7 +49,8 @@ void setup()
 	RISING	当针脚输入由低变高时，触发中断
 	FALLING	当针脚输入由高变低时，触发中断
 	*/
-	
+	servo_1.attach(9);
+	servo_2.attach(10);
 	Serial.begin(9600);
 	rountine();
 }

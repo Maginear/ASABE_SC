@@ -209,13 +209,82 @@ void toEnd(void)
 		}
 		else
 		{
-			stopAllTimeer();
+			forwardInterval = 1000;
+			afterForwardFunction = unpack;
+			goforward();
 		}
 	}
 }
 
-void stopAllTimeer(void)
+void unpack(void)
 {
+	detachInterrupt(0);
+	detachInterrupt(1);
+	MsTimer2::stop();
+	Timer1.attachInterrupt(BackLeft);
+	Timer1.setPeriod(8000);
+	Timer3.attachInterrupt(DriveRight);
+	Timer3.setPeriod(8000);
+	Timer3.start();
+	Timer1.start();
+	forwardInterval = 1000;
+	afterForwardFunction = getBallOut_1;
+	MsTimer2::set(TurnInterval, goBack);
+	MsTimer2::start();
+}
+
+void getBallOut_1(void)
+{
+	forwardInterval = 1000;
+	afterForwardFunction = Turn360;
+	MsTimer2::set(3000, goforward);
+	MsTimer2::start();
+	for (int i = 0; i < 60; i++) 
+	{ 
+		servo_1.write(i);
+		delay(10);
+	}
+}
+
+void Turn360(void)
+{
+	MsTimer2::stop();
+	Timer1.attachInterrupt(BackLeft);
+	Timer1.setPeriod(8000);
+	Timer3.attachInterrupt(DriveRight);
+	Timer3.setPeriod(8000);
+	Timer3.start();
+	Timer1.start();
+	forwardInterval = 1000;
+	afterForwardFunction = getBallOut_2;
+	MsTimer2::set(TurnInterval * 2, goBack);
+	MsTimer2::start();
+	servo_1.write(0);
+	for (int i = 0; i < 60; i++)
+	{
+		servo_2.write(i);
+		delay(10);
+	}
+}
+
+void getBallOut_2(void)
+{
+	forwardInterval = 1000;
+	afterForwardFunction = stopAllTimer;
+	MsTimer2::set(3000, goforward);
+	MsTimer2::start();
+	// 第一个舵机打开，放出球, 3S时间
+	servo_2.write(0);
+	for (int i = 0; i < 60; i++)
+	{
+		servo_1.write(i);
+		delay(10);
+	}
+}
+
+void stopAllTimer(void)
+{
+	servo_1.write(0);
 	detachInterrupt(0);
 	detachInterrupt(1);
 	Timer1.stop();
