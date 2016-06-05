@@ -20,7 +20,7 @@ int g_flag = 0;
 int time1 = 0;
 int det;
 int pos = 0;
-bool stopservo = 1;
+int stopservo = 2;
 bool whether = 0;
 
 void setup()
@@ -81,23 +81,7 @@ void setup()
 
 }
 
-	// Test by ZZL. 2016/04/30, 01:24:22
-	// Test by MZH. 2016/05/02, 16:17
-	/*ReadSensor();*/
-	/*Timer1.attachInterrupt(DriveLeft);
-	Timer1.setPeriod(6000);
-	Timer3.attachInterrupt(DriveRight);
-	Timer3.setPeriod(6000);
-	Timer1.start();
-	Timer3.start();
-	delay(1000);
-	Timer1.attachInterrupt(BackLeft);
-	Timer1.setPeriod(6000);
-	Timer3.attachInterrupt(BackRight);
-	Timer3.setPeriod(6000);
-	Timer1.start();
-	Timer3.start();
-	delay(1000);*/
+	
 void loop() {
 	// put your main code here, to run repeatedly:
 	switch (stopservo){

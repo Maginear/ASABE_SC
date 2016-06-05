@@ -63,10 +63,10 @@ int PIDCal(PID* pid, float error);
 //		ºì OUT4
 #define STEPS 400 //ÒòÎªÊÇ8ÅÄ£¬ ËùÒÔ360 / 0.9
 
-#define MOTOR_LEFT_PIN1 31	// ×ó 1   
-#define MOTOR_LEFT_PIN2 32	// ×ó 2
-#define MOTOR_LEFT_PIN3 33	// ×ó 3
-#define MOTOR_LEFT_PIN4 34 	// ×ó 4
+#define MOTOR_LEFT_PIN1 31	// ×ó 4   
+#define MOTOR_LEFT_PIN2 32	// ×ó 
+#define MOTOR_LEFT_PIN3 33	// ×ó 
+#define MOTOR_LEFT_PIN4 34 	// ×ó 
 
 #define MOTOR_RIGHT_PIN1 36	// ÓÒ 4
 #define MOTOR_RIGHT_PIN2 37	// 3

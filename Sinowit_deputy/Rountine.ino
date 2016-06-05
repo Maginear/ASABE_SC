@@ -70,7 +70,7 @@ void crossLine(void)
 		if (corner == 17 || corner == 16)
 		{	
 			if (crossLineTime == 0)
-				crossLineTime == 1;
+				crossLineTime = 1;
 			else
 			{
 				isHasShortGo = 1;
@@ -111,7 +111,7 @@ void toCenteralLine(void)
 	if (isHasShortGo == 0)
 	{
 		ReadSensor();
-		if (corner == 17 || corner == 16)
+		if (corner == 17 || corner == 16||corner==1)
 		{
 			isHasShortGo = 1;
 			forwardInterval = 500;
@@ -128,7 +128,7 @@ void toCenteralLine(void)
 		Timer3.setPeriod(8000);
 		Timer1.start();
 		Timer3.start();
-		isHasShortGo == 2;
+		isHasShortGo = 2;
 		forwardInterval = 500;
 		afterForwardFunction = toCenteralLine;
 		MsTimer2::set(TurnInterval, goforward);
@@ -163,6 +163,7 @@ void getBall(void)
 	forwardInterval = 1000;
 	afterForwardFunction = TurnAround;
 	MsTimer2::set(2000, goBack);
+	MsTimer2::start();
 }
 
 void TurnAround(void)			// Ðý×ªÒ»ÖÜ
@@ -201,13 +202,14 @@ void toEnd(void)
 	ReadSensor();
 	if (corner == 17 || corner == 16)
 	{
-		if (crossLineTime < 3)
+		if (crossLineTime < 2)
 		{
 			crossLineTime++;
+			delay(1000);
 		}
 		else
 		{
-			stopAllTimeer;
+			stopAllTimeer();
 		}
 	}
 }

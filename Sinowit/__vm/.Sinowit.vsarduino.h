@@ -12,7 +12,7 @@
 #define _VSARDUINO_H_
 #define __AVR_ATmega2560__
 #define F_CPU 16000000L
-#define ARDUINO 10606
+#define ARDUINO 10605
 #define ARDUINO_AVR_ADK
 #define ARDUINO_ARCH_AVR
 #define __cplusplus 201103L
@@ -70,4 +70,5 @@ extern "C" void __cxa_pure_virtual() {;}
 #include <Sinowit.h>
 #include <StepMotor.ino>
 #include <Turn_LR.ino>
+#include <color_sort_down.ino>
 #endif

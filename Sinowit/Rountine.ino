@@ -108,17 +108,21 @@ void TurnLeft_45_Degree(void)
 void goforward_onWall(void)		//直走，时间为forwardInterval， 随后调用 afterForwardFunction（函数指针）
 {
 	MsTimer2::stop();
+	//stopservo = 1;
 	detachInterrupt(0);
 	detachInterrupt(1);
+	//attachInterrupt(digitalPinToInterrupt(18),color_sort,RISING);
 	Timer1.attachInterrupt(DriveLeft);
 	Timer3.attachInterrupt(DriveRight);
 	Timer1.setPeriod(5800);
 	Timer3.setPeriod(6200);
 	Timer1.start();
 	Timer3.start();
-
-	MsTimer2::set(forwardInterval, incline);
-	MsTimer2::start();
+	ReadSensor;
+	int i
+	//stopservo = 2;
+	//MsTimer2::set(forwardInterval, incline);
+	//MsTimer2::start();
 }
 
 void incline()
