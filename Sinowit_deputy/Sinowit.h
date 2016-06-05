@@ -1,5 +1,6 @@
 // Sinowit.h 
 
+
 #ifndef _SINOWIT_h
 #define _SINOWIT_h
 
@@ -105,5 +106,10 @@ void(*afterForwardFunction)();
 void rountine(void);
 void backToLine(void);
 void haveABreak(void);
+
+/************************************************************************/
+/*                          舵机的参数                                   */
+/************************************************************************/
+Servo servo_1, servo_2;
 #endif
 

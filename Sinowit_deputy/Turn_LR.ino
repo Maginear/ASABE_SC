@@ -38,12 +38,8 @@ void TurnLeft(void)
 		Timer3.setPeriod(8000);
 		Timer3.start();
 		MsTimer2::set(TurnInterval, AfterTurn);
-		MsTimer2::start();
 	}
-	else
-	{
-		MsTimer2::start();
-	}
+	MsTimer2::start();
 }
 
 // 左轮往前转，右轮往后转
@@ -65,12 +61,8 @@ void TurnRight(void)
 		Timer3.setPeriod(8000);
 		Timer3.start();
 		MsTimer2::set(TurnInterval, AfterTurn);
-		MsTimer2::start();
 	}
-	else
-	{
-		MsTimer2::start();
-	}
+	MsTimer2::start();
 }
 
 // 转弯完成后，往前走一小段时间 
