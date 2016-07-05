@@ -50,7 +50,9 @@ void setup()
 	FALLING	当针脚输入由高变低时，触发中断
 	*/
 	servo_1.attach(9);
+	servo_1.write(90);
 	servo_2.attach(10);
+	servo_2.write(90);
 	Serial.begin(9600);
 	rountine();
 }
