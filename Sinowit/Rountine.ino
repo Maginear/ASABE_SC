@@ -98,7 +98,7 @@ void TurnLeft_45_Degree(void)
 	}
 	else
 	{
-		forwardInterval = 10000;
+		forwardInterval = 11000;
 		afterForwardFunction = turn_Out_ball;
 		MsTimer2::set(HalfTurnInterval, goforward_onWall);
 		MsTimer2::start();
@@ -118,18 +118,18 @@ void goforward_onWall(void)		//直走，时间为forwardInterval， 随后调用 afterForwa
 	Timer3.setPeriod(6200);
 	Timer1.start();
 	Timer3.start();
-	ReadSensor;
-	int i
+	
+	
 	//stopservo = 2;
-	//MsTimer2::set(forwardInterval, incline);
-	//MsTimer2::start();
+	MsTimer2::set(forwardInterval, incline);
+	MsTimer2::start();
 }
 
 void incline()
 {
 	MsTimer2::stop();
 	Timer1.setPeriod(6400);
-	Timer3.setPeriod(5600);
+	Timer3.setPeriod(5800);
 
 	MsTimer2::set(5000, afterForwardFunction); //斜走出来
 	MsTimer2::start();
@@ -187,7 +187,7 @@ void turn_Out_ball(void)		// 左轮不动，右轮倒转，车身离开墙面
 	Timer3.start();
 	forwardInterval = 1000;
 	afterForwardFunction = TurnAround;
-	MsTimer2::set(TurnInterval * 2, goBack);
+	MsTimer2::set(TurnInterval * 2+600, goBack);
 	MsTimer2::start();
 }
 
