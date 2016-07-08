@@ -224,12 +224,52 @@ void backToLine(void)
 	Timer3.setPeriod(4000);
 	Timer1.start();
 	Timer3.start();
-	attachInterrupt(0, TurnLeft_spe, RISING);
+	attachInterrupt(0, face_the_line, RISING);
+	attachInterrupt(1, face_the_line, RISING);
+}
+void face_the_line()
+{
+    MsTimer2::stop();
+	detachInterrupt(0);
+	detachInterrupt(1);
+	Timer1.stop();
+	Timer3.stop();
+	ReadSensor();
+	if (corner == 1)
+	{
+		Timer1.setPeriod(10400);
+		Timer1.attachInterrupt(DriveLeft);
+		Timer3.setPeriod(4000);
+		Timer3.attachInterrupt(DriveRight);
+		Timer1.start();
+		Timer3.start();
+		attachInterrupt(0, TurnLeft_spe, RISING);
+	}
+	else if (corner==16)
+	{
+		Timer1.setPeriod(4000);
+		Timer1.attachInterrupt(DriveLeft);
+		Timer3.setPeriod(10400);
+		Timer3.attachInterrupt(DriveRight);
+		Timer1.start();
+		Timer3.start();
+		attachInterrupt(1, TurnLeft_spe, RISING);
+	}
+	else
+	{
+		TurnLeft_spe();
+	}
+
+
 }
 
 void TurnLeft_spe(void)
 {
 	MsTimer2::stop();
+	detachInterrupt(0);
+	detachInterrupt(1);
+	Timer1.stop();
+	Timer3.stop();
 	ReadSensor();
 	if (corner == 17 || corner == 16)
 	{
@@ -265,4 +305,40 @@ void Stop(void)
 	Timer1.stop();
 	Timer3.stop();
 	MsTimer2::stop();
+	Timer1.detachInterrupt();
+	Timer3.detachInterrupt();
+	/*Timer1.start();
+	Timer3.start();*/
+	while (readin != "S1")
+	{
+		readblue();
+		Serial.println("S1N");
+		delay(500);
+	}
+	servo_1.write(90);//++
+	delay(2000);
+	//Serial.println("STD_1");
+	while (readin != "S2")
+	{
+		readblue();
+		writeblue("S1D#");
+		delay(500);
+		/*Serial1.println("S1D#");
+		Serial1.flush();
+		Serial.println("S1D");*/
+		
+	}
+
+	servo_1.write(-90);//+++
+	delay(2000);
+	while (1)
+	{
+		writeblue("S2D#");
+		delay(500);
+		/*Serial1.println("S2D");
+		Serial1.flush();
+		Serial.println("S2D");*/
+		//readblue();
+	}
+
 }

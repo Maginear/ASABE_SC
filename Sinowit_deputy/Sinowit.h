@@ -92,8 +92,11 @@ void TurnRight(void);
 
 int weight[] = { -10, -8, -4, -2, 2, 4, 8, 10 }; //传感器的权值
 int SENSOR[] = { SENSOR_1, SENSOR_2, SENSOR_3, SENSOR_4, SENSOR_5, SENSOR_6, SENSOR_7, SENSOR_8 };
-float Readsensor();
-
+float ReadSensor();
+bool startwork = 0;
+bool continuework = 0;
+bool car2arr = 0;
+String readin;
 /************************************************************************/
 /*                            转向的参数                                 */
 /************************************************************************/

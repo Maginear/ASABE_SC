@@ -67,7 +67,8 @@ void setup()
 
 	attachInterrupt(0, TurnLeft, RISING);		// 使用0号中断触发左转， 实际对应数字引脚2 (D2) ，触发条件为出现上升沿
 	attachInterrupt(1, TurnRight, RISING);		// 使用1号中断，实际对应数字引脚3 (D3), 出发条件为出现上升沿
-						
+	Timer1.detachInterrupt();
+	Timer3.detachInterrupt();
 	/*
 	中断技术可参考 http://arduino.cc/en/Reference/AttachInterrupt
 	LOW	当针脚输入为低时，触发中断
@@ -76,31 +77,33 @@ void setup()
 	FALLING	当针脚输入由高变低时，触发中断
 	*/
 	Serial.begin(9600);
+	Serial1.begin(9600);
 	//dcDrive();
 	rountine();
+	//Stop();
 
 }
 
 	
 void loop() {
 	// put your main code here, to run repeatedly:
-	switch (stopservo){
-	case 0:
-		//color();
-		backandforth();
-		break;
-	case 1:
-		if (!whether){
-			colorin();
-		}
-		if (whether){
-			color();
-			//delay(1000);
-		}
-		break;
-	default:
-		break;
-	}
-	
+	//switch (stopservo){
+	//case 0:
+	//	//color();
+	//	backandforth();
+	//	break;
+	//case 1:
+	//	if (!whether){
+	//		colorin();
+	//	}
+	//	if (whether){
+	//		color();
+	//		//delay(1000);
+	//	}
+	//	break;
+	//default:
+	//	break;
+	//}
+	//
 
 }

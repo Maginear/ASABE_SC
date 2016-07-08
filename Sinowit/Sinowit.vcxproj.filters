@@ -31,5 +31,6 @@
     <None Include="DCMotor.ino" />
     <None Include="StepMotor.ino" />
     <None Include="color_sort_down.ino" />
+    <None Include="D:\2016春夏\生物生产机器人\ASABE\simplified_bluetooth.ino" />
   </ItemGroup>
 </Project>

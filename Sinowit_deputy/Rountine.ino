@@ -10,7 +10,20 @@ int isHasShortGo = 0;
 
 void rountine(void)
 {
-	getOut();
+	//Serial.println("rountine");
+	Timer1.detachInterrupt();
+	Timer3.detachInterrupt();
+	while (startwork!=1)
+	{
+		readblue();
+
+	}
+	Serial1.print("B#");
+	Serial1.flush();
+	Timer1.attachInterrupt(DriveLeft);
+	Timer3.attachInterrupt(DriveRight);
+	//getOut();
+	
 }
 
 void goforward(void)		//直走，时间为forwardInterval， 随后调用 afterForwardFunction（函数指针）
@@ -48,6 +61,7 @@ void getOut(void)
 	MsTimer2::stop();
 	detachInterrupt(0);
 	detachInterrupt(1);
+
 	Timer1.setPeriod(6000);
 	Timer3.setPeriod(6000);
 	Timer1.start();
@@ -163,8 +177,38 @@ void getBall(void)
 	MsTimer2::stop();
 	Timer1.stop();
 	Timer3.stop();
+	Timer1.detachInterrupt();
+	Timer3.detachInterrupt();
+	/*Timer1.start();
+	Timer3.start();*/
 	forwardInterval = 1000;
 	afterForwardFunction = TurnAround;
+	
+	
+	servo_1.write(90);//+++
+	while (readin != "S1D")
+	{
+		readblue();
+		/*Serial1.println("S1#");
+		Serial1.flush();
+		Serial.println("S1");*/
+		writeblue("S1#");
+		delay(500);
+	}
+	servo_1.write(-90);//+++
+	while (readin != "S2D")
+	{
+		readblue();
+		/*Serial1.println("S2#");
+		Serial1.flush();
+		Serial.println("S2");*/
+		writeblue("S2#");
+		delay(500);
+	}
+	/*while (readin != "OVER")
+	{
+		readblue();
+	}*/
 	MsTimer2::set(2000, goBack);
 	MsTimer2::start();
 }
