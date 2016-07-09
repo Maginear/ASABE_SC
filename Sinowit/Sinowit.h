@@ -91,20 +91,26 @@ void TurnRight(void);
 #define SENSOR_3 32
 #define SENSOR_2 31	
 #define SENSOR_1 2
+#define numG_1 48
+#define numG_2 49
+#define numG_3 50
+#define numO_1 51
+#define numO_2 52
+#define numO_3 53
+#define promixSen 21
 
 int weight[] = { -10, -8, -4, -2, 2, 4, 8, 10 }; //传感器的权值
 int SENSOR[] = { SENSOR_1, SENSOR_2, SENSOR_3, SENSOR_4, SENSOR_5, SENSOR_6, SENSOR_7, SENSOR_8 };
 float ReadSensor();
-bool startwork = 0;
-bool continuework = 0;
-bool car2arr = 0;
+int numG = 0;
+int numO = 0;
 String readin;
 /************************************************************************/
 /*                            转向的参数                                 */
 /************************************************************************/
 //void(*afterTurnFunction)();
 void(*afterForwardFunction)();
-
+void(*afterFaceTheLineFunc)();
 /************************************************************************/
 /*                             路径规划                                 */
 /************************************************************************/

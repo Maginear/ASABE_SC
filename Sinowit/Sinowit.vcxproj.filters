@@ -13,6 +13,42 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="_core">
+      <UniqueIdentifier>{3fad49a9-31ac-4d31-93ac-4b3db05f22cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_libraries">
+      <UniqueIdentifier>{d2102894-02d7-489b-8b38-7aff05708f6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_libraries\MsTimer2">
+      <UniqueIdentifier>{72746923-3898-46a8-849e-5d80dd21def0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_libraries\Servo">
+      <UniqueIdentifier>{613e68b5-6da0-4154-9f83-f0f0447cceec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_libraries\Servo\src">
+      <UniqueIdentifier>{dca3bbab-03c8-473d-b639-78c9ceb2da42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_libraries\Servo\src\avr">
+      <UniqueIdentifier>{b5892d93-c8bd-44be-b130-b16b41668541}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_libraries\Servo\src\sam">
+      <UniqueIdentifier>{c8a3aebb-481c-4a44-8715-2d5d6c9d3f10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_libraries\Servo\src\samd">
+      <UniqueIdentifier>{3bfb0f7e-c280-4045-befa-85c050af2937}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_libraries\Stepper">
+      <UniqueIdentifier>{0f8b3c3b-afe1-4307-8856-60382658e1b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_libraries\Stepper\src">
+      <UniqueIdentifier>{08849738-b136-491b-8017-ec7380f673bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_libraries\TimerOne-master">
+      <UniqueIdentifier>{0a5c50be-ff56-444e-be98-ecbcd8eaa47c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_libraries\TimerThree-master">
+      <UniqueIdentifier>{812886bf-958e-40fa-b10d-60faddaf8817}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="__vm\.Sinowit.vsarduino.h">
@@ -20,6 +56,87 @@
     </ClInclude>
     <ClInclude Include="Sinowit.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\Arduino.h">
+      <Filter>_core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\binary.h">
+      <Filter>_core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\Client.h">
+      <Filter>_core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\HardwareSerial.h">
+      <Filter>_core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\HardwareSerial_private.h">
+      <Filter>_core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\IPAddress.h">
+      <Filter>_core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\new.h">
+      <Filter>_core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\Print.h">
+      <Filter>_core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\Printable.h">
+      <Filter>_core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\Server.h">
+      <Filter>_core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\Stream.h">
+      <Filter>_core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\Udp.h">
+      <Filter>_core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\USBAPI.h">
+      <Filter>_core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\USBCore.h">
+      <Filter>_core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\USBDesc.h">
+      <Filter>_core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\WCharacter.h">
+      <Filter>_core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\wiring_private.h">
+      <Filter>_core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\WString.h">
+      <Filter>_core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\variants\mega\pins_arduino.h">
+      <Filter>_core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Documents\Arduino\libraries\MsTimer2\MsTimer2.h">
+      <Filter>_libraries\MsTimer2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Documents\Arduino\libraries\Servo\src\Servo.h">
+      <Filter>_libraries\Servo\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Documents\Arduino\libraries\Servo\src\avr\ServoTimers.h">
+      <Filter>_libraries\Servo\src\avr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Documents\Arduino\libraries\Servo\src\sam\ServoTimers.h">
+      <Filter>_libraries\Servo\src\sam</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Documents\Arduino\libraries\Servo\src\samd\ServoTimers.h">
+      <Filter>_libraries\Servo\src\samd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Documents\Arduino\libraries\Stepper\src\Stepper.h">
+      <Filter>_libraries\Stepper\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Documents\Arduino\libraries\TimerOne-master\TimerOne.h">
+      <Filter>_libraries\TimerOne-master</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Documents\Arduino\libraries\TimerThree-master\TimerThree.h">
+      <Filter>_libraries\TimerThree-master</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -30,7 +147,104 @@
     <None Include="Rountine.ino" />
     <None Include="DCMotor.ino" />
     <None Include="StepMotor.ino" />
-    <None Include="color_sort_down.ino" />
     <None Include="D:\2016春夏\生物生产机器人\ASABE\simplified_bluetooth.ino" />
+    <None Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\wiring_pulse.S">
+      <Filter>_core</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\abi.cpp">
+      <Filter>_core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\CDC.cpp">
+      <Filter>_core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\HardwareSerial.cpp">
+      <Filter>_core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\HardwareSerial0.cpp">
+      <Filter>_core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\HardwareSerial1.cpp">
+      <Filter>_core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\HardwareSerial2.cpp">
+      <Filter>_core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\HardwareSerial3.cpp">
+      <Filter>_core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\HID.cpp">
+      <Filter>_core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\hooks.c">
+      <Filter>_core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\IPAddress.cpp">
+      <Filter>_core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\main.cpp">
+      <Filter>_core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\new.cpp">
+      <Filter>_core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\Print.cpp">
+      <Filter>_core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\Stream.cpp">
+      <Filter>_core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\Tone.cpp">
+      <Filter>_core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\USBCore.cpp">
+      <Filter>_core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\WInterrupts.c">
+      <Filter>_core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\wiring.c">
+      <Filter>_core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\wiring_analog.c">
+      <Filter>_core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\wiring_digital.c">
+      <Filter>_core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\wiring_pulse.c">
+      <Filter>_core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\wiring_shift.c">
+      <Filter>_core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\WMath.cpp">
+      <Filter>_core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\WString.cpp">
+      <Filter>_core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Documents\Arduino\libraries\MsTimer2\MsTimer2.cpp">
+      <Filter>_libraries\MsTimer2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Documents\Arduino\libraries\Servo\src\avr\Servo.cpp">
+      <Filter>_libraries\Servo\src\avr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Documents\Arduino\libraries\Servo\src\sam\Servo.cpp">
+      <Filter>_libraries\Servo\src\sam</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Documents\Arduino\libraries\Servo\src\samd\Servo.cpp">
+      <Filter>_libraries\Servo\src\samd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Documents\Arduino\libraries\Stepper\src\Stepper.cpp">
+      <Filter>_libraries\Stepper\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Documents\Arduino\libraries\TimerOne-master\TimerOne.cpp">
+      <Filter>_libraries\TimerOne-master</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Documents\Arduino\libraries\TimerThree-master\TimerThree.cpp">
+      <Filter>_libraries\TimerThree-master</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

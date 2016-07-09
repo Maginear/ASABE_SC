@@ -5,11 +5,13 @@
 #include <MsTimer2.h>
 
 int forwardInterval = 2000;		// 向前的时间
+int leftInterruptTimeInLast = 0;
 
 void rountine(void)
 {
 	pickBall();
-	
+	//backToLine();
+	//haveABreak();
 }
 
 void goforward(void)		//直走，时间为forwardInterval， 随后调用 afterForwardFunction（函数指针）
@@ -58,6 +60,8 @@ void pickBall(void)
 	detachInterrupt(1);
 	Timer1.stop();
 	Timer3.stop();
+	Timer1.attachInterrupt(DriveLeft);
+	Timer3.attachInterrupt(DriveRight);
 	Timer1.setPeriod(6000);
 	Timer3.setPeriod(6000);
 	Timer1.start();
@@ -98,7 +102,7 @@ void TurnLeft_45_Degree(void)
 	}
 	else
 	{
-		forwardInterval = 11000;
+		forwardInterval = 12000;
 		afterForwardFunction = turn_Out_ball;
 		MsTimer2::set(HalfTurnInterval, goforward_onWall);
 		MsTimer2::start();
@@ -209,6 +213,29 @@ void haveABreak(void)
 {
 	Timer1.stop();
 	Timer3.stop();
+	MsTimer2::stop();
+	Timer1.detachInterrupt();
+	Timer3.detachInterrupt();
+	/*Timer1.start();
+	Timer3.start();*/
+	Serial.begin(9600);
+	Serial1.begin(9600);
+	readnum();
+	//if (numG + numO > 0)
+	//{
+		for (int i = 0; i < 10; i++)
+		{
+			readblue();
+			writeblue("ST#");
+		}
+	//}
+	 
+	Timer1.attachInterrupt(DriveLeft);
+	Timer1.setPeriod(8000);
+	Timer3.attachInterrupt(DriveRight);
+	Timer3.setPeriod(8000);
+	Timer1.stop();
+	Timer3.stop();
 	MsTimer2::set(1000, backToLine);
 	MsTimer2::start();
 }
@@ -226,41 +253,59 @@ void backToLine(void)
 	Timer3.start();
 	attachInterrupt(0, face_the_line, RISING);
 	attachInterrupt(1, face_the_line, RISING);
+	afterFaceTheLineFunc = TurnLeft_spe;
+	
 }
 void face_the_line()
 {
-    MsTimer2::stop();
-	detachInterrupt(0);
-	detachInterrupt(1);
+	ReadSensor();
 	Timer1.stop();
 	Timer3.stop();
-	ReadSensor();
-	if (corner == 1)
+
+	if (corner != 0)
 	{
-		Timer1.setPeriod(10400);
-		Timer1.attachInterrupt(DriveLeft);
-		Timer3.setPeriod(4000);
-		Timer3.attachInterrupt(DriveRight);
-		Timer1.start();
-		Timer3.start();
-		attachInterrupt(0, TurnLeft_spe, RISING);
-	}
-	else if (corner==16)
-	{
-		Timer1.setPeriod(4000);
-		Timer1.attachInterrupt(DriveLeft);
-		Timer3.setPeriod(10400);
-		Timer3.attachInterrupt(DriveRight);
-		Timer1.start();
-		Timer3.start();
-		attachInterrupt(1, TurnLeft_spe, RISING);
+		MsTimer2::stop();
+		detachInterrupt(0);
+		detachInterrupt(1);
+		Timer1.detachInterrupt();
+		Timer3.detachInterrupt();
+		Timer1.stop();
+		Timer3.stop();
+		Serial.begin(9600);
+		Serial1.begin(9600);
+		
+
+		ReadSensor();
+		if (corner == 1)
+		{
+			Timer1.setPeriod(4000);
+			Timer1.attachInterrupt(DriveLeft);
+			Timer3.setPeriod(10400);
+			Timer3.attachInterrupt(BackRight);
+			Timer1.start();
+			Timer3.start();
+			attachInterrupt(0, afterFaceTheLineFunc, RISING);
+		}
+		else if (corner == 16)
+		{
+			Timer1.setPeriod(10400);
+			Timer1.attachInterrupt(BackLeft);
+			Timer3.setPeriod(4000);
+			Timer3.attachInterrupt(DriveRight);
+			Timer1.start();
+			Timer3.start();
+			attachInterrupt(1, afterFaceTheLineFunc, RISING);
+		}
+		else
+		{
+			afterFaceTheLineFunc();
+		}
 	}
 	else
 	{
-		TurnLeft_spe();
+		Timer1.start();
+		Timer3.start();
 	}
-
-
 }
 
 void TurnLeft_spe(void)
@@ -293,52 +338,70 @@ void GoWithNoLeft(void)
 	detachInterrupt(0);
 	detachInterrupt(1);
 	attachInterrupt(1, TurnRight, RISING);
-	attachInterrupt(3, Stop, RISING);			//接近开关触发，停止运动
+	
 	MsTimer2::set(ReadSensorInterval, updatePID);		//进入正常的循迹
 	MsTimer2::start();
 }
 
 void Stop(void)
 {
-	detachInterrupt(0);
-	detachInterrupt(1);
-	Timer1.stop();
-	Timer3.stop();
-	MsTimer2::stop();
-	Timer1.detachInterrupt();
-	Timer3.detachInterrupt();
-	/*Timer1.start();
-	Timer3.start();*/
-	while (readin != "S1")
+	ReadSensor();
+	if (corner == 16 || corner == 17)
 	{
-		readblue();
-		Serial.println("S1N");
-		delay(500);
-	}
-	servo_1.write(90);//++
-	delay(2000);
-	//Serial.println("STD_1");
-	while (readin != "S2")
-	{
-		readblue();
-		writeblue("S1D#");
-		delay(500);
-		/*Serial1.println("S1D#");
-		Serial1.flush();
-		Serial.println("S1D");*/
-		
-	}
+			delay(1000);
+			detachInterrupt(0);
+			detachInterrupt(1);
+			Timer1.stop();
+			Timer3.stop();
+			MsTimer2::stop();
+			Timer1.detachInterrupt();
+			Timer3.detachInterrupt();
+			/*Timer1.start();
+			Timer3.start();*/
+			Serial.begin(9600);
+			Serial1.begin(9600);
+			while (readin != "S1")
+			{
+				readblue();
+				Serial.println("S1N");
+				Serial.flush();
+				delay(500);
 
-	servo_1.write(-90);//+++
-	delay(2000);
-	while (1)
-	{
-		writeblue("S2D#");
-		delay(500);
-		/*Serial1.println("S2D");
-		Serial1.flush();
-		Serial.println("S2D");*/
-		//readblue();
-	}
+			}
+			servo_1.write(160);//++
+			delay(2000);
+			//Serial.println("STD_1");
+			while (readin != "S2")
+			{
+				readblue();
+				writeblue("S1DG");
+				writeblue(String(numG));
+				writeblue("#");
+				delay(500);
+				/*Serial1.println("S1D#");
+				Serial1.flush();
+				Serial.println("S1D");*/
 
+			}
+
+			servo_1.write(30);//+++
+			delay(2000);
+			while (1)
+			{
+				writeblue("S2D");
+				writeblue(String(numO));
+				writeblue("#");
+				delay(500);
+				/*Serial1.println("S2D");
+				Serial1.flush();
+				Serial.println("S2D");*/
+				//readblue();
+			}
+		}
+
+}
+void readnum()
+{
+	numG =digitalRead( numG_1 )+ digitalRead(numG_2) * 2 + digitalRead(numG_3) * 4;
+	numO = digitalRead(numO_1) + digitalRead(numO_3) * 2 + digitalRead(numO_3) * 4;
 }
