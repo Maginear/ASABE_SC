@@ -12,17 +12,17 @@
 #include <TimerThree.h>
 #include <MsTimer2.h>
 
-Servo colorservo;
-int g_count = 0;
-int array1[3];
-int array2[3];
-int ballcolor = 0;
-int g_flag = 0;
-int time1 = 0;
-int det;
-int pos = 0;
-int stopservo = 2;
-bool whether = 0;
+//Servo colorservo;
+//int g_count = 0;
+//int array1[3];
+//int array2[3];
+//int ballcolor = 0;
+//int g_flag = 0;
+//int time1 = 0;
+//int det;
+//int pos = 0;
+//int stopservo = 2;
+//bool whether = 0;
 
 void setup()
 {
@@ -45,17 +45,27 @@ void setup()
 	pinMode(DCmotorPin1, OUTPUT);
 	pinMode(DCmotorPin2, OUTPUT);
 	pinMode(DCmotorPwm, OUTPUT);
+	pinMode(numG_1, INPUT);
+	pinMode(numG_2, INPUT);
+	pinMode(numG_3, INPUT);
+	pinMode(numO_1, INPUT);
+	pinMode(numO_2, INPUT);
+	pinMode(numO_3, INPUT);
 
 	//TSC_Init();
 	//colorservo.attach(13);  // attaches the servo on pin 13 to the servo object
-	////Serial.begin(9600);
+	//Serial.begin(9600);
 	//attachInterrupt(digitalPinToInterrupt(18), TSC_Count, RISING);
-	////delay(10);
+	//delay(10);
 	//for (pos = 00; pos <= 50; pos += 1) { // goes from 0 degrees to 180 degrees
 	//	// in steps of 1 degree
 	//	colorservo.write(pos);              // tell servo to go to position in variable 'pos'
 	//	delay(3);                       // waits 15ms for the servo to reach the position
 	//}
+
+	dcDrive();
+	servo_1.write(100);
+	
 
 	PID_inti();
 	Timer1.initialize(Stepinterval);	// 设置步进电机的初始 节拍间隔
@@ -66,45 +76,83 @@ void setup()
 	MsTimer2::set(ReadSensorInterval, updatePID); // 设置传感器扫描间隔， 以及回调函数
 	MsTimer2::start();
 
-	attachInterrupt(0, TurnLeft, RISING);		// 使用0号中断触发左转， 实际对应数字引脚2 (D2) ，触发条件为出现上升沿
-	attachInterrupt(1, TurnRight, RISING);		// 使用1号中断，实际对应数字引脚3 (D3), 出发条件为出现上升沿
+	//attachInterrupt(0, TurnLeft, RISING);		// 使用0号中断触发左转， 实际对应数字引脚2 (D2) ，触发条件为出现上升沿
+	//attachInterrupt(1, TurnRight, RISING);		// 使用1号中断，实际对应数字引脚3 (D3), 出发条件为出现上升沿
 	Timer1.detachInterrupt();
 	Timer3.detachInterrupt();
-	/*
-	中断技术可参考 http://arduino.cc/en/Reference/AttachInterrupt
-	LOW	当针脚输入为低时，触发中断
-	CHANGE	当针脚输入发生改变时，触发中断
-	RISING	当针脚输入由低变高时，触发中断
-	FALLING	当针脚输入由高变低时，触发中断
-	*/
+	Timer1.stop();
+	Timer3.stop();
+	servo_1.attach(13);
+	///*
+	//中断技术可参考 http://arduino.cc/en/Reference/AttachInterrupt
+	//LOW	当针脚输入为低时，触发中断
+	//CHANGE	当针脚输入发生改变时，触发中断
+	//RISING	当针脚输入由低变高时，触发中断
+	//FALLING	当针脚输入由高变低时，触发中断
+	//*/
+	servo_1.write(100);
 	Serial.begin(9600);
 	Serial1.begin(9600);
-	//dcDrive();
+	delay(1000);
 	rountine();
-	//Stop();
+	
 
 }
 
 	
 void loop() {
-	// put your main code here, to run repeatedly:
-	//switch (stopservo){
-	//case 0:
-	//	//color();
-	//	backandforth();
-	//	break;
-	//case 1:
-	//	if (!whether){
-	//		colorin();
-	//	}
-	//	if (whether){
-	//		color();
-	//		//delay(1000);
-	//	}
-	//	break;
-	//default:
-	//	break;
-	//}
-	//
-	//Serial.println(Serial1.read());
+
+	switch (btOrder){
+	case 0:					// 第一次发送，第二辆车启动
+		Serial.begin(9600);
+		Serial1.begin(9600);
+
+		for (int i = 0; i < 10; i++)
+		{
+			readBTData();
+			writeBTData("ST#");
+		}
+		btOrder = -1;
+		break;
+
+	case 1:
+							// 第一辆车 到达交接区域，等待对方就位、对接
+		readnum();			// 读取各颜色球的个数
+
+		Serial.begin(9600);
+		Serial1.begin(9600);
+		while (readin != "S1")			// 第二辆车是否就位
+		{
+			readBTData();
+			Serial.println("S1N");
+			Serial.flush();
+			delay(500);
+
+		}
+
+		servo_1.write(160);//++			// 打开第一个舵机，将一个颜色的球放出
+		delay(2000);
+		//Serial.println("STD_1");	
+		while (readin != "S2")			// 第一次放球完毕，发送颜色、个数  等待对方回复指令
+		{
+			readBTData();
+			writeBTData("S1DG" + String(numG));
+			/*Serial1.println("S1D#");
+			Serial1.flush();
+			Serial.println("S1D");*/
+
+		}
+
+		servo_1.write(30);//+++			// 放出第二批球
+		delay(2000);
+		while (1)
+		{
+			writeBTData("S2D" + String(numO));		// 发送球的颜色个数
+		}
+
+		btOrder = -1;
+		break;
+	default:
+		break;
+	}
 }

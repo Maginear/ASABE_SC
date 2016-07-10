@@ -32,15 +32,6 @@ void setup()
 	pinMode(SENSOR_8, INPUT);
 
 	PID_inti();
-	//servo_1.attach(5);
-	//servo_2.attach(4);
-	
-	/*for (int i = 180; i >90 ; i--)
-	{
-		servo_1.write(i);
-		servo_2.write(i);
-		delay(100);
-	}*/
 	Timer1.initialize(Stepinterval);	// 设置步进电机的初始 节拍间隔
 	//Timer1.attachInterrupt(DriveLeft); // Drive Left Motor to run every stepinterval us	传入回调函数
 	Timer3.initialize(Stepinterval);	// 同上
@@ -74,14 +65,45 @@ void setup()
 	Serial.println("setup");*/
 	rountine();
 	//getBall();
-	
 }
 
 void loop()
 {
-	// Test by ZZL. 2016/04/30, 01:24:22
-	// Test by MZH. 2016/05/02, 16:17
-	/*ReadSensor();*/
-	//readblue();
-	
+	switch (btOrder)
+	{
+	case 0:
+		servo_1.write(90);//+++
+		while (readin[2] != 'D' || readin[1] != '1')		// 等待对方放球完毕，传输球的颜色
+		{
+			readBTData();
+			/*Serial1.println("S1#");
+			Serial1.flush();
+			Serial.println("S1");*/
+			writeBTData("S1");
+		}
+
+		numG = readin[4] - '0';
+		servo_1.write(-90);//+++						// 关闭第一道舵机，接收第二批球
+		while (readin[2] != 'D' || readin[1] != '2')		// 等待对方放球完毕，传输球的颜色
+		{
+			readBTData();
+
+			/*Serial1.println("S2#");
+			Serial1.flush();
+			Serial.println("S2");*/
+			writeBTData("S2");
+		}
+		numO = readin[4] - '0';
+		/*while (readin != "OVER")
+		{
+		readBTData();
+		}*/
+		btOrder = -1;
+
+		MsTimer2::set(2000, goBack);
+		MsTimer2::start();				// 调用回程
+		break;
+	default:
+		break;
+	}
 }

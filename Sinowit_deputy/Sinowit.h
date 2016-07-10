@@ -72,10 +72,10 @@ int PIDCal(PID* pid, float error);
 #define MOTOR_LEFT_PIN3 33	// 左 
 #define MOTOR_LEFT_PIN4 34 	// 左 
 
-#define MOTOR_RIGHT_PIN1 36	// 右 4
-#define MOTOR_RIGHT_PIN2 37	// 3
-#define MOTOR_RIGHT_PIN3 38 // 2
-#define MOTOR_RIGHT_PIN4 39 // 1
+#define MOTOR_RIGHT_PIN1 36	// 右 1
+#define MOTOR_RIGHT_PIN2 37	// 2
+#define MOTOR_RIGHT_PIN3 38 // 3
+#define MOTOR_RIGHT_PIN4 39 // 4
 void TurnLeft(void);
 void TurnRight(void);
 
@@ -96,15 +96,14 @@ void TurnRight(void);
 int weight[] = { -10, -8, -4, -2, 2, 4, 8, 10 }; //传感器的权值
 int SENSOR[] = { SENSOR_1, SENSOR_2, SENSOR_3, SENSOR_4, SENSOR_5, SENSOR_6, SENSOR_7, SENSOR_8 };
 float ReadSensor();
-//bool startwork = 0;
-//bool continuework = 0;
-//bool car2arr = 0;
-String readin;
+
 /************************************************************************/
 /*                            转向的参数                                 */
 /************************************************************************/
 //void(*afterTurnFunction)();
 void(*afterForwardFunction)();
+
+void(*afterFaceTheLineFunc)();
 
 /************************************************************************/
 /*                             路径规划                                 */
@@ -117,5 +116,17 @@ void haveABreak(void);
 /*                          舵机的参数                                   */
 /************************************************************************/
 Servo servo_1, servo_2;
+
+/************************************************************************/
+/*							蓝牙传输                                     */
+/************************************************************************/
+
+int numG = 0;
+int numO = 0;
+int btOrder = -1;
+String readin;
+void readBTData(void);
+void writeBTData(String);
+
 #endif
 
