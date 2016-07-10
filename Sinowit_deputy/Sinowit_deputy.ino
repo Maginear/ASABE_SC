@@ -32,6 +32,15 @@ void setup()
 	pinMode(SENSOR_8, INPUT);
 
 	PID_inti();
+	//servo_1.attach(5);
+	//servo_2.attach(4);
+	
+	/*for (int i = 180; i >90 ; i--)
+	{
+		servo_1.write(i);
+		servo_2.write(i);
+		delay(100);
+	}*/
 	Timer1.initialize(Stepinterval);	// 设置步进电机的初始 节拍间隔
 	//Timer1.attachInterrupt(DriveLeft); // Drive Left Motor to run every stepinterval us	传入回调函数
 	Timer3.initialize(Stepinterval);	// 同上
@@ -65,6 +74,7 @@ void setup()
 	Serial.println("setup");*/
 	rountine();
 	//getBall();
+	
 }
 
 void loop()
@@ -73,4 +83,5 @@ void loop()
 	// Test by MZH. 2016/05/02, 16:17
 	/*ReadSensor();*/
 	//readblue();
+	
 }

@@ -27,8 +27,8 @@ void rountine(void)
 	Serial1.flush();*/
 	Timer1.attachInterrupt(DriveLeft);
 	Timer3.attachInterrupt(DriveRight);
-	getOut();
-	
+	//getOut();
+	getBall();
 }
 
 void goforward(void)		//直走，时间为forwardInterval， 随后调用 afterForwardFunction（函数指针）
@@ -191,28 +191,30 @@ void getBall(void)
 	forwardInterval = 1000;
 	afterForwardFunction = TurnAround;
 	
-	
-	servo_1.write(90);//+++
-	while (readin[2] != 'D'||readin[1]!='1')
+	servo_1.write(0);//+++
+	while (readin[2] != 'D'|| readin[1]!='1')
 	{
 		readblue();
-		/*Serial1.println("S1#");
-		Serial1.flush();
-		Serial.println("S1");*/
+		/*serial1.println("s1#");
+		serial1.flush();
+		serial.println("s1");*/
 		writeblue("S1#");
-		delay(500);
 	}
 	numG = readin[4] - '0';
-	servo_1.write(-90);//+++
-	while (readin[2] != 'D'||readin[1]!='2')
+	//servo_1.write(90);//+++
+
+	/*Timer1.start();
+	Timer3.start();*/
+	/*Serial.begin(9600);
+	Serial1.begin(9600);
+*/
+	while (readin[2] != 'D' || readin[1]!='2')
 	{
 		readblue();
-		
-		/*Serial1.println("S2#");
-		Serial1.flush();
-		Serial.println("S2");*/
 		writeblue("S2#");
-		delay(500);
+		Serial.println("S2");
+		Serial.flush();
+		//writeblue("S2#");
 	}
 	numO = readin[4] - '0';
 	/*while (readin != "OVER")
@@ -303,7 +305,7 @@ void getBallOut_1(void)
 	MsTimer2::start();
 	for (int i = 90; i > 0; i--) 
 	{ 
-		servo_1.write(i);
+		servo_2.write(i);
 		delay(10);
 	}
 }
@@ -321,10 +323,10 @@ void Turn360(void)
 	afterForwardFunction = getBallOut_2;
 	MsTimer2::set(TurnInterval * 2, goBack);
 	MsTimer2::start();
-	servo_1.write(90);
+	servo_2.write(90);
 	for (int i = 90; i > 0; i--)
 	{
-		servo_2.write(i);
+		servo_1.write(i);
 		delay(10);
 	}
 }
@@ -339,10 +341,10 @@ void getBallOut_2(void)
 	MsTimer2::set(3000, goforward);
 	MsTimer2::start();
 	// 第一个舵机打开，放出球, 3S时间
-	servo_2.write(90);
+	servo_1.write(90);
 	for (int i = 90; i > 0; i--)
 	{
-		servo_1.write(i);
+		servo_2.write(i);
 		delay(10);
 	}
 }

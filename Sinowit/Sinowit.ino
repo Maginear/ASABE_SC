@@ -93,9 +93,11 @@ void setup()
 	Serial.begin(9600);
 	Serial1.begin(9600);
 	delay(1000);
+
+	Serial.println(Serial1.read());
+	Serial.println("0");
 	rountine();
 	
-
 }
 
 	
@@ -119,5 +121,5 @@ void loop() {
 	//	break;
 	//}
 	//
-
+	//Serial.println(Serial1.read());
 }

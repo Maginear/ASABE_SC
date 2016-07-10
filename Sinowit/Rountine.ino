@@ -9,9 +9,10 @@ int leftInterruptTimeInLast = 0;
 
 void rountine(void)
 {
-	pickBall();
+	//pickBall();
 	//backToLine();
-	//haveABreak();
+	haveABreak();
+	//Stop();
 }
 
 void goforward(void)		//直走，时间为forwardInterval， 随后调用 afterForwardFunction（函数指针）
@@ -74,7 +75,7 @@ void reSetMsTimer2(void)
 {
 	MsTimer2::set(ReadSensorInterval, updatePID);		//进入正常的循迹
 	MsTimer2::start();
-	forwardInterval = 4500;
+	forwardInterval = 3500;
 	afterForwardFunction = TurnLeft_45_Degree;		// 走到球前面时，调用
 	                                     //开始捡球
 	attachInterrupt(0, goforward, RISING);	//当到达第一个转折，不转弯，直走去取第一个球
@@ -102,7 +103,7 @@ void TurnLeft_45_Degree(void)
 	}
 	else
 	{
-		forwardInterval = 12000;
+		forwardInterval = 11000;
 		afterForwardFunction = turn_Out_ball;
 		MsTimer2::set(HalfTurnInterval, goforward_onWall);
 		MsTimer2::start();
@@ -225,7 +226,7 @@ void haveABreak(void)
 	//{
 		for (int i = 0; i < 10; i++)
 		{
-			readblue();
+			//readblue();
 			writeblue("ST#");
 		}
 	//}
@@ -236,7 +237,8 @@ void haveABreak(void)
 	Timer3.setPeriod(8000);
 	Timer1.stop();
 	Timer3.stop();
-	MsTimer2::set(1000, backToLine);
+	//MsTimer2::set(1000, backToLine);
+	MsTimer2::set(1000, Stop);
 	MsTimer2::start();
 }
 
@@ -348,40 +350,75 @@ void Stop(void)
 	ReadSensor();
 	if (corner == 16 || corner == 17)
 	{
-			delay(1000);
-			detachInterrupt(0);
-			detachInterrupt(1);
-			Timer1.stop();
-			Timer3.stop();
-			MsTimer2::stop();
-			Timer1.detachInterrupt();
-			Timer3.detachInterrupt();
-			/*Timer1.start();
-			Timer3.start();*/
-			Serial.begin(9600);
-			Serial1.begin(9600);
+		Timer1.stop();
+		Timer3.stop();
+		MsTimer2::stop();
+		Timer1.detachInterrupt();
+		Timer3.detachInterrupt();
+		/*Timer1.start();
+		Timer3.start();*/
+		Serial.begin(9600);
+		Serial1.begin(9600);
+			//while (Serial1.read() >= 0) {}
+			Serial.println("go");
+			while (Serial1.read() >= 0)
+			{
+
+			}
+			Serial.println(Serial1.read());
+			Serial.println(Serial1.read());
+
 			while (readin != "S1")
 			{
 				readblue();
 				Serial.println("S1N");
 				Serial.flush();
-				delay(500);
+				delay(200);
+				
+			}
+			//while (Serial1.read() >= 0) {}
+			Serial.println("o1");
+			//servo_1.write(160);//++
+			Serial.println("go3");
+
+			//Serial.println(Serial1.readStringUntil('#'));
+			Serial.println("1");
+			Serial.println("go2");
+
+			//Serial.println("STD_1");
+			//Serial.println(Serial1.readStringUntil('#'));
+			Serial.println("2");
+			Serial.println("go3");
+			Serial.println(Serial1.read());
+			
+			Serial1.print("S1DG");
+			Serial1.print(String(numG));
+			Serial1.print("#");
+			while (Serial1.read()>=0)
+			{
 
 			}
-			servo_1.write(160);//++
-			delay(2000);
-			//Serial.println("STD_1");
+			Serial.println(Serial1.read());
+			Serial.println(Serial1.read());
+			Serial.flush();
 			while (readin != "S2")
 			{
 				readblue();
-				writeblue("S1DG");
-				writeblue(String(numG));
-				writeblue("#");
-				delay(500);
+				Serial1.print("S1DG");
+				Serial1.print(String(numG));
+				Serial1.print("#");
+				Serial1.flush();
+				//Serial.println("S1DG");
+				//Serial.flush();
+
+		
+				/*Serial.println(Serial1.read());
+				Serial.println("2");*/
+
+				delay(1000);
 				/*Serial1.println("S1D#");
 				Serial1.flush();
 				Serial.println("S1D");*/
-
 			}
 
 			servo_1.write(30);//+++

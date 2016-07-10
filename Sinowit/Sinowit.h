@@ -91,12 +91,12 @@ void TurnRight(void);
 #define SENSOR_3 32
 #define SENSOR_2 31	
 #define SENSOR_1 2
-#define numG_1 48
-#define numG_2 49
-#define numG_3 50
-#define numO_1 51
-#define numO_2 52
-#define numO_3 53
+#define numG_1 42
+#define numG_2 44
+#define numG_3 46
+#define numO_1 48
+#define numO_2 50
+#define numO_3 52
 #define promixSen 21
 
 int weight[] = { -10, -8, -4, -2, 2, 4, 8, 10 }; //传感器的权值

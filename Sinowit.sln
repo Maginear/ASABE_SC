@@ -7,7 +7,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sinowit", "Sinowit\Sinowit.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sinowit_deputy", "Sinowit_deputy\Sinowit_deputy.vcxproj", "{A327A6D6-6CCC-4491-9F93-595B1D0457E9}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "colorsort", "..\..\..\Documents\Arduino\colorsort\colorsort.vcxproj", "{93456A22-5936-4392-A7B1-DEE31EB4F40C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "colorsort", "colorsort\colorsort.vcxproj", "{93456A22-5936-4392-A7B1-DEE31EB4F40C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

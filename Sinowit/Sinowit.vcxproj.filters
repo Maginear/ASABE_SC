@@ -147,10 +147,10 @@
     <None Include="Rountine.ino" />
     <None Include="DCMotor.ino" />
     <None Include="StepMotor.ino" />
-    <None Include="D:\2016春夏\生物生产机器人\ASABE\simplified_bluetooth.ino" />
     <None Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\wiring_pulse.S">
       <Filter>_core</Filter>
     </None>
+    <None Include="simplified_bluetooth.ino" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\abi.cpp">

@@ -75,8 +75,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="..\Sinowit\simplified_bluetooth.ino" />
     <None Include="..\Sinowit\StepMotor.ino" />
-    <None Include="D:\2016春夏\生物生产机器人\ASABE\simplified_bluetooth.ino" />
     <None Include="PID_Out.ino" />
     <None Include="Rountine.ino" />
     <None Include="Sensor.ino" />
