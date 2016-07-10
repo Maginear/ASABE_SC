@@ -52,10 +52,10 @@ void setup()
 	RISING	当针脚输入由低变高时，触发中断
 	FALLING	当针脚输入由高变低时，触发中断
 	*/
-	/*servo_1.attach(9);
+	servo_1.attach(9);
 	servo_1.write(90);
 	servo_2.attach(10);
-	servo_2.write(90);*/
+	servo_2.write(90);
 	Serial.begin(9600);
 	Serial1.begin(9600);
 	//Serial1.setTimeout(100);
@@ -84,7 +84,7 @@ void loop()
 		}
 
 		numG = readin[4] - '0';
-		servo_1.write(-90);//+++						// 关闭第一道舵机，接收第二批球
+		servo_1.write(0);//+++						// 关闭第一道舵机，接收第二批球
 		while (readin[2] != 'D' || readin[1] != '2')		// 等待对方放球完毕，传输球的颜色
 		{
 			readBTData();
