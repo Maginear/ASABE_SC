@@ -79,9 +79,9 @@
     <ClInclude Include="__vm\.Sinowit.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="BlueTooth.ino" />
     <None Include="D:\2016春夏\生物生产机器人\ASABE\arduino-1.6.5-r5-windows\arduino-1.6.5-r5\hardware\arduino\avr\cores\arduino\wiring_pulse.S" />
     <None Include="DCMotor.ino" />
-    <None Include="simplified_bluetooth.ino" />
     <None Include="StepMotor.ino" />
     <None Include="PID_Out.ino" />
     <None Include="Rountine.ino" />

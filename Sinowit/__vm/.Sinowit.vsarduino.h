@@ -63,6 +63,7 @@ extern "C" void __cxa_pure_virtual() {;}
 #define portInputRegister(P)
 #define portModeRegister(P)
 #include <Sinowit.ino>
+#include <BlueTooth.ino>
 #include <DCMotor.ino>
 #include <PID_Out.ino>
 #include <Rountine.ino>

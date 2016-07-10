@@ -26,7 +26,8 @@ void rountine(void)
 	Serial1.flush();*/
 	Timer1.attachInterrupt(DriveLeft);
 	Timer3.attachInterrupt(DriveRight);
-	getOut();
+	//getOut();
+	getBall();
 	
 }
 

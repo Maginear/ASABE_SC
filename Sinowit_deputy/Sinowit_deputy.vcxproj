@@ -75,7 +75,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="..\Sinowit\simplified_bluetooth.ino" />
     <None Include="..\Sinowit\StepMotor.ino" />
     <None Include="PID_Out.ino" />
     <None Include="Rountine.ino" />

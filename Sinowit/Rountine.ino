@@ -9,9 +9,9 @@ int leftInterruptTimeInLast = 0;
 
 void rountine(void)
 {
-	pickBall();
+	//pickBall();
 	//backToLine();
-	//haveABreak();
+	haveABreak();
 }
 
 void goforward(void)		//直走，时间为forwardInterval， 随后调用 afterForwardFunction（函数指针）
@@ -225,7 +225,8 @@ void haveABreak(void)
 	Timer3.setPeriod(8000);
 	Timer1.stop();
 	Timer3.stop();
-	MsTimer2::set(1000, backToLine);
+	//MsTimer2::set(1000, backToLine);
+	MsTimer2::set(1000, Stop);
 	MsTimer2::start();
 }
 
