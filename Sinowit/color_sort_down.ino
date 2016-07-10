@@ -45,6 +45,7 @@ void TSC_WB(int Level0, int Level1)      //White Balance
   g_count = 0;
   g_flag ++;
   TSC_FilterColor(Level0, Level1);
+  
   MsTimer2::set(100,TSC_Callback);            // set 0.1s period
 }
 void TSC_Count()
@@ -54,6 +55,7 @@ void TSC_Count()
 void colorin(){
   digitalWrite(LED, HIGH);
   delay(30);
+
   MsTimer2::set(100,TSC_Callback1); 
   digitalWrite(S2, HIGH); 
   digitalWrite(S3, HIGH);
@@ -179,4 +181,9 @@ void color() {
   //digitalWrite(S2, HIGH);
    delay(105);
   MsTimer2::stop(); 
+}
+
+void color_sort()
+{
+	stopservo = 1;
 }
