@@ -1,5 +1,3 @@
-// Sinowit.h 
-#include <Servo.h>
 
 #ifndef _SINOWIT_h
 #define _SINOWIT_h
@@ -12,6 +10,9 @@
 
 #define uchar unsigned char
 #define uint unsigned int
+// Sinowit.h 
+
+#include <Servo.h>
 
 uchar detection, sample = 0, corner = 0, k, flag;	//TODO: 暂时用不到
 int turn_45_times = 0;
