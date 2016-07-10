@@ -72,6 +72,7 @@ void loop()
 	switch (btOrder)
 	{
 	case 0:
+		MsTimer2::stop();
 		servo_1.write(90);//+++
 		while (readin[2] != 'D' || readin[1] != '1')		// 等待对方放球完毕，传输球的颜色
 		{
@@ -87,10 +88,6 @@ void loop()
 		while (readin[2] != 'D' || readin[1] != '2')		// 等待对方放球完毕，传输球的颜色
 		{
 			readBTData();
-
-			/*Serial1.println("S2#");
-			Serial1.flush();
-			Serial.println("S2");*/
 			writeBTData("S2");
 		}
 		numO = readin[4] - '0';

@@ -39,7 +39,6 @@
 #endif
 #define NEW_H
 typedef void *__builtin_va_list;
-typedef unsigned char byte;
 extern "C" void __cxa_pure_virtual() {;}
 
 
@@ -49,19 +48,7 @@ extern "C" void __cxa_pure_virtual() {;}
 #undef F
 #define F(string_literal) ((const PROGMEM char *)(string_literal))
 #undef PSTR
-#define PSTR(string_literal) ((const PROGMEM char *)(string_literal))
-#undef cli
-#define cli()
-#define pgm_read_byte(address_short)
-#define pgm_read_word(address_short)
-#define pgm_read_word2(address_short)
-#define digitalPinToPort(P)
-#define digitalPinToBitMask(P) 
-#define digitalPinToTimer(P)
-#define analogInPinToBit(P)
-#define portOutputRegister(P)
-#define portInputRegister(P)
-#define portModeRegister(P)
+#define PSTR(string_literal) ((const PROGMEM char *)(string_literal))")
 #include <Sinowit.ino>
 #include <BlueTooth.ino>
 #include <DCMotor.ino>

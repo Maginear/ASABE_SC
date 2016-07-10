@@ -104,23 +104,28 @@ void loop() {
 
 	switch (btOrder){
 	case 0:					// 第一次发送，第二辆车启动
+		MsTimer2::stop();
 		Serial.begin(9600);
 		Serial1.begin(9600);
 
 		for (int i = 0; i < 10; i++)
 		{
-			readBTData();
-			writeBTData("ST#");
+			writeBTData("ST");
 		}
 		btOrder = -1;
+		delay(100);
+		MsTimer2::set(1000, backToLine);
+		//MsTimer2::set(1000, Stop);
+		MsTimer2::start();
 		break;
 
 	case 1:
 							// 第一辆车 到达交接区域，等待对方就位、对接
 		readnum();			// 读取各颜色球的个数
-
+		MsTimer2::stop();
 		Serial.begin(9600);
 		Serial1.begin(9600);
+		Serial.println("case 1");
 		while (readin != "S1")			// 第二辆车是否就位
 		{
 			readBTData();
