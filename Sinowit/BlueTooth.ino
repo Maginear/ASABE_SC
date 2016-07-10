@@ -2,6 +2,7 @@
 
 void readBTData(void)
 {
+	Serial1.setTimeout(100);
 	if (Serial1.available())
 	{
 		readin =  Serial1.readStringUntil('#');
@@ -15,5 +16,7 @@ void writeBTData(String str)
 	Serial1.print(str);
 	Serial1.print('#');
 	Serial1.flush();
-	delay(100);
+	Serial.println(str);
+	Serial.flush();
+	delay(200);
 }
