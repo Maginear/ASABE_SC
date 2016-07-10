@@ -5,7 +5,7 @@
 	        all non-arduino files created by visual micro and all visual studio project or solution files can be freely deleted and are not required to compile a sketch (do not delete your own code!).
 	        note: debugger breakpoints are stored in '.sln' or '.asln' files, knowledge of last uploaded breakpoints is stored in the upload.vmps.xml file. Both files are required to continue a previous debug session without needing to compile and upload again
 	
-	Hardware: Arduino/Genuino Mega w/ ATmega2560 (Mega 2560), Platform=avr, Package=arduino
+	Hardware: Arduino Mega ADK, Platform=avr, Package=arduino
 */
 
 #ifndef _VSARDUINO_H_
@@ -13,7 +13,7 @@
 #define __AVR_ATmega2560__
 #define F_CPU 16000000L
 #define ARDUINO 10605
-#define ARDUINO_AVR_MEGA2560
+#define ARDUINO_AVR_ADK
 #define ARDUINO_ARCH_AVR
 #define __cplusplus 201103L
 #define __AVR__
@@ -62,12 +62,5 @@ extern "C" void __cxa_pure_virtual() {;}
 #define portOutputRegister(P)
 #define portInputRegister(P)
 #define portModeRegister(P)
-#include <Sinowit_deputy.ino>
-#include <PID_Out.ino>
-#include <Rountine.ino>
-#include <Sensor.ino>
-#include <Sinowit.h>
-#include <..\Sinowit\StepMotor.ino>
-#include <Turn_LR.ino>
-#include <..\Sinowit\simplified_bluetooth.ino>
+#include <colorsort.ino>
 #endif

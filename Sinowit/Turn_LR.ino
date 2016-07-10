@@ -93,7 +93,6 @@ void StopTurn(void)
 {
 	MsTimer2::set(ReadSensorInterval, updatePID);
 	MsTimer2::start();
-	attachInterrupt(0, Stop, RISING);			//接近开关触发，停止运动
 }
 
 
