@@ -93,6 +93,22 @@ void StopTurn(void)
 {
 	MsTimer2::set(ReadSensorInterval, updatePID);
 	MsTimer2::start();
+
+	attachInterrupt(0, lastForward, RISING);
+	attachInterrupt(1, lastForward, RISING);
+}
+
+void lastForward()
+{
+	ReadSensor();
+	if (corner != 0)
+	{
+		detachInterrupt(0);
+		detachInterrupt(1);
+		forwardInterval = 1000;
+		afterForwardFunction = Stop;
+		goforward();
+	}
 }
 
 

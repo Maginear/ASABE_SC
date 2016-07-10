@@ -95,8 +95,6 @@ void setup()
 	Serial1.begin(9600);
 	delay(1000);
 	rountine();
-	
-
 }
 
 	
@@ -108,7 +106,7 @@ void loop() {
 		Serial.begin(9600);
 		Serial1.begin(9600);
 
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 20; i++)
 		{
 			writeBTData("ST");
 		}
@@ -145,7 +143,6 @@ void loop() {
 			/*Serial1.println("S1D#");
 			Serial1.flush();
 			Serial.println("S1D");*/
-
 		}
 
 		servo_1.write(30);//+++			// 放出第二批球

@@ -9,9 +9,10 @@ int leftInterruptTimeInLast = 0;
 
 void rountine(void)
 {
-	//pickBall();
+	pickBall();
 	//backToLine();
-	haveABreak();
+	//haveABreak();
+	//GoWithNoLeft();
 }
 
 void goforward(void)		//直走，时间为forwardInterval， 随后调用 afterForwardFunction（函数指针）
@@ -236,8 +237,8 @@ void backToLine(void)
 	MsTimer2::stop();
 	Timer1.attachInterrupt(DriveLeft);
 	Timer3.attachInterrupt(DriveRight);
-	Timer1.setPeriod(4000);
-	Timer3.setPeriod(4000);
+	Timer1.setPeriod(5000);
+	Timer3.setPeriod(5000);
 	Timer1.start();
 	Timer3.start();
 	attachInterrupt(0, face_the_line, RISING);
@@ -327,24 +328,18 @@ void GoWithNoLeft(void)
 	detachInterrupt(0);
 	detachInterrupt(1);
 	attachInterrupt(1, TurnRight, RISING);
-	
+	Serial.println("ss");
 	MsTimer2::set(ReadSensorInterval, updatePID);		//进入正常的循迹
 	MsTimer2::start();
 }
 
 void Stop(void)
 {
+	Timer1.stop();
+	Timer3.stop();
 	MsTimer2::stop();
-	ReadSensor();
-	if (corner == 16 || corner == 17)
-	{
-		delay(2000);		// 完成
-		Timer1.stop();
-		Timer3.stop();
-		MsTimer2::stop();
-		Serial.println("Stop end");
-		btOrder = 1;		// 已经就位，开始loop里面的对接	
-	}
+	Serial.println("Stop end");
+	btOrder = 1;		// 已经就位，开始loop里面的对接	
 
 }
 void readnum()

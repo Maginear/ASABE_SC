@@ -13,6 +13,7 @@ void rountine(void)
 	//Serial.println("rountine");
 	Timer1.detachInterrupt();
 	Timer3.detachInterrupt();
+	MsTimer2::stop();
 	Serial.begin(9600);
 	Serial1.begin(9600);
 	while (readin != "ST")
@@ -26,8 +27,8 @@ void rountine(void)
 	Serial1.flush();*/
 	Timer1.attachInterrupt(DriveLeft);
 	Timer3.attachInterrupt(DriveRight);
-	//getOut();
-	getBall();
+	getOut();
+	//getBall();
 	
 }
 
