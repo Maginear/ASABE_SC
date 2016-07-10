@@ -8,8 +8,8 @@ int forwardInterval = 2000;		// 向前的时间
 
 void rountine(void)
 {
-	pickBall();
-	
+	//pickBall();
+	haveABreak();
 }
 
 void goforward(void)		//直走，时间为forwardInterval， 随后调用 afterForwardFunction（函数指针）
@@ -209,8 +209,14 @@ void haveABreak(void)
 {
 	Timer1.stop();
 	Timer3.stop();
-	MsTimer2::set(1000, backToLine);
+	for (int i = 0; i < 10; i++)
+	{
+		writeblue("ST#");
+	}
+	//MsTimer2::set(1000, backToLine);
+	MsTimer2::set(1000, Stop);
 	MsTimer2::start();
+	//Stop();
 }
 
 void backToLine(void)
@@ -322,7 +328,7 @@ void Stop(void)
 	{
 		readblue();
 		writeblue("S1D#");
-		delay(500);
+		//delay(500);
 		/*Serial1.println("S1D#");
 		Serial1.flush();
 		Serial.println("S1D");*/
@@ -334,7 +340,7 @@ void Stop(void)
 	while (1)
 	{
 		writeblue("S2D#");
-		delay(500);
+		//delay(500);
 		/*Serial1.println("S2D");
 		Serial1.flush();
 		Serial.println("S2D");*/

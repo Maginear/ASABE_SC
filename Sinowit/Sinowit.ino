@@ -46,16 +46,16 @@ void setup()
 	pinMode(DCmotorPin2, OUTPUT);
 	pinMode(DCmotorPwm, OUTPUT);
 
-	TSC_Init();
-	colorservo.attach(13);  // attaches the servo on pin 13 to the servo object
-	//Serial.begin(9600);
-	attachInterrupt(digitalPinToInterrupt(18), TSC_Count, RISING);
-	//delay(10);
-	for (pos = 00; pos <= 50; pos += 1) { // goes from 0 degrees to 180 degrees
-		// in steps of 1 degree
-		colorservo.write(pos);              // tell servo to go to position in variable 'pos'
-		delay(3);                       // waits 15ms for the servo to reach the position
-	}
+	//TSC_Init();
+	//colorservo.attach(13);  // attaches the servo on pin 13 to the servo object
+	////Serial.begin(9600);
+	//attachInterrupt(digitalPinToInterrupt(18), TSC_Count, RISING);
+	////delay(10);
+	//for (pos = 00; pos <= 50; pos += 1) { // goes from 0 degrees to 180 degrees
+	//	// in steps of 1 degree
+	//	colorservo.write(pos);              // tell servo to go to position in variable 'pos'
+	//	delay(3);                       // waits 15ms for the servo to reach the position
+	//}
 
 	PID_inti();
 	Timer1.initialize(Stepinterval);	// 设置步进电机的初始 节拍间隔

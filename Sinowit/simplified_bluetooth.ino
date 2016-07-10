@@ -16,7 +16,7 @@ int numGreen=0;
 	Serial1.flush();
     Serial.println(writein);
 	Serial.flush();
-	delay(1000);
+	delay(100);
   }
  void readblue() 
  {

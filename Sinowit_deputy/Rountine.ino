@@ -13,16 +13,18 @@ void rountine(void)
 	//Serial.println("rountine");
 	Timer1.detachInterrupt();
 	Timer3.detachInterrupt();
-	while (startwork!=1)
+	while (readin != "ST")
 	{
 		readblue();
-
+		Serial.println("ready!");
+		Serial.flush();
 	}
-	Serial1.print("B#");
-	Serial1.flush();
+	/*Serial1.print("B#");
+	Serial1.flush();*/
 	Timer1.attachInterrupt(DriveLeft);
 	Timer3.attachInterrupt(DriveRight);
 	//getOut();
+	getBall();
 	
 }
 
