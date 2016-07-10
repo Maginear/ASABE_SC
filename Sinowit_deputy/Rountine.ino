@@ -8,27 +8,22 @@ int forwardInterval = 2000;		// 向前的时间
 int crossLineTime = 0;
 int isHasShortGo = 0;
 
-
 void rountine(void)
 {
 	//Serial.println("rountine");
 	Timer1.detachInterrupt();
 	Timer3.detachInterrupt();
-	Serial.begin(9600);
-	Serial1.begin(9600);
-	while (readin!="ST")
+	while (startwork!=1)
 	{
 		readblue();
-		Serial.println("ready!");
-		Serial.flush();
+
 	}
-	/*while(readin!="")*/
-	/*Serial1.print("B#");
-	Serial1.flush();*/
+	Serial1.print("B#");
+	Serial1.flush();
 	Timer1.attachInterrupt(DriveLeft);
 	Timer3.attachInterrupt(DriveRight);
 	//getOut();
-	getBall();
+	
 }
 
 void goforward(void)		//直走，时间为forwardInterval， 随后调用 afterForwardFunction（函数指针）
@@ -38,8 +33,8 @@ void goforward(void)		//直走，时间为forwardInterval， 随后调用 afterForwardFunct
 	detachInterrupt(1);
 	Timer1.attachInterrupt(DriveLeft);
 	Timer3.attachInterrupt(DriveRight);
-	Timer1.setPeriod(5000);
-	Timer3.setPeriod(5000);
+	Timer1.setPeriod(6000);
+	Timer3.setPeriod(6000);
 	Timer1.start();
 	Timer3.start();
 	MsTimer2::set(forwardInterval, afterForwardFunction);
@@ -53,8 +48,8 @@ void goBack(void)		//  反方向走
 	detachInterrupt(1);
 	Timer1.attachInterrupt(BackLeft);
 	Timer3.attachInterrupt(BackRight);
-	Timer1.setPeriod(5000);
-	Timer3.setPeriod(5000);
+	Timer1.setPeriod(6000);
+	Timer3.setPeriod(6000);
 	Timer1.start();
 	Timer3.start();
 	MsTimer2::set(forwardInterval, afterForwardFunction);
@@ -67,8 +62,8 @@ void getOut(void)
 	detachInterrupt(0);
 	detachInterrupt(1);
 
-	Timer1.setPeriod(5000);
-	Timer3.setPeriod(5000);
+	Timer1.setPeriod(6000);
+	Timer3.setPeriod(6000);
 	Timer1.start();
 	Timer3.start();
 	MsTimer2::set(1000, reSetMsTimer2);		// 进入黑线范围前直走， 结束后正常循迹
@@ -171,7 +166,7 @@ void toDock(void)
 	if (corner == 17 || corner == 16)
 	{
 		detachInterrupt(0);
-		forwardInterval = 2000;
+		forwardInterval = 500;
 		afterForwardFunction = getBall;
 		goforward();
 	}
@@ -186,13 +181,12 @@ void getBall(void)
 	Timer3.detachInterrupt();
 	/*Timer1.start();
 	Timer3.start();*/
-	Serial.begin(9600);
-	Serial1.begin(9600);
 	forwardInterval = 1000;
 	afterForwardFunction = TurnAround;
 	
-	servo_1.write(0);//+++
-	while (readin[2] != 'D'|| readin[1]!='1')
+	
+	servo_1.write(90);//+++
+	while (readin != "S1D")
 	{
 		readblue();
 		/*serial1.println("s1#");
@@ -200,23 +194,18 @@ void getBall(void)
 		serial.println("s1");*/
 		writeblue("S1#");
 	}
-	numG = readin[4] - '0';
-	//servo_1.write(90);//+++
-
-	/*Timer1.start();
-	Timer3.start();*/
-	/*Serial.begin(9600);
-	Serial1.begin(9600);
-*/
-	while (readin[2] != 'D' || readin[1]!='2')
+	servo_1.write(-90);//+++
+	while (readin != "S2D")
 	{
 		readblue();
+		/*Serial1.println("S2#");
+		Serial1.flush();
+		Serial.println("S2");*/
 		writeblue("S2#");
 		Serial.println("S2");
 		Serial.flush();
 		//writeblue("S2#");
 	}
-	numO = readin[4] - '0';
 	/*while (readin != "OVER")
 	{
 		readblue();
@@ -247,8 +236,8 @@ void backToEnd(void)
 	MsTimer2::stop();
 	Timer1.attachInterrupt(DriveLeft);
 	Timer3.attachInterrupt(DriveRight);
-	Timer1.setPeriod(5000);
-	Timer3.setPeriod(5000);
+	Timer1.setPeriod(6000);
+	Timer3.setPeriod(6000);
 	Timer1.start();
 	Timer3.start();
 	reSetMsTimer2();

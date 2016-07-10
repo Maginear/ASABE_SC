@@ -11,17 +11,17 @@
 #include <TimerThree.h>
 #include <MsTimer2.h>
 
-//Servo colorservo;
-//int g_count = 0;
-//int array1[3];
-//int array2[3];
-//int ballcolor = 0;
-//int g_flag = 0;
-//int time1 = 0;
-//int det;
-//int pos = 0;
-//int stopservo = 2;
-//bool whether = 0;
+Servo colorservo;
+int g_count = 0;
+int array1[3];
+int array2[3];
+int ballcolor = 0;
+int g_flag = 0;
+int time1 = 0;
+int det;
+int pos = 0;
+int stopservo = 2;
+bool whether = 0;
 
 void setup()
 {
@@ -44,27 +44,17 @@ void setup()
 	pinMode(DCmotorPin1, OUTPUT);
 	pinMode(DCmotorPin2, OUTPUT);
 	pinMode(DCmotorPwm, OUTPUT);
-	pinMode(numG_1, INPUT);
-	pinMode(numG_2, INPUT);
-	pinMode(numG_3, INPUT);
-	pinMode(numO_1, INPUT);
-	pinMode(numO_2, INPUT);
-	pinMode(numO_3, INPUT);
 
-	//TSC_Init();
-	//colorservo.attach(13);  // attaches the servo on pin 13 to the servo object
+	TSC_Init();
+	colorservo.attach(13);  // attaches the servo on pin 13 to the servo object
 	//Serial.begin(9600);
-	//attachInterrupt(digitalPinToInterrupt(18), TSC_Count, RISING);
+	attachInterrupt(digitalPinToInterrupt(18), TSC_Count, RISING);
 	//delay(10);
-	//for (pos = 00; pos <= 50; pos += 1) { // goes from 0 degrees to 180 degrees
-	//	// in steps of 1 degree
-	//	colorservo.write(pos);              // tell servo to go to position in variable 'pos'
-	//	delay(3);                       // waits 15ms for the servo to reach the position
-	//}
-
-	dcDrive();
-	servo_1.write(100);
-	
+	for (pos = 00; pos <= 50; pos += 1) { // goes from 0 degrees to 180 degrees
+		// in steps of 1 degree
+		colorservo.write(pos);              // tell servo to go to position in variable 'pos'
+		delay(3);                       // waits 15ms for the servo to reach the position
+	}
 
 	PID_inti();
 	Timer1.initialize(Stepinterval);	// 设置步进电机的初始 节拍间隔
@@ -75,29 +65,23 @@ void setup()
 	MsTimer2::set(ReadSensorInterval, updatePID); // 设置传感器扫描间隔， 以及回调函数
 	MsTimer2::start();
 
-	//attachInterrupt(0, TurnLeft, RISING);		// 使用0号中断触发左转， 实际对应数字引脚2 (D2) ，触发条件为出现上升沿
-	//attachInterrupt(1, TurnRight, RISING);		// 使用1号中断，实际对应数字引脚3 (D3), 出发条件为出现上升沿
+	attachInterrupt(0, TurnLeft, RISING);		// 使用0号中断触发左转， 实际对应数字引脚2 (D2) ，触发条件为出现上升沿
+	attachInterrupt(1, TurnRight, RISING);		// 使用1号中断，实际对应数字引脚3 (D3), 出发条件为出现上升沿
 	Timer1.detachInterrupt();
 	Timer3.detachInterrupt();
-	Timer1.stop();
-	Timer3.stop();
-	servo_1.attach(13);
-	///*
-	//中断技术可参考 http://arduino.cc/en/Reference/AttachInterrupt
-	//LOW	当针脚输入为低时，触发中断
-	//CHANGE	当针脚输入发生改变时，触发中断
-	//RISING	当针脚输入由低变高时，触发中断
-	//FALLING	当针脚输入由高变低时，触发中断
-	//*/
-	servo_1.write(100);
+	/*
+	中断技术可参考 http://arduino.cc/en/Reference/AttachInterrupt
+	LOW	当针脚输入为低时，触发中断
+	CHANGE	当针脚输入发生改变时，触发中断
+	RISING	当针脚输入由低变高时，触发中断
+	FALLING	当针脚输入由高变低时，触发中断
+	*/
 	Serial.begin(9600);
 	Serial1.begin(9600);
-	delay(1000);
-
-	Serial.println(Serial1.read());
-	Serial.println("0");
+	//dcDrive();
 	rountine();
-	
+	//Stop();
+
 }
 
 	

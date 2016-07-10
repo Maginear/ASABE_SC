@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sinowit", "Sinowit\Sinowit.vcxproj", "{C5F80730-F44F-4478-BDAE-6634EFC2CA88}"
 EndProject
@@ -12,31 +12,17 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
-		Debug|x64 = Debug|x64
 		Release|Win32 = Release|Win32
-		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Debug|Win32.ActiveCfg = Debug|Win32
 		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Debug|Win32.Build.0 = Debug|Win32
-		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Debug|x64.ActiveCfg = Debug|Win32
 		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Release|Win32.ActiveCfg = Release|Win32
 		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Release|Win32.Build.0 = Release|Win32
-		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Release|x64.ActiveCfg = Release|Win32
 		{A327A6D6-6CCC-4491-9F93-595B1D0457E9}.Debug|Win32.ActiveCfg = Debug|Win32
 		{A327A6D6-6CCC-4491-9F93-595B1D0457E9}.Debug|Win32.Build.0 = Debug|Win32
-		{A327A6D6-6CCC-4491-9F93-595B1D0457E9}.Debug|x64.ActiveCfg = Debug|Win32
 		{A327A6D6-6CCC-4491-9F93-595B1D0457E9}.Release|Win32.ActiveCfg = Release|Win32
 		{A327A6D6-6CCC-4491-9F93-595B1D0457E9}.Release|Win32.Build.0 = Release|Win32
-		{A327A6D6-6CCC-4491-9F93-595B1D0457E9}.Release|x64.ActiveCfg = Release|Win32
-		{93456A22-5936-4392-A7B1-DEE31EB4F40C}.Debug|Win32.ActiveCfg = Debug|Win32
-		{93456A22-5936-4392-A7B1-DEE31EB4F40C}.Debug|Win32.Build.0 = Debug|Win32
-		{93456A22-5936-4392-A7B1-DEE31EB4F40C}.Debug|x64.ActiveCfg = Debug|x64
-		{93456A22-5936-4392-A7B1-DEE31EB4F40C}.Debug|x64.Build.0 = Debug|x64
-		{93456A22-5936-4392-A7B1-DEE31EB4F40C}.Release|Win32.ActiveCfg = Release|Win32
-		{93456A22-5936-4392-A7B1-DEE31EB4F40C}.Release|Win32.Build.0 = Release|Win32
-		{93456A22-5936-4392-A7B1-DEE31EB4F40C}.Release|x64.ActiveCfg = Release|x64
-		{93456A22-5936-4392-A7B1-DEE31EB4F40C}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
