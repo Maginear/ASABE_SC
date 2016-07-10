@@ -96,22 +96,24 @@ void MotorAdjust(int pidOut)
 		l_step = steplimit(l_step, 95, 5);
 		r_step = steplimit(r_step, 95, 5);
 		float stepSum = l_step + r_step;
-		l_step = l_step * 10 / stepSum - 5;
-		r_step = r_step * 10 / stepSum - 5;
+		l_step = (l_step * 10.0 / stepSum) * 800;
+		r_step = (r_step * 10.0 / stepSum) * 800;
 		// TODO 删除	
 		//Serial.println(l_step);
 		//Serial.println(r_step);
 	}
-	long l = PIDCal(pid_m_l, l_step);
-	long r = PIDCal(pid_m_r, r_step);
-	l = steplimit(l, 2000, -2000);
-	r = steplimit(r, 2000, -2000);
+	long l = PIDCal(pid_m_l, l_step - left_cur_interval) + left_cur_interval;
+	long r = PIDCal(pid_m_r, r_step - right_cur_interval) + right_cur_interval;
+	l = steplimit(l, 2000, 6000);	// 限制上下值
+	r = steplimit(r, 2000, 6000);
+	left_cur_interval = l;
+	right_cur_interval = r;
 	// TODO 删除	
 	//Serial.println(l);
 	//Serial.println(r);
 	
-	Timer1.setPeriod(l + 4000);  // 更新左侧电机的节拍时间间隔
-	Timer3.setPeriod(r + 4000);
+	Timer1.setPeriod(l);  // 更新左侧电机的节拍时间间隔
+	Timer3.setPeriod(r);
 	//Timer1.stop();
 	//Timer1.setPeriod(4000);	 // 更新左侧电机的节拍时间间隔
 	//Timer1.restart();

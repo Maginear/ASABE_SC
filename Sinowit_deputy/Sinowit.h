@@ -18,19 +18,22 @@ uchar detection, sample = 0, corner = 0, k, flag;	//TODO: 暂时用不到
 /************************************************************************/
 /*                    以下是PID控制 和 驱动步进的参数                     */
 /************************************************************************/
-#define Stepinterval 0			// 步进电机每个节拍之间的时间 5ms
+#define Stepinterval 4000			// 步进电机每个节拍之间的时间 5ms
 #define ReadSensorInterval 100  // 红外传感器的读取间隔时间
 #define TurnInterval 2800		// 转弯所需要的时间
 #define AfterTurnInterval 200	// 转弯后短时间无调整前进的时间
+float left_cur_interval = Stepinterval;
+float right_cur_interval = Stepinterval;
+
 
 // TODO：根据实际情况调整系数
 #define PC_SENSOR 2		// 比例放大系数
 #define IC_SENSOR 1		// 积分放大系数
 #define DC_SENSOR 2		// 微分放大系数
 
-#define PC_MOTOR 400	// 比例放大系数
-#define IC_MOTOR 0		// 积分放大系数
-#define DC_MOTOR 400	// 微分放大系数
+#define PC_MOTOR 2		// 比例放大系数
+#define IC_MOTOR 1		// 积分放大系数
+#define DC_MOTOR 3		// 微分放大系数
 
 #define Basic_Left  50 //五步 后期会归到10步
 #define Basic_Right 50 //
