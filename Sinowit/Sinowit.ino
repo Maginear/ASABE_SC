@@ -101,24 +101,58 @@ void setup()
 
 	
 void loop() {
-	// put your main code here, to run repeatedly:
-	//switch (stopservo){
-	//case 0:
-	//	//color();
-	//	backandforth();
-	//	break;
-	//case 1:
-	//	if (!whether){
-	//		colorin();
-	//	}
-	//	if (whether){
-	//		color();
-	//		//delay(1000);
-	//	}
-	//	break;
-	//default:
-	//	break;
-	//}
-	//
 
+	switch (btOrder){
+	case 0:					// 第一次发送，第二辆车启动
+		Serial.begin(9600);
+		Serial1.begin(9600);
+
+		for (int i = 0; i < 10; i++)
+		{
+			readBTData();
+			writeBTData("ST#");
+		}
+		btOrder = -1;
+		break;
+
+	case 1:
+							// 第一辆车 到达交接区域，等待对方就位、对接
+		readnum();			// 读取各颜色球的个数
+
+		Serial.begin(9600);
+		Serial1.begin(9600);
+		while (readin != "S1")			// 第二辆车是否就位
+		{
+			readBTData();
+			Serial.println("S1N");
+			Serial.flush();
+			delay(500);
+
+		}
+
+		servo_1.write(160);//++			// 打开第一个舵机，将一个颜色的球放出
+		delay(2000);
+		//Serial.println("STD_1");	
+		while (readin != "S2")			// 第一次放球完毕，发送颜色、个数  等待对方回复指令
+		{
+			readBTData();
+			writeBTData("S1DG" + String(numG));
+			/*Serial1.println("S1D#");
+			Serial1.flush();
+			Serial.println("S1D");*/
+
+		}
+
+		servo_1.write(30);//+++			// 放出第二批球
+		delay(2000);
+		while (1)
+		{
+			writeBTData("S2D" + String(numO));		// 发送球的颜色个数
+		}
+
+		btOrder = -1;
+		break;
+	default:
+		break;
+	}
 }

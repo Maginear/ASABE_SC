@@ -1,4 +1,5 @@
 // Sinowit.h 
+#include <Servo.h>
 
 #ifndef _SINOWIT_h
 #define _SINOWIT_h
@@ -102,9 +103,7 @@ void TurnRight(void);
 int weight[] = { -10, -8, -4, -2, 2, 4, 8, 10 }; //传感器的权值
 int SENSOR[] = { SENSOR_1, SENSOR_2, SENSOR_3, SENSOR_4, SENSOR_5, SENSOR_6, SENSOR_7, SENSOR_8 };
 float ReadSensor();
-int numG = 0;
-int numO = 0;
-String readin;
+
 /************************************************************************/
 /*                            转向的参数                                 */
 /************************************************************************/
@@ -127,5 +126,17 @@ void haveABreak(void);
 #define DCSPEED 50
 void dcDrive();
 Servo servo_1;
+
+/************************************************************************/
+/*				              蓝牙通信                                   */
+/************************************************************************/
+
+int numG = 0;
+int numO = 0;
+int btOrder = -1;
+String readin;
+void readBTData(void);
+void writeBTData(String);
+
 #endif
 

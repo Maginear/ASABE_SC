@@ -8,7 +8,6 @@ int forwardInterval = 2000;		// 向前的时间
 int crossLineTime = 0;
 int isHasShortGo = 0;
 
-
 void rountine(void)
 {
 	//Serial.println("rountine");
@@ -16,9 +15,9 @@ void rountine(void)
 	Timer3.detachInterrupt();
 	Serial.begin(9600);
 	Serial1.begin(9600);
-	while (readin!="ST")
+	while (readin != "ST")
 	{
-		readblue();
+		readBTData();
 		Serial.println("ready!");
 		Serial.flush();
 	}
@@ -188,39 +187,11 @@ void getBall(void)
 	Timer3.start();*/
 	Serial.begin(9600);
 	Serial1.begin(9600);
+	
 	forwardInterval = 1000;
 	afterForwardFunction = TurnAround;
-	
-	
-	servo_1.write(90);//+++
-	while (readin[2] != 'D'||readin[1]!='1')
-	{
-		readblue();
-		/*Serial1.println("S1#");
-		Serial1.flush();
-		Serial.println("S1");*/
-		writeblue("S1#");
-		delay(500);
-	}
-	numG = readin[4] - '0';
-	servo_1.write(-90);//+++
-	while (readin[2] != 'D'||readin[1]!='2')
-	{
-		readblue();
-		
-		/*Serial1.println("S2#");
-		Serial1.flush();
-		Serial.println("S2");*/
-		writeblue("S2#");
-		delay(500);
-	}
-	numO = readin[4] - '0';
-	/*while (readin != "OVER")
-	{
-		readblue();
-	}*/
-	MsTimer2::set(2000, goBack);
-	MsTimer2::start();
+
+	btOrder = 0;	// 到达交接区域，准备交接 loop中开始通信
 }
 
 void TurnAround(void)			// 旋转一周
@@ -232,10 +203,8 @@ void TurnAround(void)			// 旋转一周
 	Timer3.setPeriod(8000);
 	Timer3.start();
 	Timer1.start();
-
 	MsTimer2::set(TurnInterval * 2, backToEnd);	// 方向转过来后调用
 	MsTimer2::start();
-
 }
 
 void backToEnd(void)

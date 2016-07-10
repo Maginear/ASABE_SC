@@ -218,18 +218,7 @@ void haveABreak(void)
 	Timer3.detachInterrupt();
 	/*Timer1.start();
 	Timer3.start();*/
-	Serial.begin(9600);
-	Serial1.begin(9600);
-	readnum();
-	//if (numG + numO > 0)
-	//{
-		for (int i = 0; i < 10; i++)
-		{
-			readblue();
-			writeblue("ST#");
-		}
-	//}
-	 
+	btOrder = 0;
 	Timer1.attachInterrupt(DriveLeft);
 	Timer1.setPeriod(8000);
 	Timer3.attachInterrupt(DriveRight);
@@ -348,56 +337,13 @@ void Stop(void)
 	ReadSensor();
 	if (corner == 16 || corner == 17)
 	{
-			delay(1000);
-			detachInterrupt(0);
-			detachInterrupt(1);
-			Timer1.stop();
-			Timer3.stop();
-			MsTimer2::stop();
-			Timer1.detachInterrupt();
-			Timer3.detachInterrupt();
-			/*Timer1.start();
-			Timer3.start();*/
-			Serial.begin(9600);
-			Serial1.begin(9600);
-			while (readin != "S1")
-			{
-				readblue();
-				Serial.println("S1N");
-				Serial.flush();
-				delay(500);
 
-			}
-			servo_1.write(160);//++
-			delay(2000);
-			//Serial.println("STD_1");
-			while (readin != "S2")
-			{
-				readblue();
-				writeblue("S1DG");
-				writeblue(String(numG));
-				writeblue("#");
-				delay(500);
-				/*Serial1.println("S1D#");
-				Serial1.flush();
-				Serial.println("S1D");*/
-
-			}
-
-			servo_1.write(30);//+++
-			delay(2000);
-			while (1)
-			{
-				writeblue("S2D");
-				writeblue(String(numO));
-				writeblue("#");
-				delay(500);
-				/*Serial1.println("S2D");
-				Serial1.flush();
-				Serial.println("S2D");*/
-				//readblue();
-			}
-		}
+		delay(2000);		// 完成
+		Timer1.stop();
+		Timer3.stop();
+		MsTimer2::stop();
+		btOrder = 1;		// 已经就位，开始loop里面的对接	
+	}
 
 }
 void readnum()
