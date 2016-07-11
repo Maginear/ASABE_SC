@@ -69,5 +69,4 @@ extern "C" void __cxa_pure_virtual() {;}
 #include <Sinowit.h>
 #include <..\Sinowit\StepMotor.ino>
 #include <Turn_LR.ino>
-#include <..\Sinowit\simplified_bluetooth.ino>
 #endif

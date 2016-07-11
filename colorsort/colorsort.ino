@@ -42,7 +42,7 @@ void TSC_Init()
 	pinMode(S1, OUTPUT);
 	pinMode(S2, OUTPUT);
 	pinMode(S3, OUTPUT);
-	pinMode(7, OUTPUT);
+	//pinMode(7, OUTPUT);
 	pinMode(LED, OUTPUT);
 	pinMode(numG_1, OUTPUT);
 	pinMode(numG_2, OUTPUT);
