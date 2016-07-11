@@ -1,5 +1,3 @@
-// Sinowit.h 
-#include <Servo.h>
 
 #ifndef _SINOWIT_h
 #define _SINOWIT_h
@@ -12,6 +10,9 @@
 
 #define uchar unsigned char
 #define uint unsigned int
+// Sinowit.h 
+
+#include <Servo.h>
 
 uchar detection, sample = 0, corner = 0, k, flag;	//TODO: 暂时用不到
 int turn_45_times = 0;
@@ -30,9 +31,9 @@ int turn_45_times = 0;
 #define IC_SENSOR 1		// 积分放大系数
 #define DC_SENSOR 2		// 微分放大系数
 
-#define PC_MOTOR 400	// 比例放大系数
-#define IC_MOTOR 0		// 积分放大系数
-#define DC_MOTOR 400	// 微分放大系数
+#define PC_MOTOR 250	// 比例放大系数
+#define IC_MOTOR 20		// 积分放大系数
+#define DC_MOTOR 500	// 微分放大系数
 
 #define Basic_Left  50 //五步 后期会归到10步
 #define Basic_Right 50 //
