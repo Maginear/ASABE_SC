@@ -15,6 +15,8 @@
 #define numO_2  38
 #define numO_3  40
 #define dcpwm   11
+
+#define STOPDC  22
 //SoftwareSerial BT(8, 9);//R/T
 Servo colorservo;
 
@@ -42,7 +44,7 @@ void TSC_Init()
 	pinMode(S1, OUTPUT);
 	pinMode(S2, OUTPUT);
 	pinMode(S3, OUTPUT);
-	pinMode(7, OUTPUT);
+	//pinMode(7, OUTPUT);
 	pinMode(LED, OUTPUT);
 	pinMode(numG_1, OUTPUT);
 	pinMode(numG_2, OUTPUT);
@@ -51,6 +53,7 @@ void TSC_Init()
 	pinMode(numO_2, OUTPUT);
 	pinMode(numO_3, OUTPUT);
 	pinMode(dcpwm, OUTPUT);
+	pinMode(dcpwm, INPUT);
 
 	digitalWrite(S0, HIGH);  // OUTPUT FREQUENCY SCALING 20%
 	digitalWrite(S1, LOW);
@@ -102,14 +105,14 @@ void colorin()
 	MsTimer2::stop();
 	g_count = 0;
 	digitalWrite(LED, LOW);
-	if (avoid<10)
+	if (avoid < 3)
 	{
 		if (messagesend == 1) 
 		{
 			avoid += 1;
 		}
 	}
-	else 
+	else
 	{
 		avoid = 0;
 		messagesend = 0;
@@ -151,7 +154,7 @@ void TSC_Callback()
 			TSC_WB(LOW, LOW);              //Filter without Red
 			for (int i = 0; i<2; i += 1) 
 			{
-				if (i == 0) 
+				if (i == 0)
 				{
 					int aa = array1[time1 - 1];
 					Serial.print(aa);
@@ -218,13 +221,13 @@ void backandforth()
 			for (pos = 60; pos <= 80 + greater * 5; pos += 1) 
 			{ // goes from 0 degrees to 180 degrees
 				colorservo.write(pos);              // tell servo to go to position in variable 'pos'
-				delay(100);									//delay(1);                       // waits 15ms for the servo to reach the position
+				delay(5);									//delay(1);                       // waits 15ms for the servo to reach the position
 			}
 			delay(500);
 			for (pos = 80; pos >= 40; pos -= 1) 
 			{ // goes from 180 degrees to 0 degrees
 				colorservo.write(pos);              // tell servo to go to position in variable 'pos'
-				delay(100);                       // waits 15ms for the servo to reach the position
+				delay(5);                       // waits 15ms for the servo to reach the position
 			}
 			stopservo = 1;
 			break;
@@ -232,13 +235,13 @@ void backandforth()
 			for (pos = 60; pos >= 00; pos -= 1) 
 			{
 				colorservo.write(pos);
-				delay(100);                       
+				delay(5);                       
 			}
 			delay(500);
 			for (pos = 20; pos <= 50; pos += 1) 
 			{ // goes from 0 degrees to 180 degrees
 				colorservo.write(pos);              // tell servo to go to position in variable 'pos'
-				delay(100);                       // waits 15ms for the servo to reach the position
+				delay(5);                       // waits 15ms for the servo to reach the position
 			}
 			stopservo = 1;
 			break;
@@ -310,13 +313,14 @@ void setup()
 		delay(15);                       // waits 15ms for the servo to reach the position
 	}
 	pinMode(dcpwm, OUTPUT);
-	analogWrite(dcpwm, 100);//直流调速
+	digitalWrite(dcpwm, HIGH);//直流调速
 }
 
 void loop() 
 {
 	// put your main code here, to run repeatedly:
-	
+	if (digitalRead(STOPDC) == HIGH)
+		analogWrite(dcpwm, 0);
 	switch (stopservo) 
 	{
 	case 0:

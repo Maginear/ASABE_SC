@@ -53,9 +53,9 @@ void setup()
 	FALLING	当针脚输入由高变低时，触发中断
 	*/
 	servo_1.attach(9);
-	servo_1.write(90);
+	servo_1.write(95);
 	servo_2.attach(10);
-	servo_2.write(90);
+	servo_2.write(80);
 	Serial.begin(9600);
 	Serial1.begin(9600);
 	//Serial1.setTimeout(100);
@@ -65,6 +65,7 @@ void setup()
 	Serial.println("setup");*/
 	rountine();
 	//getBall();
+	//getBallOut_1();
 }
 
 void loop()
@@ -73,7 +74,7 @@ void loop()
 	{
 	case 0:
 		MsTimer2::stop();
-		servo_1.write(90);//+++
+		servo_1.write(0);//+++
 		while (readin[2] != 'D' || readin[1] != '1')		// 等待对方放球完毕，传输球的颜色
 		{
 			readBTData();
@@ -84,7 +85,7 @@ void loop()
 		}
 
 		numG = readin[4] - '0';
-		servo_1.write(0);//+++						// 关闭第一道舵机，接收第二批球
+		servo_1.write(95);//+++						// 关闭第一道舵机，接收第二批球
 		while (readin[2] != 'D' || readin[1] != '2')		// 等待对方放球完毕，传输球的颜色
 		{
 			readBTData();
@@ -97,10 +98,102 @@ void loop()
 		}*/
 		btOrder = -1;
 
-		MsTimer2::set(2000, goBack);
+		MsTimer2::set(1000, goBack);
 		MsTimer2::start();				// 调用回程
 		break;
 	default:
 		break;
 	}
+	switch (posflag)
+	{
+	case 0:
+		xflag = 0;
+		yflag = 1;
+		posflag = -1;
+		break;
+	case 1:
+		posX = 90;
+		posY = 30;
+		xflag = -1;
+		yflag = 0;
+		posflag = -1;
+		break;
+	case 2:
+		posX = 48;
+		posY = 30;
+		xflag = 0;
+		yflag = 1;
+		posflag = -1;
+		break;
+	case 3:
+		posX = 48;
+		posY = 40;
+		xflag = 0;
+		yflag = 1;
+		posflag = -1;
+		break;
+	case 4:
+		xflag = 0;
+		yflag = 0;
+		posflag = -1;
+		break;
+	case 5:
+		xflag = 0;
+		yflag = -1;
+		posflag = -1;
+		break;
+	case 6:
+		posX = 48;
+		posY = 40;
+		posflag = -1;
+		break;
+	case 7:
+		posX = 48;
+		posY = 30;
+		posflag = -1;
+		break;
+	case 8:
+		posX = 48;
+		posY = 18;
+		posflag = -1;
+		break;
+	case 9:
+		posX = 48;
+		posY = 11;
+		xflag = -1;
+		yflag = 0;
+		posflag = -1;
+		break;
+	case 10:
+		xflag = 0;
+		yflag = 0;
+		posflag = -1;
+		break;
+	case 11:
+		xflag = 1;
+		yflag = 0;
+		posflag = -1;
+		break;
+	case 12:
+		xflag = 0;
+		yflag = 0;
+		posflag = -1;
+		break;
+	case 13:
+		xflag = 1;
+		yflag = 0;
+		posflag = -1;
+		break;
+	case 14:
+		xflag = 0;
+		yflag = 0;
+		stoptimer = 1;
+		posflag = -1;
+		break;
+
+	default:
+		break;
+	}
+	posupdate();
+	writeXbeeData();
 }
