@@ -218,13 +218,13 @@ void backandforth()
 			for (pos = 60; pos <= 80 + greater * 5; pos += 1) 
 			{ // goes from 0 degrees to 180 degrees
 				colorservo.write(pos);              // tell servo to go to position in variable 'pos'
-				delay(100);									//delay(1);                       // waits 15ms for the servo to reach the position
+				delay(5);									//delay(1);                       // waits 15ms for the servo to reach the position
 			}
 			delay(500);
 			for (pos = 80; pos >= 40; pos -= 1) 
 			{ // goes from 180 degrees to 0 degrees
 				colorservo.write(pos);              // tell servo to go to position in variable 'pos'
-				delay(100);                       // waits 15ms for the servo to reach the position
+				delay(5);                       // waits 15ms for the servo to reach the position
 			}
 			stopservo = 1;
 			break;
@@ -232,13 +232,13 @@ void backandforth()
 			for (pos = 60; pos >= 00; pos -= 1) 
 			{
 				colorservo.write(pos);
-				delay(100);                       
+				delay(5);                       
 			}
 			delay(500);
 			for (pos = 20; pos <= 50; pos += 1) 
 			{ // goes from 0 degrees to 180 degrees
 				colorservo.write(pos);              // tell servo to go to position in variable 'pos'
-				delay(100);                       // waits 15ms for the servo to reach the position
+				delay(5);                       // waits 15ms for the servo to reach the position
 			}
 			stopservo = 1;
 			break;

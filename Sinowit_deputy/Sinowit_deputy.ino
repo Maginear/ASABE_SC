@@ -52,10 +52,10 @@ void setup()
 	RISING	当针脚输入由低变高时，触发中断
 	FALLING	当针脚输入由高变低时，触发中断
 	*/
-	servo_1.attach(9);
-	servo_1.write(90);
-	servo_2.attach(10);
-	servo_2.write(90);
+	servo_1.attach(9);//中间挡板
+	servo_1.write(0);
+	servo_2.attach(10);//后面挡板
+	servo_2.write(0);
 	Serial.begin(9600);
 	Serial1.begin(9600);
 	//Serial1.setTimeout(100);
@@ -63,7 +63,7 @@ void setup()
 	Serial.println("setup");
 	Serial.println("setup"); 
 	Serial.println("setup");*/
-	rountine();
+	//rountine();
 	//getBall();
 }
 
