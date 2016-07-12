@@ -51,6 +51,8 @@ void setup()
 	pinMode(numO_1, INPUT);
 	pinMode(numO_2, INPUT);
 	pinMode(numO_3, INPUT);
+	pinMode(STOPDC, OUTPUT);
+	digitalWrite(STOPDC, LOW);
 
 	//TSC_Init();
 	//colorservo.attach(13);  // attaches the servo on pin 13 to the servo object
@@ -90,7 +92,7 @@ void setup()
 	//RISING	当针脚输入由低变高时，触发中断
 	//FALLING	当针脚输入由高变低时，触发中断
 	//*/
-	servo_1.write(100);
+	servo_1.write(72);
 	Serial.begin(9600);
 	Serial1.begin(9600);
 	delay(1000);
@@ -133,7 +135,7 @@ void loop() {
 
 		}
 
-		servo_1.write(160);//++			// 打开第一个舵机，将一个颜色的球放出
+		servo_1.write(46);//++			// 打开第一个舵机，将一个颜色的球放出
 		delay(2000);
 		//Serial.println("STD_1");	
 		while (readin != "S2")			// 第一次放球完毕，发送颜色、个数  等待对方回复指令
@@ -145,7 +147,7 @@ void loop() {
 			Serial.println("S1D");*/
 		}
 
-		servo_1.write(30);//+++			// 放出第二批球
+		servo_1.write(100);//+++			// 放出第二批球
 		delay(2000);
 		while (1)
 		{

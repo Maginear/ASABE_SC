@@ -15,6 +15,8 @@
 #define numO_2  38
 #define numO_3  40
 #define dcpwm   11
+
+#define STOPDC  22
 //SoftwareSerial BT(8, 9);//R/T
 Servo colorservo;
 
@@ -51,6 +53,7 @@ void TSC_Init()
 	pinMode(numO_2, OUTPUT);
 	pinMode(numO_3, OUTPUT);
 	pinMode(dcpwm, OUTPUT);
+	pinMode(dcpwm, INPUT);
 
 	digitalWrite(S0, HIGH);  // OUTPUT FREQUENCY SCALING 20%
 	digitalWrite(S1, LOW);
@@ -102,14 +105,14 @@ void colorin()
 	MsTimer2::stop();
 	g_count = 0;
 	digitalWrite(LED, LOW);
-	if (avoid<10)
+	if (avoid < 3)
 	{
 		if (messagesend == 1) 
 		{
 			avoid += 1;
 		}
 	}
-	else 
+	else
 	{
 		avoid = 0;
 		messagesend = 0;
@@ -151,7 +154,7 @@ void TSC_Callback()
 			TSC_WB(LOW, LOW);              //Filter without Red
 			for (int i = 0; i<2; i += 1) 
 			{
-				if (i == 0) 
+				if (i == 0)
 				{
 					int aa = array1[time1 - 1];
 					Serial.print(aa);
@@ -310,13 +313,14 @@ void setup()
 		delay(15);                       // waits 15ms for the servo to reach the position
 	}
 	pinMode(dcpwm, OUTPUT);
-	analogWrite(dcpwm, 100);//直流调速
+	digitalWrite(dcpwm, HIGH);//直流调速
 }
 
 void loop() 
 {
 	// put your main code here, to run repeatedly:
-	
+	if (digitalRead(STOPDC) == HIGH)
+		analogWrite(dcpwm, 0);
 	switch (stopservo) 
 	{
 	case 0:

@@ -18,13 +18,13 @@ void rountine(void)
 void goforward(void)		//直走，时间为forwardInterval， 随后调用 afterForwardFunction（函数指针）
 {
 	MsTimer2::stop();
-	detachInterrupt(0);
+	detachInterrupt(0); 
 	detachInterrupt(1);
 	Timer1.attachInterrupt(DriveLeft);
 	Timer3.attachInterrupt(DriveRight);
-	Timer1.setPeriod(6000);
-	Timer3.setPeriod(6000);
-
+	Timer1.setPeriod(4000);
+	Timer3.setPeriod(4000);
+	
 	MsTimer2::set(forwardInterval, afterForwardFunction);
 	MsTimer2::start();
 }
@@ -63,11 +63,11 @@ void pickBall(void)
 	Timer3.stop();
 	Timer1.attachInterrupt(DriveLeft);
 	Timer3.attachInterrupt(DriveRight);
-	Timer1.setPeriod(6000);
-	Timer3.setPeriod(6000);
+	Timer1.setPeriod(4000);
+	Timer3.setPeriod(4000);
 	Timer1.start();
 	Timer3.start();
-	MsTimer2::set(1500, reSetMsTimer2);		// 进入黑线范围前直走，结束后正常循迹
+	MsTimer2::set(1000, reSetMsTimer2);		// 进入黑线范围前直走，结束后正常循迹
 	MsTimer2::start();
 }
 
@@ -75,7 +75,7 @@ void reSetMsTimer2(void)
 {
 	MsTimer2::set(ReadSensorInterval, updatePID);		//进入正常的循迹
 	MsTimer2::start();
-	forwardInterval = 3000;
+	forwardInterval = 2000;
 	afterForwardFunction = TurnLeft_45_Degree;		// 走到球前面时，调用
 	                                     //开始捡球
 	attachInterrupt(0, goforward, RISING);	//当到达第一个转折，不转弯，直走去取第一个球
@@ -95,7 +95,7 @@ void TurnLeft_45_Degree(void)
 	dcDrive();
 	if (turn_45_times == 0)
 	{
-		forwardInterval = 1000;
+		forwardInterval = 600;
 		turn_45_times++;
 		afterForwardFunction = TurnLeft_45_Degree;
 		MsTimer2::set(HalfTurnInterval, goforward);
@@ -136,7 +136,7 @@ void incline()
 	Timer1.setPeriod(6400);
 	Timer3.setPeriod(5800);
 
-	MsTimer2::set(5000, afterForwardFunction); //斜走出来
+	MsTimer2::set(4000, afterForwardFunction); //斜走出来
 	MsTimer2::start();
 }
 
@@ -220,6 +220,7 @@ void haveABreak(void)
 	/*Timer1.start();
 	Timer3.start();*/
 	btOrder = 0;
+	digitalWrite(STOPDC, HIGH);
 	/*Timer1.attachInterrupt(DriveLeft);
 	Timer1.setPeriod(8000);
 	Timer3.attachInterrupt(DriveRight);
@@ -237,8 +238,8 @@ void backToLine(void)
 	MsTimer2::stop();
 	Timer1.attachInterrupt(DriveLeft);
 	Timer3.attachInterrupt(DriveRight);
-	Timer1.setPeriod(5000);
-	Timer3.setPeriod(5000);
+	Timer1.setPeriod(4000);
+	Timer3.setPeriod(4000);
 	Timer1.start();
 	Timer3.start();
 	attachInterrupt(0, face_the_line, RISING);
@@ -249,9 +250,6 @@ void backToLine(void)
 void face_the_line()
 {
 	ReadSensor();
-	Timer1.stop();
-	Timer3.stop();
-
 	if (corner != 0)
 	{
 		MsTimer2::stop();
@@ -300,26 +298,26 @@ void face_the_line()
 
 void TurnLeft_spe(void)
 {
-	MsTimer2::stop();
-	detachInterrupt(0);
-	detachInterrupt(1);
-	Timer1.stop();
-	Timer3.stop();
+	
 	ReadSensor();
 	if (corner == 17 || corner == 16)
 	{
+		MsTimer2::stop();
+		detachInterrupt(0);
+		detachInterrupt(1);
+		Timer1.stop();
+		Timer3.stop();
+
 		Timer1.attachInterrupt(BackLeft);
 		Timer1.setPeriod(8000);
 		Timer3.attachInterrupt(DriveRight);
 		Timer3.setPeriod(8000);
 		Timer1.start();
 		Timer3.start();
-		forwardInterval = 2000;
+		forwardInterval = 500;
 		afterForwardFunction = GoWithNoLeft;
 		MsTimer2::set(TurnInterval, goforward);
 		MsTimer2::start();
-		detachInterrupt(0);
-		detachInterrupt(1);
 	}
 }
 

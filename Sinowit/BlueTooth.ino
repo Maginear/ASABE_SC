@@ -20,3 +20,4 @@ void writeBTData(String str)
 	Serial.flush();
 	delay(200);
 }
+

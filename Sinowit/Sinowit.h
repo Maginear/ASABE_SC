@@ -31,9 +31,9 @@ int turn_45_times = 0;
 #define IC_SENSOR 1		// 积分放大系数
 #define DC_SENSOR 2		// 微分放大系数
 
-#define PC_MOTOR 250	// 比例放大系数
-#define IC_MOTOR 20		// 积分放大系数
-#define DC_MOTOR 500	// 微分放大系数
+#define PC_MOTOR 300	// 比例放大系数
+#define IC_MOTOR 0		// 积分放大系数
+#define DC_MOTOR 400	// 微分放大系数
 
 #define Basic_Left  50 //五步 后期会归到10步
 #define Basic_Right 50 //
@@ -139,5 +139,10 @@ String readin;
 void readBTData(void);
 void writeBTData(String);
 
+
+/************************************************************************/
+/*							上下片通信                                   */
+/************************************************************************/
+#define STOPDC  40
 #endif
 
