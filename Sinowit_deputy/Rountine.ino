@@ -69,12 +69,12 @@ void getOut(void)
 	MsTimer2::stop();
 	detachInterrupt(0);
 	detachInterrupt(1);
-
+	posflag = 0;
 	Timer1.setPeriod(4000);
 	Timer3.setPeriod(4000);
 	Timer1.start();
 	Timer3.start();
-	posflag=0;
+	
 	MsTimer2::set(1000, reSetMsTimer2);		// 进入黑线范围前直走， 结束后正常循迹
 	MsTimer2::start();
 	isHasShortGo = 0;
@@ -96,7 +96,10 @@ void crossLine(void)
 		ReadSensor();
 		if (corner == 17 || corner == 16)
 		{
-			posflag = 1;
+			//posflag = 1;
+			/*Serial2.print(crossLineTime);
+			Serial2.print('+');
+			Serial2.println(isHasShortGo);*/
 			if (crossLineTime == 0)
 				crossLineTime = 1;
 			else
@@ -106,10 +109,12 @@ void crossLine(void)
 				afterForwardFunction = crossLine;
 				goforward();
 			}
+			//Serial2.println(crossLineTime);
 		}
 	}
 	else if (isHasShortGo == 1)
 	{
+		//Serial2.println("turn");
 		isHasShortGo = 2;
 		detachInterrupt(0);
 		MsTimer2::stop();
@@ -123,7 +128,9 @@ void crossLine(void)
 		forwardInterval = 500;
 		afterForwardFunction = crossLine;
 		MsTimer2::set(TurnInterval, goforward);	// 方向转过来后调用
+		posflag = 1;
 		MsTimer2::start();
+		
 	}
 	else
 	{
@@ -141,7 +148,7 @@ void toCenteralLine(void)
 		ReadSensor();
 		if (corner == 17 || corner == 16 || corner == 1)
 		{
-			posflag = 2;
+			//posflag = 2;
 			isHasShortGo = 1;
 			forwardInterval = 500;
 			afterForwardFunction = toCenteralLine;
@@ -161,7 +168,9 @@ void toCenteralLine(void)
 		forwardInterval = 500;
 		afterForwardFunction = toCenteralLine;
 		MsTimer2::set(TurnInterval, goforward);
+		posflag = 2;
 		MsTimer2::start();
+		
 	}
 	else 
 	{
@@ -225,9 +234,10 @@ void backToEnd(void)
 	Timer3.attachInterrupt(DriveRight);
 	Timer1.setPeriod(4000);
 	Timer3.setPeriod(4000);
+	posflag = 5;
 	Timer1.start();
 	Timer3.start();
-	posflag = 5;
+	
 	reSetMsTimer2();
 	crossLineTime = 0;
 	attachInterrupt(0, toEnd, RISING);
@@ -242,11 +252,19 @@ void toEnd(void)
 		if (crossLineTime < 2)
 		{
 			crossLineTime++;
-			
+			if (crossLineTime == 0)
+			{
+				posflag = 6;
+			}
+			else if (crossLineTime == 1)
+			{
+				posflag = 7;
+			}
 			//writeXbeeData("x,y,g,0")
 		}
 		else
 		{
+			posflag = 8;
 			MsTimer2::stop();
 			detachInterrupt(0);
 			forwardInterval = 1600;
@@ -265,9 +283,10 @@ void unpack(void)
 	Timer1.setPeriod(8000);
 	Timer3.attachInterrupt(DriveRight);
 	Timer3.setPeriod(8000);
+	posflag = 9;
 	Timer3.start();
 	Timer1.start();
-	posflag = 9;
+	
 	forwardInterval = 1000;
 	afterForwardFunction = getBallOut_1;
 	MsTimer2::set(TurnInterval, goBack);
@@ -282,18 +301,19 @@ void getBallOut_1(void)
 	posflag = 10;
 	forwardInterval = 1000;
 	afterForwardFunction = Turn360;
-	//MsTimer2::set(3000, goforward);
+	MsTimer2::set(3000, goforward);
 	//MsTimer2::start();
-	for (int i = 80; i > 0; i--) 
+	for (int i = 70; i > 0; i--) 
 	{ 
 		servo_2.write(i);
 		delay(5);
 	}
-	//MsTimer2::start();
+	
 	//Serial.println("before");
-	delay(3000);
+	//delay(3000);
 	posflag = 11;
-	goforward();
+	//goforward();
+	MsTimer2::start();
 	
 }
 
@@ -308,14 +328,18 @@ void Turn360(void)
 	Timer3.setPeriod(8000);
 	Timer3.start();
 	Timer1.start();
-	forwardInterval = 2000;
+	forwardInterval = 1000;
 	afterForwardFunction = getBallOut_2;
-	//MsTimer2::set(TurnInterval * 2, goBack);
-	//MsTimer2::start();
-	delay(TurnInterval * 2);
+	//Serial.println("after1.5");
+	MsTimer2::set(TurnInterval * 2, goBack);
 	posflag = 13;
-	goBack();
-	servo_2.write(80);
+	MsTimer2::start();
+	//delay(TurnInterval * 2);	
+	//delay(5600);
+	//Serial.println("after2");
+	
+	/*goBack();*/
+	servo_2.write(70);
 	for (int i = 95; i > 0; i--)
 	{
 		servo_1.write(i);
@@ -327,6 +351,7 @@ void Turn360(void)
 
 void getBallOut_2(void)
 {
+	//Serial.println("after3");
 	Timer1.stop();
 	Timer3.stop();
 	posflag = 14;
@@ -336,7 +361,7 @@ void getBallOut_2(void)
 	//MsTimer2::start();
 	// 第一个舵机打开，放出球, 3S时间
 	servo_1.write(95);
-	for (int i = 80; i > 0; i--)
+	for (int i = 70; i > 0; i--)
 	{
 		servo_2.write(i);
 		delay(5);
@@ -346,7 +371,7 @@ void getBallOut_2(void)
 
 void stopAllTimer(void)
 {
-	servo_2.write(80);	
+	servo_2.write(70);	
 	detachInterrupt(0);
 	detachInterrupt(1);
 	Timer1.stop();
@@ -356,9 +381,9 @@ void stopAllTimer(void)
 
 void writeXbeeData()
 {
-	Serial2.print(String(posX) + "," + String(posY) + "," + String(ballcolor) + "," + String(numG) + "," + String(numO) + "," + String(stoptimer) + "\r\n");
+	Serial2.print(String(posXint) + "," + String(posYint) + "," + String(ballcolor) + "," + String(numG) + "," + String(numO) + "," + String(stoptimer) + "\r\n");
 	Serial2.flush();
-	Serial.print(String(posX) + "," + String(posY) + "," + String(ballcolor) + "," + String(numG) + "," + String(numO) + "," + String(stoptimer) + "\r\n");
+	Serial.print(String(posXint) + "," + String(posYint) + "," + String(ballcolor) + "," + String(numG) + "," + String(numO) + "," + String(stoptimer) + "\r\n");
 	Serial.flush();
 	//delay(100);
 }
@@ -367,4 +392,6 @@ void posupdate()//自动生成位置信息
 {
 	posX = xflag*perstep + posX;
 	posY = yflag*perstep + posY;
+	posXint = (int)posX;
+	posYint = (int)posY;
 }

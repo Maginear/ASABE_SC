@@ -56,7 +56,7 @@ void TSC_Init()
 	pinMode(dcpwm, INPUT);
 
 	digitalWrite(S0, HIGH);  // OUTPUT FREQUENCY SCALING 20%
-	digitalWrite(S1, LOW);
+	digitalWrite(S1, HIGH);
 	digitalWrite(numG_1, LOW);
 	digitalWrite(numG_2, LOW);
 	digitalWrite(numG_3, LOW);
@@ -81,7 +81,7 @@ void TSC_WB(int Level0, int Level1)      //White Balance
 	g_count = 0;
 	g_flag++;
 	TSC_FilterColor(Level0, Level1);
-	MsTimer2::set(100, TSC_Callback);            // set 0.1s period
+	MsTimer2::set(50, TSC_Callback);            // set 0.1s period
 }
 void TSC_Count()
 {
@@ -90,14 +90,14 @@ void TSC_Count()
 void colorin() 
 {
 	digitalWrite(LED, HIGH);
-	delay(10);
-	MsTimer2::set(100, TSC_Callback1);
+	delay(1);
+	MsTimer2::set(50, TSC_Callback1);
 	digitalWrite(S2, HIGH);
 	digitalWrite(S3, HIGH);
 	g_count = 0;
 	MsTimer2::start();
-	delay(105);
-	if (det>100)
+	delay(51);
+	if (det>250)
 	{
 		whether = 1;
 		Serial.print("Start detect");
@@ -105,7 +105,7 @@ void colorin()
 	MsTimer2::stop();
 	g_count = 0;
 	digitalWrite(LED, LOW);
-	if (avoid < 3)
+	if (avoid < 5)
 	{
 		if (messagesend == 1) 
 		{
@@ -194,7 +194,7 @@ void TSC_Callback()
 	{
 		int aveR = (array1[0] + array1[1] + array1[2]) / 3;
 		int aveG = (array2[0] + array2[1] + array2[2]) / 3;
-		if (aveR>aveG && aveR>300) 
+		if (aveR>aveG && aveR>500) 
 		{
 			ballcolor = 1;
 			stopservo = 0;
@@ -221,13 +221,13 @@ void backandforth()
 			for (pos = 60; pos <= 80 + greater * 5; pos += 1) 
 			{ // goes from 0 degrees to 180 degrees
 				colorservo.write(pos);              // tell servo to go to position in variable 'pos'
-				delay(5);									//delay(1);                       // waits 15ms for the servo to reach the position
+				//delay(1);									//delay(1);                       // waits 15ms for the servo to reach the position
 			}
 			delay(500);
 			for (pos = 80; pos >= 40; pos -= 1) 
 			{ // goes from 180 degrees to 0 degrees
 				colorservo.write(pos);              // tell servo to go to position in variable 'pos'
-				delay(5);                       // waits 15ms for the servo to reach the position
+				//delay(1);                       // waits 15ms for the servo to reach the position
 			}
 			stopservo = 1;
 			break;
@@ -235,13 +235,13 @@ void backandforth()
 			for (pos = 60; pos >= 00; pos -= 1) 
 			{
 				colorservo.write(pos);
-				delay(5);                       
+				//delay(1);                       
 			}
 			delay(500);
 			for (pos = 20; pos <= 50; pos += 1) 
 			{ // goes from 0 degrees to 180 degrees
 				colorservo.write(pos);              // tell servo to go to position in variable 'pos'
-				delay(5);                       // waits 15ms for the servo to reach the position
+				//delay(1);                       // waits 15ms for the servo to reach the position
 			}
 			stopservo = 1;
 			break;
@@ -259,27 +259,27 @@ void color()
 {
 	// put your setup code here, to run once:
 	digitalWrite(LED, HIGH);
-	delay(30);
-	MsTimer2::set(100, TSC_Callback);
+	delay(1);
+	MsTimer2::set(50, TSC_Callback);
 	MsTimer2::start();
 	//attachInterrupt(digitalPinToInterrupt(18), TSC_Count, RISING);  
 	//digitalWrite(S2, HIGH);
-	delay(105);
+	delay(51);
 	MsTimer2::stop();
 }
 
 void showNum(int numg, int numo)
 {
 	digitalWrite(numG_1, numg % 2);
-	numg = (numg - numg % 2) / 2;
+	numg = numg / 2;
 	digitalWrite(numG_2, numg % 2);
-	numg = (numg - numg % 2) / 2;
+	numg = numg / 2;
 	digitalWrite(numG_3, numg % 2);
 
 	digitalWrite(numO_1, numo % 2);
-	numo = (numo - numo % 2) / 2;
+	numo = numo / 2;
 	digitalWrite(numO_2, numo % 2);
-	numo = (numo - numo % 2) / 2;
+	numo = numo / 2;
 	digitalWrite(numO_3, numo % 2);
 
 	//if (a>3){
@@ -313,6 +313,18 @@ void setup()
 		delay(15);                       // waits 15ms for the servo to reach the position
 	}
 	pinMode(dcpwm, OUTPUT);
+	pinMode(numG_1, OUTPUT);
+	pinMode(numG_2, OUTPUT);
+	pinMode(numG_3, OUTPUT);
+	pinMode(numO_1, OUTPUT);
+	pinMode(numO_2, OUTPUT);
+	pinMode(numO_3, OUTPUT);
+	digitalWrite(numG_1, LOW);
+	digitalWrite(numG_2, LOW);
+	digitalWrite(numG_3, LOW);
+	digitalWrite(numO_1, LOW);
+	digitalWrite(numO_2, LOW);
+	digitalWrite(numO_3, LOW);
 	digitalWrite(dcpwm, HIGH);//直流调速
 }
 

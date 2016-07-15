@@ -96,7 +96,7 @@ void setup()
 	Serial.begin(9600);
 	Serial1.begin(9600);
 	delay(1000);
-	//rountine();
+	rountine();
 }
 
 	
@@ -151,7 +151,7 @@ void loop() {
 		delay(2000);
 		while (1)
 		{
-			writeBTData("S2D" + String(numO));		// 发送球的颜色个数
+			writeBTData("S2DO" + String(numO));		// 发送球的颜色个数
 		}
 
 		btOrder = -1;

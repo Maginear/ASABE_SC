@@ -136,7 +136,7 @@ void incline()
 	Timer1.setPeriod(6400);
 	Timer3.setPeriod(5800);
 
-	MsTimer2::set(4000, afterForwardFunction); //斜走出来
+	MsTimer2::set(5000, afterForwardFunction); //斜走出来
 	MsTimer2::start();
 }
 

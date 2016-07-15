@@ -55,9 +55,10 @@ void setup()
 	servo_1.attach(9);
 	servo_1.write(95);
 	servo_2.attach(10);
-	servo_2.write(80);
+	servo_2.write(70);
 	Serial.begin(9600);
 	Serial1.begin(9600);
+	Serial2.begin(9600);
 	//Serial1.setTimeout(100);
 	/*Serial.println("setup");
 	Serial.println("setup");
@@ -152,7 +153,7 @@ void loop()
 		posY = 30;
 		posflag = -1;
 		break;
-	case 8:
+	case 8://暂时没看见
 		posX = 48;
 		posY = 18;
 		posflag = -1;
