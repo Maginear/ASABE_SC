@@ -194,14 +194,14 @@ void TSC_Callback()
 	{
 		int aveR = (array1[0] + array1[1] + array1[2]) / 3;
 		int aveG = (array2[0] + array2[1] + array2[2]) / 3;
-		if (aveR>aveG && aveR>500) 
+		if (aveR>aveG && aveR>1000)								//++ 
 		{
 			ballcolor = 1;
 			stopservo = 0;
 			Serial.println("Orange ball");
 			color2send = 'O';
 		}
-		else if (aveR<aveG && aveG>300) 
+		else if (aveR<aveG && aveG>1000) 
 		{             //Green ball
 			ballcolor = 2;
 			stopservo = 0;
@@ -218,30 +218,30 @@ void backandforth()
 		switch (ballcolor)
 		{
 		case 1:
-			for (pos = 60; pos <= 80 + greater * 5; pos += 1) 
+			for (pos = 40; pos <= 85 + greater * 5; pos ++) 
 			{ // goes from 0 degrees to 180 degrees
 				colorservo.write(pos);              // tell servo to go to position in variable 'pos'
-				//delay(1);									//delay(1);                       // waits 15ms for the servo to reach the position
+				delay(1);									//delay(1);                       // waits 15ms for the servo to reach the position
 			}
 			delay(500);
-			for (pos = 80; pos >= 40; pos -= 1) 
+			for (pos = 85; pos >= 40; pos --) 
 			{ // goes from 180 degrees to 0 degrees
 				colorservo.write(pos);              // tell servo to go to position in variable 'pos'
-				//delay(1);                       // waits 15ms for the servo to reach the position
+				delay(1);                       // waits 15ms for the servo to reach the position
 			}
 			stopservo = 1;
 			break;
 		case 2:
-			for (pos = 60; pos >= 00; pos -= 1) 
+			for (pos = 40; pos >= 0; pos --) 
 			{
 				colorservo.write(pos);
-				//delay(1);                       
+				delay(1);                       
 			}
 			delay(500);
-			for (pos = 20; pos <= 50; pos += 1) 
+			for (pos = 0; pos <= 40; pos ++) 
 			{ // goes from 0 degrees to 180 degrees
 				colorservo.write(pos);              // tell servo to go to position in variable 'pos'
-				//delay(1);                       // waits 15ms for the servo to reach the position
+				delay(1);                       // waits 15ms for the servo to reach the position
 			}
 			stopservo = 1;
 			break;
@@ -305,13 +305,29 @@ void setup()
 	//  BT.begin(9600);
 	attachInterrupt(digitalPinToInterrupt(3), TSC_Count, RISING);
 	delay(10);
-	for (pos = 00; pos <= 50; pos += 1) 
-	{ 
-		// goes from 0 degrees to 180 degrees
-										  // in steps of 1 degree
-		colorservo.write(pos);              // tell servo to go to position in variable 'pos'
-		delay(15);                       // waits 15ms for the servo to reach the position
-	}
+	colorservo.write(40);//0-40-90
+	//for (int i = 0; i < 4; i++)
+	//{
+	//	for (pos = 40; pos <= 85 + greater * 5; pos++)
+	//	{ // goes from 0 degrees to 180 degrees
+	//		colorservo.write(pos);              // tell servo to go to position in variable 'pos'
+	//		delay(1);									//delay(1);                       // waits 15ms for the servo to reach the position
+	//	}
+	//	delay(500);
+	//	for (pos = 85; pos >= 40; pos--)
+	//	{ // goes from 180 degrees to 0 degrees
+	//		colorservo.write(pos);              // tell servo to go to position in variable 'pos'
+	//		delay(1);                       // waits 15ms for the servo to reach the position
+	//	}
+	//	delay(500);
+	//}
+	//for (pos = 00; pos <= 50; pos += 1) 
+	//{ 
+	//	// goes from 0 degrees to 180 degrees
+	//									  // in steps of 1 degree
+	//	colorservo.write(pos);              // tell servo to go to position in variable 'pos'
+	//	delay(15);                       // waits 15ms for the servo to reach the position
+	//}
 	pinMode(dcpwm, OUTPUT);
 	pinMode(numG_1, OUTPUT);
 	pinMode(numG_2, OUTPUT);
@@ -330,6 +346,20 @@ void setup()
 
 void loop() 
 {
+	//while (true)
+	//{
+	//	for (pos = 40; pos <= 65 + greater * 5; pos++)
+	//	{ // goes from 0 degrees to 180 degrees
+	//		colorservo.write(pos);              // tell servo to go to position in variable 'pos'
+	//		delay(1);									//delay(1);                       // waits 15ms for the servo to reach the position
+	//	}
+	//	delay(500);
+	//	for (pos = 65; pos >= 40; pos--)
+	//	{ // goes from 180 degrees to 0 degrees
+	//		colorservo.write(pos);              // tell servo to go to position in variable 'pos'
+	//		delay(1);                       // waits 15ms for the servo to reach the position
+	//	}
+	//}
 	// put your main code here, to run repeatedly:
 	if (digitalRead(STOPDC) == HIGH)
 		analogWrite(dcpwm, 0);

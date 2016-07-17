@@ -345,3 +345,19 @@ void readnum()
 	numG =digitalRead( numG_1 )+ digitalRead(numG_2) * 2 + digitalRead(numG_3) * 4;
 	numO = digitalRead(numO_1) + digitalRead(numO_3) * 2 + digitalRead(numO_3) * 4;
 }
+
+void test()
+{
+	Timer1.attachInterrupt(DriveLeft);
+	//Timer3.attachInterrupt(DriveRight);
+	Timer1.setPeriod(8000);
+	Timer3.setPeriod(4000);
+	
+	//delay(2000);
+	//Timer1.attachInterrupt(BackLeft);
+	Timer3.attachInterrupt(BackRight);
+	//delay(2000);
+	Timer1.start();
+	Timer3.start();
+
+}

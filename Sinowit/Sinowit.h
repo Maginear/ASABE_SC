@@ -1,4 +1,4 @@
-  
+
 #ifndef _SINOWIT_h
 #define _SINOWIT_h
 
@@ -69,13 +69,13 @@ int PIDCal(PID* pid, float error);
 #define STEPS 400 //因为是8拍， 所以360 / 0.9
 
 #define MOTOR_LEFT_PIN1 22	// 左 1   
-#define MOTOR_LEFT_PIN2 23	// 左 2
-#define MOTOR_LEFT_PIN3 24	// 左 3
-#define MOTOR_LEFT_PIN4 25 	// 左 4
+#define MOTOR_LEFT_PIN2 24	// 左 2
+#define MOTOR_LEFT_PIN3 26	// 左 3
+#define MOTOR_LEFT_PIN4 28 	// 左 4
 
-#define MOTOR_RIGHT_PIN1 26	// 右 4
-#define MOTOR_RIGHT_PIN2 27	// 3
-#define MOTOR_RIGHT_PIN3 28 // 2
+#define MOTOR_RIGHT_PIN1 23	// 右 4
+#define MOTOR_RIGHT_PIN2 25	// 3
+#define MOTOR_RIGHT_PIN3 27 // 2
 #define MOTOR_RIGHT_PIN4 29 // 1
 void TurnLeft(void);
 void TurnRight(void);
@@ -86,12 +86,12 @@ void TurnRight(void);
 #define SENSOR_NUM 8
 
 #define SENSOR_8 3
-#define SENSOR_7 36
-#define SENSOR_6 35
+#define SENSOR_7 30
+#define SENSOR_6 32
 #define SENSOR_5 34
-#define SENSOR_4 33
-#define SENSOR_3 32
-#define SENSOR_2 31	
+#define SENSOR_4 36
+#define SENSOR_3 38
+#define SENSOR_2 40	
 #define SENSOR_1 2
 #define numG_1 42
 #define numG_2 44
@@ -143,6 +143,6 @@ void writeBTData(String);
 /************************************************************************/
 /*							上下片通信                                   */
 /************************************************************************/
-#define STOPDC  40
+#define STOPDC  41
 #endif
 

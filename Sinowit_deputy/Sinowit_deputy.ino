@@ -52,10 +52,10 @@ void setup()
 	RISING	当针脚输入由低变高时，触发中断
 	FALLING	当针脚输入由高变低时，触发中断
 	*/
-	servo_1.attach(9);
-	servo_1.write(95);
-	servo_2.attach(10);
-	servo_2.write(70);
+	servo_1.attach(7);
+	servo_1.write(80);//80~180
+	servo_2.attach(8);
+	servo_2.write(80);//70~180
 	Serial.begin(9600);
 	Serial1.begin(9600);
 	Serial2.begin(9600);
@@ -66,16 +66,34 @@ void setup()
 	Serial.println("setup");*/
 	rountine();
 	//getBall();
+	//getOut();
 	//getBallOut_1();
+	//Timer1.attachInterrupt(DriveLeft);
+	//Timer1.setPeriod(4000);
+	//Timer3.attachInterrupt(DriveRight);
+	//Timer3.setPeriod(4000);
+	//Timer1.start();
+	//Timer3.start();
+	/*delay(4000);
+	Timer1.stop();
+	Timer3.stop();*/
+	//while (true)
+	//{
+	//	test();
+	//}
 }
 
 void loop()
 {
+	//while (true)
+	//{
+	//	test();
+	//}
 	switch (btOrder)
 	{
 	case 0:
 		MsTimer2::stop();
-		servo_1.write(0);//+++
+		servo_1.write(180);//+++
 		while (readin[2] != 'D' || readin[1] != '1')		// 等待对方放球完毕，传输球的颜色
 		{
 			readBTData();
@@ -86,7 +104,7 @@ void loop()
 		}
 
 		numG = readin[4] - '0';
-		servo_1.write(95);//+++						// 关闭第一道舵机，接收第二批球
+		servo_1.write(80);//+++						// 关闭第一道舵机，接收第二批球
 		while (readin[2] != 'D' || readin[1] != '2')		// 等待对方放球完毕，传输球的颜色
 		{
 			readBTData();

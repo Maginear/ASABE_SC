@@ -303,7 +303,7 @@ void getBallOut_1(void)
 	afterForwardFunction = Turn360;
 	MsTimer2::set(3000, goforward);
 	//MsTimer2::start();
-	for (int i = 70; i > 0; i--) 
+	for (int i = 80; i < 180; i++) 
 	{ 
 		servo_2.write(i);
 		delay(5);
@@ -339,8 +339,8 @@ void Turn360(void)
 	//Serial.println("after2");
 	
 	/*goBack();*/
-	servo_2.write(70);
-	for (int i = 95; i > 0; i--)
+	servo_2.write(80);
+	for (int i = 80; i < 180; i++)
 	{
 		servo_1.write(i);
 		delay(5);
@@ -360,8 +360,8 @@ void getBallOut_2(void)
 	MsTimer2::set(3000, goforward);
 	//MsTimer2::start();
 	// 第一个舵机打开，放出球, 3S时间
-	servo_1.write(95);
-	for (int i = 70; i > 0; i--)
+	servo_1.write(80);
+	for (int i = 80; i <180; i++)
 	{
 		servo_2.write(i);
 		delay(5);
@@ -371,7 +371,7 @@ void getBallOut_2(void)
 
 void stopAllTimer(void)
 {
-	servo_2.write(70);	
+	servo_2.write(80);	
 	detachInterrupt(0);
 	detachInterrupt(1);
 	Timer1.stop();
@@ -394,4 +394,19 @@ void posupdate()//自动生成位置信息
 	posY = yflag*perstep + posY;
 	posXint = (int)posX;
 	posYint = (int)posY;
+}
+
+void test()
+{
+	//Timer1.attachInterrupt(DriveLeft);
+	Timer3.attachInterrupt(DriveRight);
+	//Timer1.setPeriod(4000);
+	Timer3.setPeriod(4000);
+	//Timer1.start();
+	Timer3.start();
+	delay(2000);
+	//Timer1.attachInterrupt(BackLeft);
+	Timer3.attachInterrupt(BackRight);
+	delay(2000);
+
 }

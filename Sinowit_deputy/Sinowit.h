@@ -64,15 +64,15 @@ int PIDCal(PID* pid, float error);
 //		红 OUT4
 #define STEPS 400 //因为是8拍， 所以360 / 0.9
 
-#define MOTOR_LEFT_PIN1 31	// 左 4   
-#define MOTOR_LEFT_PIN2 32	// 左 
-#define MOTOR_LEFT_PIN3 33	// 左 
-#define MOTOR_LEFT_PIN4 34 	// 左 
+#define MOTOR_LEFT_PIN1 22	// 左 4   
+#define MOTOR_LEFT_PIN2 24	// 左 
+#define MOTOR_LEFT_PIN3 26	// 左 
+#define MOTOR_LEFT_PIN4 28 	// 左 
 
-#define MOTOR_RIGHT_PIN1 36	// 右 1
-#define MOTOR_RIGHT_PIN2 37	// 2
-#define MOTOR_RIGHT_PIN3 38 // 3
-#define MOTOR_RIGHT_PIN4 39 // 4
+#define MOTOR_RIGHT_PIN1 30	// 右 1
+#define MOTOR_RIGHT_PIN2 32	// 2
+#define MOTOR_RIGHT_PIN3 34 // 3
+#define MOTOR_RIGHT_PIN4 36 // 4
 void TurnLeft(void);
 void TurnRight(void);
 
@@ -82,12 +82,12 @@ void TurnRight(void);
 #define SENSOR_NUM 8
 
 #define SENSOR_8 3
-#define SENSOR_7 27 
-#define SENSOR_6 26
-#define SENSOR_5 25
-#define SENSOR_4 24
-#define SENSOR_3 23
-#define SENSOR_2 22	
+#define SENSOR_7 33 
+#define SENSOR_6 31
+#define SENSOR_5 29
+#define SENSOR_4 27
+#define SENSOR_3 25
+#define SENSOR_2 23  	
 #define SENSOR_1 2
 
 int weight[] = { -10, -8, -4, -2, 2, 4, 8, 10 }; //传感器的权值

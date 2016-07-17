@@ -65,14 +65,14 @@ void setup()
 	//	delay(3);                       // waits 15ms for the servo to reach the position
 	//}
 
-	dcDrive();
-	servo_1.write(100);
+	//dcDrive();
+	//servo_1.write(100);
 	
 
 	PID_inti();
-	Timer1.initialize(Stepinterval);	// 设置步进电机的初始 节拍间隔
+	Timer1.initialize(4000);	// 设置步进电机的初始 节拍间隔
 	Timer1.attachInterrupt(DriveLeft); // Drive Left Motor to run every stepinterval us	传入回调函数
-	Timer3.initialize(Stepinterval);	// 同上
+	Timer3.initialize(4000);	// 同上
 	Timer3.attachInterrupt(DriveRight);
 	
 	MsTimer2::set(ReadSensorInterval, updatePID); // 设置传感器扫描间隔， 以及回调函数
@@ -84,6 +84,8 @@ void setup()
 	Timer3.detachInterrupt();
 	Timer1.stop();
 	Timer3.stop();
+	/*Timer1.start();
+	Timer3.start();*/
 	servo_1.attach(13);
 	///*
 	//中断技术可参考 http://arduino.cc/en/Reference/AttachInterrupt
@@ -96,7 +98,16 @@ void setup()
 	Serial.begin(9600);
 	Serial1.begin(9600);
 	delay(1000);
+	//while (1)
+	//{
+	//	test();
+	//}
 	rountine();
+	//TurnAround();
+	//haveABreak();
+	//Stop();
+	//test();
+
 }
 
 	
